@@ -1,0 +1,99 @@
+[
+  {
+    "id": "gi:444-1",
+    "title": "潮州手拉朱泥壶",
+    "kind": "not-food",
+    "region": "cn:440000",
+    "areas": [
+      "cn:445103",
+      "cn:445102"
+    ],
+    "placed_by": "text",
+    "applicant": "广东省潮州市人民政府",
+    "area": "广东省潮州市潮安区龙湖镇、浮洋镇、凤塘镇、古巷镇、登塘镇、枫溪镇，湘桥区凤新街道、金山街道、西湖街道、湘桥街道、西新街道、太平街道、南春街道、城西街道共14个镇、街道现辖行政区域",
+    "since": 2021,
+    "refs": [
+      {
+        "w": "cnipa-notice-444",
+        "loc": "附件1"
+      }
+    ],
+    "coord": [
+      116.696,
+      23.566
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:444-2",
+    "title": "陆川铁锅",
+    "kind": "not-food",
+    "region": "cn:450000",
+    "areas": [
+      "cn:450922"
+    ],
+    "placed_by": "text",
+    "applicant": "广西壮族自治区玉林市陆川县人民政府",
+    "area": "广西壮族自治区玉林市陆川县现辖行政区域",
+    "since": 2021,
+    "refs": [
+      {
+        "w": "cnipa-notice-444",
+        "loc": "附件2"
+      }
+    ],
+    "coord": [
+      110.266,
+      22.246
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:444-3",
+    "title": "老厂竹根水",
+    "kind": "drink",
+    "region": "cn:520000",
+    "areas": [
+      "cn:520281"
+    ],
+    "placed_by": "text",
+    "applicant": "贵州省六盘水市盘州市人民政府",
+    "area": "贵州省六盘水市盘州市竹海镇现辖行政区域",
+    "since": 2021,
+    "refs": [
+      {
+        "w": "cnipa-notice-444",
+        "loc": "附件3"
+      }
+    ],
+    "coord": [
+      104.661,
+      25.767
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:444-4",
+    "title": "普洱咖啡",
+    "kind": "tea",
+    "region": "cn:530000",
+    "areas": [
+      "cn:530800"
+    ],
+    "placed_by": "text",
+    "applicant": "云南省普洱市人民政府",
+    "area": "云南省普洱市现辖行政区域",
+    "since": 2021,
+    "refs": [
+      {
+        "w": "cnipa-notice-444",
+        "loc": "附件4"
+      }
+    ],
+    "coord": [
+      100.722,
+      23.188
+    ],
+    "approx": true
+  }
+]

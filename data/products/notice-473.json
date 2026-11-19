@@ -1,0 +1,74 @@
+[
+  {
+    "id": "gi:473-1",
+    "title": "滦南虾酱",
+    "kind": "condiment",
+    "region": "cn:130000",
+    "areas": [
+      "cn:130224"
+    ],
+    "placed_by": "text",
+    "applicant": "河北省唐山市滦南县人民政府",
+    "area": "河北省唐山市滦南县南堡镇、柏各庄镇、坨里镇、胡各庄镇共4个镇现辖行政区域",
+    "since": 2022,
+    "refs": [
+      {
+        "w": "cnipa-notice-473",
+        "loc": "附件1"
+      }
+    ],
+    "coord": [
+      118.613,
+      39.472
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:473-2",
+    "title": "滦南虾油",
+    "kind": "condiment",
+    "region": "cn:130000",
+    "areas": [
+      "cn:130224"
+    ],
+    "placed_by": "text",
+    "applicant": "河北省唐山市滦南县人民政府",
+    "area": "河北省唐山市滦南县南堡镇、柏各庄镇、坨里镇、胡各庄镇共4个镇现辖行政区域",
+    "since": 2022,
+    "refs": [
+      {
+        "w": "cnipa-notice-473",
+        "loc": "附件2"
+      }
+    ],
+    "coord": [
+      118.613,
+      39.472
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:473-3",
+    "title": "祥云红梨",
+    "kind": "fruit",
+    "region": "cn:530000",
+    "areas": [
+      "cn:532923"
+    ],
+    "placed_by": "text",
+    "applicant": "云南省大理白族自治州祥云县人民政府",
+    "area": "云南省大理白族自治州祥云县现辖行政区域",
+    "since": 2022,
+    "refs": [
+      {
+        "w": "cnipa-notice-473",
+        "loc": "附件3"
+      }
+    ],
+    "coord": [
+      100.77,
+      25.511
+    ],
+    "approx": true
+  }
+]

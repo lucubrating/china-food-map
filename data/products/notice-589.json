@@ -1,0 +1,50 @@
+[
+  {
+    "id": "gi:589-1",
+    "title": "阜城鸭梨",
+    "kind": "fruit",
+    "region": "cn:130000",
+    "areas": [
+      "cn:131128"
+    ],
+    "placed_by": "text",
+    "applicant": "河北省衡水市阜城县人民政府",
+    "area": "河北省衡水市阜城县霞口镇、王集乡共2个乡、镇现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-589",
+        "loc": "第574号公告 附件1"
+      }
+    ],
+    "coord": [
+      116.324,
+      37.907
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:589-2",
+    "title": "阿尔山矿泉水",
+    "kind": "drink",
+    "region": "cn:150000",
+    "areas": [
+      "cn:152202"
+    ],
+    "placed_by": "text",
+    "applicant": "内蒙古自治区兴安盟阿尔山市人民政府",
+    "area": "内蒙古自治区兴安盟阿尔山市现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-589",
+        "loc": "第574号公告 附件2"
+      }
+    ],
+    "coord": [
+      120.35,
+      47.156
+    ],
+    "approx": true
+  }
+]

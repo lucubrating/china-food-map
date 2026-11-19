@@ -1,0 +1,686 @@
+{
+  "note": "Interface text. One entry per key, in English and Simplified Chinese, written by hand. A value is a text, or two forms {one, other} chosen by the number {n}. Names in braces are filled in by the page; \"vars\" lists them where the languages need different ones. A language with \"forms\" is Traditional Chinese: it is converted from the language it is made \"from\", into the character forms of Taiwan (tw) or Hong Kong (hk); corrections to the conversion go in data/overrides/hant.json. Where that language wants other words, not only other characters (預設 for 默认), an entry gives its text in full under the language's key (\"zh-hant\"), and that text is used as it stands. scripts/build.py compiles this into js/data/text.js.",
+  "languages": [
+    {
+      "key": "en",
+      "tag": "en",
+      "name": "English",
+      "short": "EN",
+      "from": "en"
+    },
+    {
+      "key": "zh-hans",
+      "tag": "zh-Hans",
+      "name": "简体中文",
+      "short": "简体",
+      "from": "zh"
+    },
+    {
+      "key": "zh-hant",
+      "tag": "zh-Hant",
+      "name": "繁體中文",
+      "short": "繁體",
+      "from": "zh",
+      "forms": "tw"
+    }
+  ],
+  "text": {
+    "site.pageTitle": {
+      "en": "China Food Map · 中国美食地图",
+      "zh": "中国美食地图"
+    },
+    "site.description": {
+      "en": "A map of regional food across Greater China: signature dishes, protected regional products, heritage food traditions, farm heritage systems and what people eat, by province.",
+      "zh": "中国各地饮食地图：按省份展示经典名菜、地理标志产品、饮食类非遗项目、重要农业文化遗产和居民食品消费情况。"
+    },
+    "site.title": {
+      "en": "China Food Map",
+      "zh": "中国美食地图"
+    },
+    "site.titleOther": {
+      "en": "中国美食地图",
+      "zh": ""
+    },
+    "lang.label": {
+      "en": "Language",
+      "zh": "语言"
+    },
+    "lang.auto": {
+      "en": "Default ({language})",
+      "zh": "系统默认（{language}）",
+      "zh-hant": "系統預設（{language}）"
+    },
+    "lang.name.en": {
+      "en": "English",
+      "zh": "英文"
+    },
+    "lang.name.zh-hans": {
+      "en": "Simplified Chinese",
+      "zh": "简体"
+    },
+    "lang.name.zh-hant": {
+      "en": "Traditional Chinese",
+      "zh": "繁体"
+    },
+    "theme.label": {
+      "en": "Light or dark",
+      "zh": "浅色或深色"
+    },
+    "theme.auto": {
+      "en": "Follow the system",
+      "zh": "跟随系统"
+    },
+    "theme.light": {
+      "en": "Light",
+      "zh": "浅色"
+    },
+    "theme.dark": {
+      "en": "Dark",
+      "zh": "深色"
+    },
+    "search.label": {
+      "en": "Search dishes, products and places",
+      "zh": "搜索菜肴、产品和地区",
+      "zh-hant": "搜尋菜餚、產品和地區"
+    },
+    "search.placeholder": {
+      "en": "Search a dish, product or place  (press /)",
+      "zh": "搜索菜肴、产品或地区（按 / 键）",
+      "zh-hant": "搜尋菜餚、產品或地區（按 / 鍵）"
+    },
+    "search.province": {
+      "en": "Province",
+      "zh": "省级行政区"
+    },
+    "search.place": {
+      "en": "Place · {path}",
+      "zh": "地区 · {path}"
+    },
+    "search.failed": {
+      "en": "The search list could not be loaded. Reload the page to try again.",
+      "zh": "未能加载搜索列表，请刷新页面重试。",
+      "zh-hant": "未能載入搜尋列表，請重新整理頁面重試。"
+    },
+    "search.none": {
+      "en": "Nothing matches.",
+      "zh": "没有匹配项。",
+      "zh-hant": "沒有相符的項目。"
+    },
+    "options.label": {
+      "en": "Map options",
+      "zh": "地图选项"
+    },
+    "options.shade": {
+      "en": "Shade provinces by",
+      "zh": "省份着色依据"
+    },
+    "options.show": {
+      "en": "Show on map",
+      "zh": "地图显示"
+    },
+    "map.label": {
+      "en": "Map",
+      "zh": "地图"
+    },
+    "map.svg": {
+      "en": "Map of China by province",
+      "zh": "中国分省地图"
+    },
+    "zoom.label": {
+      "en": "Zoom",
+      "zh": "缩放"
+    },
+    "zoom.in": {
+      "en": "Zoom in",
+      "zh": "放大"
+    },
+    "zoom.out": {
+      "en": "Zoom out",
+      "zh": "缩小"
+    },
+    "zoom.whole": {
+      "en": "Show the whole map",
+      "zh": "显示全图"
+    },
+    "zoom.reset": {
+      "en": "Reset",
+      "zh": "复位",
+      "zh-hant": "重設"
+    },
+    "legend.label": {
+      "en": "Legend",
+      "zh": "图例"
+    },
+    "trail.label": {
+      "en": "Selected place",
+      "zh": "所选地区"
+    },
+    "trail.root": {
+      "en": "China",
+      "zh": "全国"
+    },
+    "trail.reframe": {
+      "en": "Bring {place} back into view",
+      "zh": "回到{place}的初始视图",
+      "zh-hant": "回到{place}的初始檢視"
+    },
+    "timeline.label": {
+      "en": "Show what existed by",
+      "zh": "显示截至该年已有的条目"
+    },
+    "layer.products.label": {
+      "en": "Protected regional products",
+      "zh": "地理标志产品"
+    },
+    "layer.products.one": {
+      "en": "Protected regional product",
+      "zh": "地理标志产品"
+    },
+    "layer.products.short": {
+      "en": "Products",
+      "zh": "地标产品"
+    },
+    "layer.products.count": {
+      "en": {
+        "one": "{n} protected regional product",
+        "other": "{n} protected regional products"
+      },
+      "zh": "{n} 项地理标志产品"
+    },
+    "layer.heritage.label": {
+      "en": "Heritage food traditions",
+      "zh": "饮食类非遗项目"
+    },
+    "layer.heritage.one": {
+      "en": "Heritage food tradition",
+      "zh": "饮食类非遗项目"
+    },
+    "layer.heritage.short": {
+      "en": "Traditions",
+      "zh": "非遗项目"
+    },
+    "layer.heritage.count": {
+      "en": {
+        "one": "{n} heritage food tradition",
+        "other": "{n} heritage food traditions"
+      },
+      "zh": "{n} 个饮食类非遗项目"
+    },
+    "layer.farm.label": {
+      "en": "Farm heritage systems",
+      "zh": "重要农业文化遗产"
+    },
+    "layer.farm.one": {
+      "en": "Farm heritage system",
+      "zh": "重要农业文化遗产"
+    },
+    "layer.farm.short": {
+      "en": "Farm systems",
+      "zh": "农业遗产"
+    },
+    "layer.farm.count": {
+      "en": {
+        "one": "{n} farm heritage system",
+        "other": "{n} farm heritage systems"
+      },
+      "zh": "{n} 项重要农业文化遗产"
+    },
+    "dishes.label": {
+      "en": "Signature dishes",
+      "zh": "经典名菜"
+    },
+    "dishes.one": {
+      "en": "Signature dish",
+      "zh": "经典名菜"
+    },
+    "dishes.hint": {
+      "en": "Chosen by the China Cuisine Association in 2018.",
+      "zh": "由中国烹饪协会于2018年评选。"
+    },
+    "products.hint": {
+      "en": "From the recognition notices published from 2021 to 2026. Earlier ones are not in yet. In Taiwan, from the register of place marks.",
+      "zh": "来自2021年至2026年发布的产品认定公告，更早的公告尚未收录。台湾部分来自产地标章注册资料。"
+    },
+    "heritage.level.local": {
+      "en": "City or county listing",
+      "zh": "市县登录"
+    },
+    "heritage.level.regional": {
+      "en": "The region's own inventory",
+      "zh": "特区非遗清单"
+    },
+    "heritage.kind.tea": {
+      "en": "Tea",
+      "zh": "茶"
+    },
+    "heritage.kind.liquor": {
+      "en": "Liquor",
+      "zh": "酒"
+    },
+    "heritage.kind.condiment": {
+      "en": "Condiments",
+      "zh": "调味品"
+    },
+    "heritage.kind.cuisine": {
+      "en": "Cooking",
+      "zh": "烹饪"
+    },
+    "heritage.kind.meat": {
+      "en": "Meat",
+      "zh": "肉制品"
+    },
+    "heritage.kind.staple": {
+      "en": "Staples and snacks",
+      "zh": "主食与小吃"
+    },
+    "heritage.kind.farming": {
+      "en": "Farming and fishing",
+      "zh": "农渔生产"
+    },
+    "unit.kind.prefecture-level-city": {
+      "en": "Prefecture-level city",
+      "zh": "地级市"
+    },
+    "unit.kind.autonomous-prefecture": {
+      "en": "Autonomous prefecture",
+      "zh": "自治州"
+    },
+    "unit.kind.prefecture": {
+      "en": "Prefecture",
+      "zh": "地区"
+    },
+    "unit.kind.league": {
+      "en": "League",
+      "zh": "盟"
+    },
+    "unit.kind.district": {
+      "en": "District",
+      "zh": "区"
+    },
+    "unit.kind.county": {
+      "en": "County",
+      "zh": "县"
+    },
+    "unit.kind.county-level-city": {
+      "en": "County-level city",
+      "zh": "县级市"
+    },
+    "unit.kind.autonomous-county": {
+      "en": "Autonomous county",
+      "zh": "自治县"
+    },
+    "unit.kind.banner": {
+      "en": "Banner",
+      "zh": "旗"
+    },
+    "unit.kind.autonomous-banner": {
+      "en": "Autonomous banner",
+      "zh": "自治旗"
+    },
+    "unit.kind.forestry-district": {
+      "en": "Forestry district",
+      "zh": "林区"
+    },
+    "unit.kind.special-district": {
+      "en": "Special district",
+      "zh": "特区"
+    },
+    "unit.kind.administrative-committee": {
+      "en": "Administrative committee",
+      "zh": "行政委员会"
+    },
+    "unit.kind.parish": {
+      "en": "Parish",
+      "zh": "堂区"
+    },
+    "unit.kind.reclaimed-area": {
+      "en": "Reclaimed area",
+      "zh": "填海区"
+    },
+    "unit.kind.special-municipality": {
+      "en": "Special municipality",
+      "zh": "直辖市"
+    },
+    "unit.kind.city": {
+      "en": "City",
+      "zh": "市"
+    },
+    "unit.kind.county-administered-city": {
+      "en": "County-administered city",
+      "zh": "县辖市"
+    },
+    "unit.kind.town": {
+      "en": "Urban township",
+      "zh": "镇"
+    },
+    "unit.kind.township": {
+      "en": "Rural township",
+      "zh": "乡"
+    },
+    "common.loading": {
+      "en": "Loading…",
+      "zh": "加载中…",
+      "zh-hant": "載入中…"
+    },
+    "value.none": {
+      "en": "no data",
+      "zh": "无数据",
+      "zh-hant": "無資料"
+    },
+    "value.noneCap": {
+      "en": "No data",
+      "zh": "无数据",
+      "zh-hant": "無資料"
+    },
+    "value.kg": {
+      "en": "{v} kg",
+      "zh": "{v} 千克",
+      "zh-hant": "{v} 公斤"
+    },
+    "record.show": {
+      "en": "Show on the map",
+      "zh": "在地图上显示"
+    },
+    "record.show.unplaced": {
+      "en": "Mark this entry. It has no position of its own on the map.",
+      "zh": "标出此项。此项在地图上没有单独的位置。"
+    },
+    "where.more": {
+      "en": "{list} and {n} more",
+      "zh": "{list}等{total}地",
+      "vars": [
+        "list",
+        "n",
+        "total"
+      ]
+    },
+    "item.back": {
+      "en": "Back to {place}",
+      "zh": "返回{place}"
+    },
+    "item.since.products": {
+      "en": "Year of the notice",
+      "zh": "公告年份"
+    },
+    "item.earlier": {
+      "en": "Year of the notice it replaces",
+      "zh": "所代替公告的年份"
+    },
+    "item.since": {
+      "en": "Listed",
+      "zh": "列入年份"
+    },
+    "item.register": {
+      "en": "Register",
+      "zh": "名录"
+    },
+    "item.level.national": {
+      "en": "National register",
+      "zh": "国家级名录"
+    },
+    "item.batch": {
+      "en": "Batch",
+      "zh": "批次"
+    },
+    "item.batch.value": {
+      "en": "Batch {n}",
+      "zh": "第{n}批"
+    },
+    "item.place": {
+      "en": "Place",
+      "zh": "所在地区"
+    },
+    "item.filed": {
+      "en": "Filed under",
+      "zh": "申报地区或单位"
+    },
+    "item.applicant": {
+      "en": "Applicant",
+      "zh": "申请人"
+    },
+    "item.holder": {
+      "en": "Mark holder",
+      "zh": "标章权人"
+    },
+    "item.listedBy": {
+      "en": "Listed by",
+      "zh": "登录机关"
+    },
+    "item.area": {
+      "en": "Area, in the source's words",
+      "zh": "地域范围（来源原文）"
+    },
+    "item.remark": {
+      "en": "Remark in the notice",
+      "zh": "公告备注"
+    },
+    "item.marks": {
+      "en": "Registered marks",
+      "zh": "注册标章"
+    },
+    "item.own": {
+      "en": "Name in the source",
+      "zh": "来源所用名称"
+    },
+    "item.loc": {
+      "en": "Where in the source",
+      "zh": "出处"
+    },
+    "item.dot.centre": {
+      "en": "The dot marks the centre of the place, because the source gives no coordinates.",
+      "zh": "来源未给出坐标，圆点标在所在地区的中心。"
+    },
+    "item.dot.unused": {
+      "en": "The dot marks the centre of the place. The coordinates in the notice fall far outside it and are not used.",
+      "zh": "公告所载坐标远在所在地区之外，未予采用，圆点标在所在地区的中心。"
+    },
+    "item.dot.pulled": {
+      "en": "The coordinates in the notice fall just outside the place, so the dot has been moved inside its border.",
+      "zh": "公告所载坐标略出所在地区之外，圆点已移入其边界以内。"
+    },
+    "item.dot.none": {
+      "en": "This entry has no dot of its own: the source places it no more closely than {place}.",
+      "zh": "此项在地图上没有单独的圆点：来源只将其列在{place}名下。"
+    },
+    "item.near": {
+      "en": "Also in {place}",
+      "zh": "{place}的其他条目"
+    },
+    "item.alike": {
+      "en": "Same kind in {place}",
+      "zh": "{place}的同类条目"
+    },
+    "item.more": {
+      "en": "and {n} more",
+      "zh": "另有 {n} 项"
+    },
+    "item.intro": {
+      "en": "About",
+      "zh": "简介"
+    },
+    "count.noneShown": {
+      "en": "Nothing in the categories shown",
+      "zh": "所选类别中暂无条目"
+    },
+    "count.none": {
+      "en": "Nothing listed here yet",
+      "zh": "暂无条目"
+    },
+    "tip.whole": {
+      "en": "{place} as a whole: {value} · {food}",
+      "zh": "{place}整体：{value} · {food}"
+    },
+    "tip.open": {
+      "en": "Click to open it",
+      "zh": "点击展开",
+      "zh-hant": "點選展開"
+    },
+    "legend.metric": {
+      "en": "{food}, kg per person, {year}",
+      "zh": "{year}年人均{food}消费量（千克）",
+      "zh-hant": "{year}年人均{food}消費量（公斤）"
+    },
+    "metric.none": {
+      "en": "Nothing (plain map)",
+      "zh": "不着色（素色地图）"
+    },
+    "metric.option": {
+      "en": "{food} eaten per person",
+      "zh": "人均{food}消费量"
+    },
+    "overview.title": {
+      "en": "Food across Greater China, by place",
+      "zh": "按地区看中国饮食"
+    },
+    "overview.lede": {
+      "en": "The number on a province counts its protected regional products, heritage food traditions and farm heritage systems. Click the province to open it: the entries appear as dots, with its signature dishes and what people there eat beside the map. An open province shows its cities, and a city opens into its districts and counties in the same way. Scroll or pinch to zoom.",
+      "zh": "省份上的数字是该省地理标志产品、饮食类非遗项目和重要农业文化遗产的条目数。点击省份将其展开：条目以圆点显示在地图上，该省的经典名菜和居民食品消费情况列在地图旁。展开的省份显示其下辖的市，市也可以同样展开为区县。滚动或双指开合可缩放地图。",
+      "zh-hant": "省份上的數字是該省地理標誌產品、飲食類非遺項目和重要農業文化遺產的條目數。點選省份將其展開：條目以圓點顯示在地圖上，該省的經典名菜和居民食品消費情況列在地圖旁。展開的省份顯示其下轄的市，市也可以同樣展開為區縣。捲動或雙指開合可縮放地圖。"
+    },
+    "overview.metric.title": {
+      "en": "{food} eaten per person, {year}",
+      "zh": "{year}年人均{food}消费量"
+    },
+    "overview.metric.hint": {
+      "en": "Kilograms per person per year. Mainland average: {v}.",
+      "zh": "单位为每人每年千克。大陆平均：{v}。",
+      "zh-hant": "單位為每人每年公斤。大陸平均：{v}。"
+    },
+    "overview.about.title": {
+      "en": "About this map",
+      "zh": "关于本地图"
+    },
+    "overview.about.text": {
+      "en": "Products come from the recognition notices published from 2021 to 2026 and Taiwan's register of place marks. Heritage entries are the food and drink entries of the national register and of Hong Kong's, Macau's and Taiwan's own lists. Farm heritage covers all eight batches, and the consumption figures were typed in from a published table image. Boundaries are schematic.",
+      "zh": "产品来自2021年至2026年发布的产品认定公告和台湾的产地标章注册资料。非遗条目为国家级名录以及香港、澳门和台湾各自名录中的饮食类项目。农业文化遗产涵盖全部八批，消费数据由已公布的表格图片手工录入。边界仅为示意。",
+      "zh-hant": "產品來自2021年至2026年發布的產品認定公告和臺灣的產地標章註冊資料。非遺條目為國家級名錄以及香港、澳門和臺灣各自名錄中的飲食類項目。農業文化遺產涵蓋全部八批，消費資料由已公布的表格圖片人工輸入。邊界僅為示意。"
+    },
+    "overview.about.disclaimer": {
+      "en": "The map is offered as it is. It may contain mistakes or be out of date, and no responsibility is taken for the accuracy, completeness or currency of its information.",
+      "zh": "本地图按现状提供，可能有错误或内容过时，对其信息的准确性、完整性和时效性不承担任何责任。",
+      "zh-hant": "本地圖按現狀提供，可能有錯誤或內容過時，對其資訊的準確性、完整性和時效性不承擔任何責任。"
+    },
+    "overview.about.repo": {
+      "en": "Source code and data:",
+      "zh": "源代码与数据：",
+      "zh-hant": "原始碼與資料："
+    },
+    "overview.about.repoLink": {
+      "en": "GitHub",
+      "zh": "GitHub"
+    },
+    "places.title": {
+      "en": "Places",
+      "zh": "下辖地区"
+    },
+    "places.failed": {
+      "en": "The places here could not be loaded. Reload the page to try again.",
+      "zh": "未能加载这里的下辖地区，请刷新页面重试。",
+      "zh-hant": "未能載入這裡的下轄地區，請重新整理頁面重試。"
+    },
+    "places.note": {
+      "en": "Each number counts the entries listed in that place. An entry that spans several places is counted in each.",
+      "zh": "每个数字是该地列出的条目数。跨多地的条目在每一地各计一次。"
+    },
+    "places.loose": {
+      "en": {
+        "one": "{n} entry is recorded for {place} as a whole.",
+        "other": "{n} entries are recorded for {place} as a whole."
+      },
+      "zh": "另有 {n} 项条目登记在{place}整体名下。"
+    },
+    "place.close": {
+      "en": "Back to the overview",
+      "zh": "返回总览"
+    },
+    "place.failed": {
+      "en": "The entries for {place} could not be loaded. Reload the page to try again.",
+      "zh": "未能加载{place}的条目，请刷新页面重试。",
+      "zh-hant": "未能載入{place}的條目，請重新整理頁面重試。"
+    },
+    "place.empty": {
+      "en": "Nothing is listed for {place} yet.",
+      "zh": "暂无{place}的条目。"
+    },
+    "place.see": {
+      "en": "See {place}",
+      "zh": "查看{place}"
+    },
+    "place.whole": {
+      "en": "Signature dishes and what people eat are recorded for {place} as a whole.",
+      "zh": "经典名菜和居民食品消费按{place}整体统计。"
+    },
+    "eat.title": {
+      "en": "What people eat",
+      "zh": "居民食品消费"
+    },
+    "eat.hint": {
+      "en": "Kilograms per person in {year}, beside the national average, which covers mainland China only.",
+      "zh": "{year}年人均消费量（千克），与全国平均并列。全国数据仅指中国大陆，不含港澳台。",
+      "zh-hant": "{year}年人均消費量（公斤），與全國平均並列。全國資料僅指中國大陸，不含港澳臺。"
+    },
+    "eat.food": {
+      "en": "Food",
+      "zh": "食品"
+    },
+    "eat.national": {
+      "en": "National",
+      "zh": "全国"
+    },
+    "eat.difference": {
+      "en": "Difference",
+      "zh": "差异"
+    },
+    "eat.shade": {
+      "en": "Shade the map by this",
+      "zh": "按此项为地图着色"
+    },
+    "supply.hint": {
+      "en": "Food supply in kilograms per person in {year}, from FAO's food balance sheets.",
+      "zh": "{year}年人均食物供应量（千克），据联合国粮农组织食物平衡表。",
+      "zh-hant": "{year}年人均食物供應量（公斤），據聯合國糧農組織食物平衡表。"
+    },
+    "supply.note": {
+      "en": "Supply is production plus imports, less exports, animal feed, seed and losses, shared out over the population. It counts food eaten out and food thrown away, so it runs higher than the household survey used for the mainland's provinces, and the two should not be set side by side. The figures are FAO's estimates. In Hong Kong and Macau, visitors and re-exports can push them up.",
+      "zh": "供应量为产量加进口，减去出口、饲料、种用和损耗后，按人口平均。其中包括在外用餐和浪费的食物，因此高于大陆各省所用的住户调查数字，两者不宜直接比较。数字为粮农组织估计值。香港和澳门的数字可能因游客和转口贸易而偏高。",
+      "zh-hant": "供應量為產量加進口，減去出口、飼料、種用和損耗後，按人口平均。其中包括在外用餐和浪費的食物，因此高於大陸各省所用的家戶調查數字，兩者不宜直接比較。數字為糧農組織估計值。香港和澳門的數字可能因遊客和轉口貿易而偏高。"
+    },
+    "supply.mainland": {
+      "en": "Mainland",
+      "zh": "大陆"
+    },
+    "supply.compare.hint": {
+      "en": "Food supply in kilograms per person in {year}, from FAO's food balance sheets: the mainland, Hong Kong, Macau and Taiwan.",
+      "zh": "{year}年人均食物供应量（千克），据联合国粮农组织食物平衡表：大陆、香港、澳门和台湾。",
+      "zh-hant": "{year}年人均食物供應量（公斤），據聯合國糧農組織食物平衡表：大陸、香港、澳門和臺灣。"
+    },
+    "supply.compare.note": {
+      "en": "Supply is production plus imports, less exports, animal feed, seed and losses, shared out over the population. It counts food eaten out and food thrown away, so it runs higher than the household survey that shades the map. The figures are FAO's estimates. In Hong Kong and Macau, visitors and re-exports can push them up.",
+      "zh": "供应量为产量加进口，减去出口、饲料、种用和损耗后，按人口平均。其中包括在外用餐和浪费的食物，因此高于地图着色所用的住户调查数字。数字为粮农组织估计值。香港和澳门的数字可能因游客和转口贸易而偏高。",
+      "zh-hant": "供應量為產量加進口，減去出口、飼料、種用和損耗後，按人口平均。其中包括在外用餐和浪費的食物，因此高於地圖著色所用的家戶調查數字。數字為糧農組織估計值。香港和澳門的數字可能因遊客和轉口貿易而偏高。"
+    },
+    "supply.taiwan.hint": {
+      "en": "Food supply in kilograms per person in {year}, from Taiwan's own food balance sheet.",
+      "zh": "{year}年人均食物供应量（千克），据台湾农业部粮食平衡表。",
+      "zh-hant": "{year}年人均食物供應量（公斤），據臺灣農業部糧食平衡表。"
+    },
+    "supply.taiwan.note": {
+      "en": "This is supply, not a household survey, so it should not be set beside the figures for the mainland's provinces. The sheet counts food after trimming and milling, and its food groups differ from FAO's, so its figures are not the same as Taiwan's on the overview.",
+      "zh": "此为供应量，并非住户调查，不宜与大陆各省的数字直接比较。该表按去除不可食部分后的重量计算，食物分类也与粮农组织不同，因此与全图概览中台湾的数字并不一致。",
+      "zh-hant": "此為供應量，並非家戶調查，不宜與大陸各省的數字直接比較。該表按去除不可食部分後的重量計算，食物分類也與糧農組織不同，因此與全圖概覽中臺灣的數字並不一致。"
+    },
+    "supply.kg": {
+      "en": "kg",
+      "zh": "千克",
+      "zh-hant": "公斤"
+    },
+    "eat.missing": {
+      "en": "The national table used here does not cover {place}.",
+      "zh": "此处所用的全国统计表不含{place}。"
+    },
+    "sources.title": {
+      "en": "Sources",
+      "zh": "资料来源"
+    }
+  }
+}

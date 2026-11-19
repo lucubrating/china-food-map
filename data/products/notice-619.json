@@ -1,0 +1,74 @@
+[
+  {
+    "id": "gi:619-1",
+    "title": "行唐大枣",
+    "kind": "fruit",
+    "region": "cn:130000",
+    "areas": [
+      "cn:130125"
+    ],
+    "placed_by": "text",
+    "applicant": "行唐县人民政府",
+    "area": "河北省石家庄市行唐县九口子乡、口头镇、上闫庄乡共3个乡、镇现辖行政区域",
+    "since": 2025,
+    "refs": [
+      {
+        "w": "cnipa-notice-619",
+        "loc": "第611号公告 序号1"
+      }
+    ],
+    "coord": [
+      114.452,
+      38.54
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:619-2",
+    "title": "安达奶酪",
+    "kind": "meat",
+    "region": "cn:230000",
+    "areas": [
+      "cn:231281"
+    ],
+    "placed_by": "text",
+    "applicant": "安达市人民政府",
+    "area": "黑龙江省绥化市安达市现辖行政区域",
+    "since": 2025,
+    "refs": [
+      {
+        "w": "cnipa-notice-619",
+        "loc": "第611号公告 序号2"
+      }
+    ],
+    "coord": [
+      125.378,
+      46.53
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:619-3",
+    "title": "益阳松花皮蛋",
+    "kind": "meat",
+    "region": "cn:430000",
+    "areas": [
+      "cn:430903"
+    ],
+    "placed_by": "text",
+    "applicant": "益阳市赫山区人民政府",
+    "area": "湖南省益阳市赫山区现辖行政区域",
+    "since": 2025,
+    "refs": [
+      {
+        "w": "cnipa-notice-619",
+        "loc": "第611号公告 序号3"
+      }
+    ],
+    "coord": [
+      112.437,
+      28.473
+    ],
+    "approx": true
+  }
+]

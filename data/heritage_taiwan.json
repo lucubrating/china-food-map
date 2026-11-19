@@ -1,0 +1,531 @@
+[
+  {
+    "id": "heritage:tw:20190418000001",
+    "title": "传统手工制茶-名间埔中茶",
+    "hant": {
+      "title": "傳統手工製茶-名間埔中茶",
+      "listed_by": "南投縣政府"
+    },
+    "kind": "tea",
+    "level": "local",
+    "listed_by": "南投县政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:10008"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "传统知识与实践 20190418000001"
+      }
+    ],
+    "since": 2019,
+    "coord": [
+      120.982,
+      23.843
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20191220000004",
+    "title": "台东新港镖旗鱼",
+    "hant": {
+      "title": "臺東新港鏢旗魚",
+      "listed_by": "臺東縣政府"
+    },
+    "kind": "farming",
+    "level": "local",
+    "listed_by": "台东县政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:10014020"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "传统知识与实践 20191220000004"
+      }
+    ],
+    "since": 2019,
+    "coord": [
+      121.354,
+      23.126
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20200723000001",
+    "title": "芳苑潮间带牛车采蚵",
+    "hant": {
+      "title": "芳苑潮間帶牛車採蚵",
+      "listed_by": "彰化縣政府"
+    },
+    "kind": "farming",
+    "level": "local",
+    "listed_by": "彰化县政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:10007230"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "传统知识与实践 20200723000001"
+      }
+    ],
+    "since": 2016,
+    "coord": [
+      120.341,
+      23.958
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20220619000001",
+    "title": "传统手工制茶-鹿谷乌龙茶",
+    "hant": {
+      "title": "傳統手工製茶-鹿谷烏龍茶",
+      "listed_by": "南投縣政府"
+    },
+    "kind": "tea",
+    "level": "local",
+    "listed_by": "南投县政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:10008070"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "传统知识与实践 20220619000001"
+      }
+    ],
+    "since": 2019,
+    "coord": [
+      120.781,
+      23.738
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20251211000002",
+    "title": "马祖老酒文化",
+    "hant": {
+      "title": "馬祖老酒文化",
+      "listed_by": "連江縣政府"
+    },
+    "kind": "liquor",
+    "level": "local",
+    "listed_by": "连江县政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:09007010",
+      "tw:09007020",
+      "tw:09007030",
+      "tw:09007040"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "传统知识与实践 20251211000002"
+      }
+    ],
+    "since": 2025,
+    "coord": [
+      119.934,
+      26.155
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20260302000002",
+    "title": "竹南后厝仔牵罟",
+    "hant": {
+      "title": "竹南后厝仔牽罟",
+      "listed_by": "苗栗縣政府"
+    },
+    "kind": "farming",
+    "level": "local",
+    "listed_by": "苗栗县政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:10005040"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "传统知识与实践 20260302000002"
+      }
+    ],
+    "since": 2026,
+    "coord": [
+      120.876,
+      24.699
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20141111000001",
+    "title": "马鸣山五年千岁吃饭担",
+    "hant": {
+      "title": "馬鳴山五年千歲吃飯擔",
+      "listed_by": "雲林縣政府"
+    },
+    "kind": "cuisine",
+    "level": "local",
+    "listed_by": "云林县政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:10009150"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "民俗 20141111000001"
+      }
+    ],
+    "since": 2014,
+    "coord": [
+      120.312,
+      23.716
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20150116000002",
+    "title": "大路关四孤抢粄(高树)",
+    "hant": {
+      "title": "大路關四孤搶粄(高樹)",
+      "listed_by": "屏東縣政府"
+    },
+    "kind": "staple",
+    "level": "local",
+    "listed_by": "屏东县政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:10013110"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "民俗 20150116000002"
+      }
+    ],
+    "since": 2015,
+    "coord": [
+      120.602,
+      22.81
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20111215000003",
+    "title": "中秋搏饼",
+    "hant": {
+      "title": "中秋搏餅",
+      "listed_by": "金門縣政府"
+    },
+    "kind": "staple",
+    "level": "local",
+    "listed_by": "金门县政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:09020010"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "民俗 20111215000003"
+      }
+    ],
+    "since": 2011,
+    "coord": [
+      118.313,
+      24.413
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20090902000002",
+    "title": "竹山社寮紫南宫吃丁酒",
+    "hant": {
+      "title": "竹山社寮紫南宮吃丁酒",
+      "listed_by": "南投縣政府"
+    },
+    "kind": "cuisine",
+    "level": "local",
+    "listed_by": "南投县政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:10008040"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "民俗 20090902000002"
+      }
+    ],
+    "since": 2009,
+    "coord": [
+      120.71,
+      23.698
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20131021000001",
+    "title": "太阳公生及九猪十六羊祭品",
+    "hant": {
+      "title": "太陽公生及九豬十六羊祭品",
+      "listed_by": "臺南市政府"
+    },
+    "kind": "meat",
+    "level": "local",
+    "listed_by": "台南市政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:67000370"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "民俗 20131021000001"
+      }
+    ],
+    "since": 2013,
+    "coord": [
+      120.193,
+      22.995
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20090115000001",
+    "title": "永康广兴宫境内担饼节",
+    "hant": {
+      "title": "永康廣興宮境內擔餅節",
+      "listed_by": "臺南市政府"
+    },
+    "kind": "staple",
+    "level": "local",
+    "listed_by": "台南市政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:67000310"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "民俗 20090115000001"
+      }
+    ],
+    "since": 2009,
+    "coord": [
+      120.254,
+      23.027
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20111213000001",
+    "title": "雅美(达悟)族飞鱼祭",
+    "hant": {
+      "title": "雅美(達悟)族飛魚祭",
+      "listed_by": "臺東縣政府"
+    },
+    "kind": "farming",
+    "level": "local",
+    "listed_by": "台东县政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:10014160"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "民俗 20111213000001"
+      }
+    ],
+    "since": 2010,
+    "coord": [
+      121.55,
+      22.047
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20121226000005",
+    "title": "卑南族妇女工团小米祭",
+    "hant": {
+      "title": "卑南族婦女工團小米祭",
+      "listed_by": "臺東縣政府"
+    },
+    "kind": "farming",
+    "level": "local",
+    "listed_by": "台东县政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:10014010",
+      "tw:10014040"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "民俗 20121226000005"
+      }
+    ],
+    "since": 2012,
+    "coord": [
+      121.111,
+      22.752
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20160203000004",
+    "title": "忠顺圣王会食祖佛酒迎陈圣祖",
+    "hant": {
+      "title": "忠順聖王會食祖佛酒迎陳聖祖",
+      "listed_by": "臺南市政府"
+    },
+    "kind": "cuisine",
+    "level": "local",
+    "listed_by": "台南市政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:67000310",
+      "tw:67000270",
+      "tw:67000280",
+      "tw:67000180",
+      "tw:67000290",
+      "tw:67000300",
+      "tw:67000320",
+      "tw:67000350"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "民俗 20160203000004"
+      }
+    ],
+    "since": 2016,
+    "coord": [
+      120.254,
+      23.027
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20150916000001",
+    "title": "金山磺火捕鱼蹦火仔",
+    "hant": {
+      "title": "金山磺火捕魚蹦火仔",
+      "listed_by": "新北市政府"
+    },
+    "kind": "farming",
+    "level": "local",
+    "listed_by": "新北市政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:65000270"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "民俗 20150916000001"
+      }
+    ],
+    "since": 2015,
+    "coord": [
+      121.606,
+      25.218
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20180102000001",
+    "title": "新化大坑尾担饭担",
+    "hant": {
+      "title": "新化大坑尾擔飯擔",
+      "listed_by": "臺南市政府"
+    },
+    "kind": "cuisine",
+    "level": "local",
+    "listed_by": "台南市政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:67000180"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "民俗 20180102000001"
+      }
+    ],
+    "since": 2016,
+    "coord": [
+      120.336,
+      23.034
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20220110000001",
+    "title": "卡那卡那富族Mikongu（米贡祭）",
+    "hant": {
+      "title": "卡那卡那富族Mikongu（米貢祭）",
+      "listed_by": "高雄市政府"
+    },
+    "kind": "farming",
+    "level": "local",
+    "listed_by": "高雄市政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:64000380"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "民俗 20220110000001"
+      }
+    ],
+    "since": 2021,
+    "coord": [
+      120.721,
+      23.263
+    ],
+    "approx": true
+  },
+  {
+    "id": "heritage:tw:20250716000001",
+    "title": "澎湖上元乞龟",
+    "hant": {
+      "title": "澎湖上元乞龜",
+      "listed_by": "澎湖縣政府"
+    },
+    "kind": "staple",
+    "level": "local",
+    "listed_by": "澎湖县政府",
+    "region": "cn:710000",
+    "areas": [
+      "tw:10016010",
+      "tw:10016040",
+      "tw:10016050",
+      "tw:10016060",
+      "tw:10016030",
+      "tw:10016020"
+    ],
+    "refs": [
+      {
+        "w": "boch-register",
+        "loc": "民俗 20250716000001"
+      }
+    ],
+    "since": 2025,
+    "coord": [
+      119.59,
+      23.549
+    ],
+    "approx": true
+  }
+]

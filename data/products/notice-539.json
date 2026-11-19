@@ -1,0 +1,50 @@
+[
+  {
+    "id": "gi:539-1",
+    "title": "黄骅梭子蟹",
+    "kind": "aquatic",
+    "region": "cn:130000",
+    "areas": [
+      "cn:130983"
+    ],
+    "placed_by": "text",
+    "applicant": "河北省沧州市黄骅市人民政府",
+    "area": "河北省沧州市黄骅市南排河镇的沿海滩涂及近海海域，北纬38°21’29”～38°39’11”，东经117°28’14”～117°46’36”",
+    "since": 2023,
+    "refs": [
+      {
+        "w": "cnipa-notice-539",
+        "loc": "附件1"
+      }
+    ],
+    "coord": [
+      117.435,
+      38.398
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:539-2",
+    "title": "柞水（黑）木耳",
+    "kind": "vegetable",
+    "region": "cn:610000",
+    "areas": [
+      "cn:611026"
+    ],
+    "placed_by": "text",
+    "applicant": "陕西省商洛市柞水县人民政府",
+    "area": "陕西省商洛市柞水县现辖行政区域",
+    "since": 2023,
+    "refs": [
+      {
+        "w": "cnipa-notice-539",
+        "loc": "附件2"
+      }
+    ],
+    "coord": [
+      109.274,
+      33.688
+    ],
+    "approx": true
+  }
+]

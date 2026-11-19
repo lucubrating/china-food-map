@@ -1,0 +1,26 @@
+[
+  {
+    "id": "gi:566-2",
+    "title": "东莞腊肠",
+    "kind": "meat",
+    "region": "cn:440000",
+    "areas": [
+      "cn:441900"
+    ],
+    "placed_by": "text",
+    "applicant": "广东省东莞市人民政府",
+    "area": "广东省东莞市现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-566",
+        "loc": "附件2"
+      }
+    ],
+    "coord": [
+      113.88,
+      22.932
+    ],
+    "approx": true
+  }
+]

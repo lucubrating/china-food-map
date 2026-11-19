@@ -1,0 +1,16 @@
+# Working notes
+research/
+/*.md
+!/README.md
+
+# Python
+__pycache__/
+*.pyc
+
+# Editors and OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~

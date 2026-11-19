@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>China Food Map · 中国美食地图</title>
+  <meta name="description" content="A map of regional food across Greater China: signature dishes, protected regional products, heritage food traditions, farm heritage systems and what people eat, by province." />
+  <meta name="color-scheme" content="light dark" />
+  <!-- Before the styles, so the page is first drawn in the right colours. -->
+  <script src="js/theme.js?v=925d8a41"></script>
+  <link rel="stylesheet" href="css/style.css?v=e8729808" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <!-- The text in this page is the English text. js/i18n.js replaces it, by the keys in the
+           data-t attributes, with the text of the chosen language from data/text.json. -->
+      <h1><span data-t="site.title">China Food Map</span> <span lang="zh-Hans" data-t="site.titleOther">中国美食地图</span></h1>
+    </div>
+    <div class="search">
+      <label class="visually-hidden" for="search-input" data-t="search.label">Search dishes, products and places</label>
+      <input id="search-input" type="search" autocomplete="off" placeholder="Search a dish, product or place  (press /)" data-t-placeholder="search.placeholder" />
+      <ul id="search-results" class="search-results" hidden></ul>
+    </div>
+    <div class="switches">
+      <div id="theme-switch" class="lang theme" role="group" aria-label="Light or dark" data-t-aria-label="theme.label"></div>
+      <nav id="lang-switch" class="lang" aria-label="Language" data-t-aria-label="lang.label"></nav>
+    </div>
+  </header>
+
+  <div class="filters" role="group" aria-label="Map options" data-t-aria-label="options.label">
+    <div class="filter">
+      <label for="metric-select" data-t="options.shade">Shade provinces by</label>
+      <select id="metric-select"></select>
+    </div>
+    <fieldset class="filter layers">
+      <legend data-t="options.show">Show on map</legend>
+      <div id="layer-toggles" class="layer-toggles"></div>
+    </fieldset>
+  </div>
+
+  <main class="layout">
+    <section class="map-wrap" aria-label="Map" data-t-aria-label="map.label">
+      <svg id="map" role="group" aria-label="Map of China by province" data-t-aria-label="map.svg">
+        <g id="g-provinces"></g>
+        <!-- The open province in more detail: its outline and the units inside it. -->
+        <g id="g-units"></g>
+        <g id="g-maritime"></g>
+        <path id="open-outline" d="" />
+        <path id="selection-outline" d="" />
+        <!-- Small quiet dots for the entries of the provinces that are not open. -->
+        <g id="g-faint"></g>
+        <g id="g-labels"></g>
+        <g id="g-points"></g>
+      </svg>
+
+      <div class="map-tools" role="group" aria-label="Zoom" data-t-aria-label="zoom.label">
+        <button type="button" id="zoom-in" aria-label="Zoom in" data-t-aria-label="zoom.in">+</button>
+        <button type="button" id="zoom-out" aria-label="Zoom out" data-t-aria-label="zoom.out">−</button>
+        <button type="button" id="zoom-reset" aria-label="Show the whole map" data-t-aria-label="zoom.whole" data-t="zoom.reset">Reset</button>
+      </div>
+
+      <div id="legend" class="legend" aria-label="Legend" data-t-aria-label="legend.label"></div>
+      <div id="tooltip" class="tooltip" role="status" hidden></div>
+
+      <!-- The time axis is switched off for now. The code lives in js/timeline.js; set
+           CONFIG.features.timeline in js/app.js, or add ?timeline=1 to the address, to turn it on. -->
+      <div id="timeline" class="timeline" hidden></div>
+
+      <!-- The way back out from the selected place: China, its province, the place. -->
+      <nav id="trail" class="trail" aria-label="Selected place" data-t-aria-label="trail.label" hidden></nav>
+    </section>
+
+    <aside id="panel" class="panel" aria-live="polite"></aside>
+  </main>
+
+  <script src="js/data/regions.js?v=b08082a8"></script>
+  <script src="js/data/summary.js?v=77fe174d"></script>
+  <script src="js/data/text.js?v=6dd4c7bb"></script>
+  <script src="js/i18n.js?v=32fab962"></script>
+  <script src="js/geo.js?v=c382ed9a"></script>
+  <script src="js/timeline.js?v=6230b2f5"></script>
+  <script src="js/app.js?v=47a7508e"></script>
+</body>
+</html>

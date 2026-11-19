@@ -1,0 +1,140 @@
+#!/usr/bin/env python3
+"""Turn the OpenCC conversion tables into data/hant.json, which scripts/hant.py converts with.
+
+Reads research/downloads/opencc/ (plain text tables from https://github.com/BYVoid/OpenCC,
+folder data/dictionary, Apache 2.0 licence). Each line of a table is a key, a tab, and one or
+more values separated by spaces; lines starting with # are comments.
+
+Writes one file with:
+  chars    Simplified character -> its Traditional forms as one string, the usual form first.
+           A character with more than one form is one whose right form depends on the word.
+  phrases  Simplified phrase -> Traditional phrase. These settle most of those cases.
+  forms    For Taiwan ("tw") and for Hong Kong ("hk"): the characters, and the phrases that are
+           exceptions to them, that turn OpenCC's standard Traditional forms into the forms
+           used there.
+  alike    Groups of characters that are forms of one another in either script, for a search
+           that finds the same things whichever script it is typed in.
+
+Usage:
+  python3 -I scripts/import_hant.py
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from common import DATA_DIR, DOWNLOADS_DIR, write_json  # noqa: E402
+
+SOURCE_DIR = os.path.join(DOWNLOADS_DIR, "opencc")
+FILES = ("STCharacters", "STPhrases", "TSCharacters", "TSPhrases",
+         "TWVariants", "TWVariantsPhrases", "HKVariants", "HKVariantsPhrases")
+
+
+def read_table(name):
+    """{key: [values]} from one table."""
+    table = {}
+    with open(os.path.join(SOURCE_DIR, name + ".txt"), encoding="utf-8") as fh:
+        for line in fh:
+            line = line.rstrip("\n")
+            if not line.strip() or line.startswith("#"):
+                continue
+            key, _tab, rest = line.partition("\t")
+            values = rest.split()
+            if key and values:
+                table[key] = values
+    return table
+
+
+class Groups:
+    """Characters joined into groups: two characters are in one group if a table relates them."""
+
+    def __init__(self):
+        self.parent = {}
+
+    def find(self, item):
+        parent = self.parent.setdefault(item, item)
+        while parent != self.parent[parent]:
+            self.parent[parent] = self.parent[self.parent[parent]]
+            parent = self.parent[parent]
+        self.parent[item] = parent
+        return parent
+
+    def join(self, a, b):
+        a, b = self.find(a), self.find(b)
+        if a != b:
+            self.parent[max(a, b)] = min(a, b)
+
+    def members(self):
+        groups = {}
+        for item in self.parent:
+            groups.setdefault(self.find(item), []).append(item)
+        return [sorted(group) for group in groups.values() if len(group) > 1]
+
+
+def main():
+    missing = [name for name in FILES if not os.path.exists(os.path.join(SOURCE_DIR, name + ".txt"))]
+    if missing:
+        sys.exit("missing from %s: %s" % (SOURCE_DIR, ", ".join(missing)))
+    tables = {name: read_table(name) for name in FILES}
+
+    chars = {key: "".join(values) for key, values in tables["STCharacters"].items()}
+    odd = [key for key, forms in chars.items() if len(key) != 1 or len(forms) != len(tables["STCharacters"][key])]
+    if odd:
+        sys.exit("STCharacters: entries that are not single characters: %s" % " ".join(odd[:20]))
+    # A phrase can list more than one Traditional form. The first is the usual one.
+    phrases = {key: values[0] for key, values in tables["STPhrases"].items()}
+    forms = {}
+    for code, name in (("tw", "TWVariants"), ("hk", "HKVariants")):
+        forms[code] = {
+            "chars": {key: values[0] for key, values in tables[name].items() if key != values[0]},
+            "phrases": {key: values[0] for key, values in tables[name + "Phrases"].items()},
+        }
+
+    groups = Groups()
+    for name in ("STCharacters", "TSCharacters", "TWVariants", "HKVariants"):
+        for key, values in tables[name].items():
+            for value in values:
+                if len(key) == 1 and len(value) == 1:
+                    groups.join(key, value)
+    # A phrase converts character by character, so the two sides line up. Where a phrase turns a
+    # character into one that no character table relates it to, join them as well, so that a
+    # converted name always matches its original in a search.
+    extra = 0
+    for name in ("STPhrases", "TWVariantsPhrases", "HKVariantsPhrases"):
+        for key, values in tables[name].items():
+            value = values[0]
+            if len(key) != len(value):
+                continue
+            for a, b in zip(key, value):
+                if a != b and groups.find(a) != groups.find(b):
+                    groups.join(a, b)
+                    extra += 1
+    alike = sorted("".join(group) for group in groups.members())
+
+    path = write_json(os.path.join(DATA_DIR, "hant.json"), {
+        "note": "Tables for converting Simplified Chinese to Traditional. Generated by "
+                "scripts/import_hant.py from the OpenCC dictionaries; do not edit. Corrections go "
+                "in data/overrides/hant.json.",
+        "source": {
+            "name": "Open Chinese Convert (OpenCC)",
+            "url": "https://github.com/BYVoid/OpenCC",
+            "licence": "Apache-2.0",
+            "files": [name + ".txt" for name in FILES],
+        },
+        "chars": dict(sorted(chars.items())),
+        "phrases": dict(sorted(phrases.items())),
+        "forms": forms,
+        "alike": alike,
+    })
+    several = sum(1 for forms_ in chars.values() if len(forms_) > 1)
+    uneven = sum(1 for key, value in phrases.items() if len(key) != len(value))
+    print("characters: %d, of which %d have more than one Traditional form" % (len(chars), several))
+    print("phrases: %d (%d change length), longest %d characters" % (len(phrases), uneven, max(map(len, phrases))))
+    for code in forms:
+        print("forms %s: %d characters, %d phrases" % (code, len(forms[code]["chars"]), len(forms[code]["phrases"])))
+    print("groups of like characters: %d, largest %d; %d joined by phrases alone" % (
+        len(alike), max(map(len, alike)), extra))
+    print("wrote %s (%d KB)" % (os.path.relpath(path), os.path.getsize(path) // 1024))
+
+
+if __name__ == "__main__":
+    main()

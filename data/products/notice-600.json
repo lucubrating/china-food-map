@@ -1,0 +1,74 @@
+[
+  {
+    "id": "gi:600-1",
+    "title": "金寨天麻",
+    "kind": "herb",
+    "region": "cn:340000",
+    "areas": [
+      "cn:341524"
+    ],
+    "placed_by": "text",
+    "applicant": "安徽省六安市金寨县人民政府",
+    "area": "安徽省六安市金寨县现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-600",
+        "loc": "第580号公告 附件1"
+      }
+    ],
+    "coord": [
+      115.772,
+      31.473
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:600-2",
+    "title": "龙川山茶油",
+    "kind": "condiment",
+    "region": "cn:440000",
+    "areas": [
+      "cn:441622"
+    ],
+    "placed_by": "text",
+    "applicant": "广东省河源市龙川县人民政府",
+    "area": "广东省河源市龙川县现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-600",
+        "loc": "第580号公告 附件2"
+      }
+    ],
+    "coord": [
+      115.356,
+      24.329
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:600-3",
+    "title": "苍梧迟熟荔枝",
+    "kind": "fruit",
+    "region": "cn:450000",
+    "areas": [
+      "cn:450421"
+    ],
+    "placed_by": "text",
+    "applicant": "广西壮族自治区梧州市苍梧县人民政府",
+    "area": "广西壮族自治区梧州市苍梧县石桥镇、沙头镇、旺甫镇、岭脚镇、六堡镇、梨埠镇、木双镇、京南镇、狮寨镇共9个镇现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-600",
+        "loc": "第580号公告 附件3"
+      }
+    ],
+    "coord": [
+      111.313,
+      23.758
+    ],
+    "approx": true
+  }
+]

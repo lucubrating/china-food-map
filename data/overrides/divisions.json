@@ -1,0 +1,91 @@
+{
+  "note": "Hand-made corrections read by scripts/import_divisions.py. The importer never writes to this file. The boundary files date from 2021; these entries bring the table up to the statistics bureau's 2023 list.",
+  "recode": [
+    {"from": "232718", "to": "232761", "name": "加格达奇区", "note": "Statistics code. The unit is a management district and is not in the administrative list."},
+    {"from": "320602", "to": "320613", "name": "崇川区", "was": [ "港闸区" ]},
+    {"from": "320684", "to": "320614", "name": "海门区", "was": [ "海门市" ]},
+    {"from": "340211", "to": "340212", "name": "繁昌区", "was": [ "繁昌县" ]},
+    {"from": "350403", "to": "350404", "name": "三元区", "was": [ "梅列区" ]},
+    {"from": "350427", "to": "350405", "name": "沙县区", "was": [ "沙县" ]},
+    {"from": "350681", "to": "350604", "name": "龙海区", "was": [ "龙海市" ]},
+    {"from": "350625", "to": "350605", "name": "长泰区", "was": [ "长泰县" ]},
+    {"from": "410381", "to": "410307", "name": "偃师区", "was": [ "偃师市" ]},
+    {"from": "410306", "to": "410308", "name": "孟津区", "was": [ "孟津县", "吉利区" ]},
+    {"from": "421023", "to": "421088", "name": "监利市", "was": [ "监利县" ]},
+    {"from": "431121", "to": "431181", "name": "祁阳市", "was": [ "祁阳县" ]},
+    {"from": "450127", "to": "450181", "name": "横州市", "was": [ "横县" ]},
+    {"from": "513425", "to": "513402", "name": "会理市", "was": [ "会理县" ]},
+    {"from": "520221", "to": "520204", "name": "水城区", "was": [ "水城县" ]},
+    {"from": "520522", "to": "520581", "name": "黔西市", "was": [ "黔西县" ]},
+    {"from": "532331", "to": "532302", "name": "禄丰市", "was": [ "禄丰县" ]},
+    {"from": "610322", "to": "610305", "name": "凤翔区", "was": [ "凤翔县" ]},
+    {"from": "610928", "to": "610981", "name": "旬阳市", "was": [ "旬阳县" ]},
+    {"from": "654223", "to": "654203", "name": "沙湾市", "was": [ "沙湾县" ]},
+    {"from": "540422", "to": "540481", "name": "米林市", "was": [ "米林县" ]},
+    {"from": "540530", "to": "540581", "name": "错那市", "was": [ "错那县" ]},
+    {"from": "632825", "to": "632857", "name": "大柴旦行政委员会", "was": [ "海西蒙古族藏族自治州直辖", "大柴旦" ], "note": "Statistics code. An administrative committee, not in the administrative list. The boundary source calls the area 海西蒙古族藏族自治州直辖."}
+  ],
+  "add": [
+    {"code": "659011", "parent": "650000", "name": "新星市", "note": "Set up in 2021. The boundary source has no shape for it."},
+    {"code": "659012", "parent": "650000", "name": "白杨市", "note": "Set up in 2023. The boundary source has no shape for it."}
+  ],
+  "no_shape": {
+    "note": "Units listed here keep their row in the table but are drawn without a shape. Keyed by the unit's code.",
+    "350527": "Kinmen. Its shape is drawn for Taiwan's 金門縣 only."
+  },
+  "frame_all": {
+    "note": "Units framed with every piece of their shape when selected. The page otherwise frames a unit's largest piece and what lies close to it, which suits a unit with a main body and stray islands. These units are groups of islands with no main body. Keyed by the unit's id.",
+    "tw:09007": "Matsu: four townships on islands up to 50 km apart, the largest 6 km across.",
+    "tw:10016": "Penghu: 望安 and 七美 lie well south of the main island."
+  },
+  "aliases": {
+    "note": "Everyday names that running text uses for a unit and that no rule produces. Keyed by the unit's code.",
+    "220721": ["前郭县", "前郭"]
+  },
+  "local_ids": {
+    "810001": {"id": "hk:central-and-western", "hant": "中西區", "en": "Central and Western"},
+    "810002": {"id": "hk:wan-chai", "hant": "灣仔區", "en": "Wan Chai"},
+    "810003": {"id": "hk:eastern", "hant": "東區", "en": "Eastern"},
+    "810004": {"id": "hk:southern", "hant": "南區", "en": "Southern"},
+    "810005": {"id": "hk:yau-tsim-mong", "hant": "油尖旺區", "en": "Yau Tsim Mong"},
+    "810006": {"id": "hk:sham-shui-po", "hant": "深水埗區", "en": "Sham Shui Po"},
+    "810007": {"id": "hk:kowloon-city", "hant": "九龍城區", "en": "Kowloon City"},
+    "810008": {"id": "hk:wong-tai-sin", "hant": "黃大仙區", "en": "Wong Tai Sin"},
+    "810009": {"id": "hk:kwun-tong", "hant": "觀塘區", "en": "Kwun Tong"},
+    "810010": {"id": "hk:tsuen-wan", "hant": "荃灣區", "en": "Tsuen Wan"},
+    "810011": {"id": "hk:tuen-mun", "hant": "屯門區", "en": "Tuen Mun"},
+    "810012": {"id": "hk:yuen-long", "hant": "元朗區", "en": "Yuen Long"},
+    "810013": {"id": "hk:north", "hant": "北區", "en": "North"},
+    "810014": {"id": "hk:tai-po", "hant": "大埔區", "en": "Tai Po"},
+    "810015": {"id": "hk:sai-kung", "hant": "西貢區", "en": "Sai Kung"},
+    "810016": {"id": "hk:sha-tin", "hant": "沙田區", "en": "Sha Tin"},
+    "810017": {"id": "hk:kwai-tsing", "hant": "葵青區", "en": "Kwai Tsing"},
+    "810018": {"id": "hk:islands", "hant": "離島區", "en": "Islands"},
+    "820001": {"id": "mo:fatima", "hant": "花地瑪堂區", "en": "Our Lady of Fátima"},
+    "820002": {"id": "mo:st-anthony", "hant": "花王堂區", "en": "St. Anthony"},
+    "820003": {"id": "mo:st-lazarus", "hant": "望德堂區", "en": "St. Lazarus"},
+    "820004": {"id": "mo:cathedral", "hant": "大堂區", "en": "Cathedral"},
+    "820005": {"id": "mo:st-lawrence", "hant": "風順堂區", "en": "St. Lawrence"},
+    "820006": {"id": "mo:taipa", "hant": "嘉模堂區", "en": "Our Lady of Carmel (Taipa)"},
+    "820007": {"id": "mo:cotai", "hant": "路氹填海區", "en": "Cotai"},
+    "820008": {"id": "mo:coloane", "hant": "聖方濟各堂區", "en": "St. Francis Xavier (Coloane)"}
+  },
+  "explained_2023": {
+    "note": "Rows of the 2023 statistics list that are deliberately not units in the table, so the importer does not report them.",
+    "232762": "松岭区: forest district carried only by the statistics list",
+    "232763": "新林区: forest district carried only by the statistics list",
+    "232764": "呼中区: forest district carried only by the statistics list",
+    "441900": "东莞市: a second-level city with no third level; the list repeats it as its own child",
+    "442000": "中山市: a second-level city with no third level; the list repeats it as its own child",
+    "460400": "儋州市: a second-level city with no third level; the list repeats it as its own child",
+    "620201": "嘉峪关市: a second-level city with no third level; the list repeats it as its own child",
+    "460321": "西沙群岛: the table uses 西沙区 460301 from the boundary source",
+    "460322": "南沙群岛: the table uses 南沙区 460302 from the boundary source",
+    "460323": "中沙群岛的岛礁及其海域: no separate unit in the boundary source"
+  },
+  "explained_table": {
+    "note": "Units in the table that the 2023 statistics list does not have under the same code.",
+    "460301": "西沙区: the statistics list has 西沙群岛 460321 instead",
+    "460302": "南沙区: the statistics list has 南沙群岛 460322 instead"
+  }
+}

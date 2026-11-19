@@ -1,0 +1,172 @@
+{
+  "year": 2023,
+  "unit": "kg per person per year",
+  "refs": [
+    {
+      "w": "fao-fbs",
+      "loc": "Food supply quantity (kg/capita/yr), 2023"
+    }
+  ],
+  "columns": [
+    {
+      "key": "cereals",
+      "zh": "谷物",
+      "en": "Cereals"
+    },
+    {
+      "key": "rice",
+      "zh": "稻米",
+      "en": "Rice",
+      "partOf": "cereals"
+    },
+    {
+      "key": "wheat",
+      "zh": "小麦",
+      "en": "Wheat",
+      "partOf": "cereals"
+    },
+    {
+      "key": "roots",
+      "zh": "薯类",
+      "en": "Starchy roots"
+    },
+    {
+      "key": "veg_oil",
+      "zh": "植物油",
+      "en": "Vegetable oils"
+    },
+    {
+      "key": "vegetables",
+      "zh": "蔬菜",
+      "en": "Vegetables"
+    },
+    {
+      "key": "fruit",
+      "zh": "水果",
+      "en": "Fruit"
+    },
+    {
+      "key": "meat",
+      "zh": "肉类",
+      "en": "Meat"
+    },
+    {
+      "key": "pork",
+      "zh": "猪肉",
+      "en": "Pork",
+      "partOf": "meat"
+    },
+    {
+      "key": "beef",
+      "zh": "牛肉",
+      "en": "Beef",
+      "partOf": "meat"
+    },
+    {
+      "key": "mutton",
+      "zh": "羊肉",
+      "en": "Mutton and goat",
+      "partOf": "meat"
+    },
+    {
+      "key": "poultry",
+      "zh": "禽肉",
+      "en": "Poultry",
+      "partOf": "meat"
+    },
+    {
+      "key": "aquatic",
+      "zh": "水产品",
+      "en": "Fish and seafood"
+    },
+    {
+      "key": "eggs",
+      "zh": "蛋类",
+      "en": "Eggs"
+    },
+    {
+      "key": "dairy",
+      "zh": "奶类",
+      "en": "Milk"
+    },
+    {
+      "key": "sugar",
+      "zh": "糖及甜味剂",
+      "en": "Sugar and sweeteners"
+    }
+  ],
+  "areas": {
+    "mainland": [
+      218.6,
+      130.1,
+      75.0,
+      69.7,
+      9.0,
+      412.7,
+      114.4,
+      73.5,
+      42.2,
+      7.9,
+      4.0,
+      18.7,
+      41.7,
+      23.0,
+      34.8,
+      9.2
+    ],
+    "cn:810000": [
+      110.2,
+      51.4,
+      52.9,
+      24.6,
+      10.6,
+      172.6,
+      75.1,
+      107.4,
+      46.0,
+      17.5,
+      0.5,
+      41.4,
+      69.1,
+      28.3,
+      67.4,
+      54.7
+    ],
+    "cn:820000": [
+      132.7,
+      42.4,
+      81.0,
+      39.5,
+      14.9,
+      135.5,
+      66.2,
+      121.2,
+      57.7,
+      18.4,
+      0.8,
+      42.6,
+      61.1,
+      24.0,
+      41.5,
+      90.4
+    ],
+    "cn:710000": [
+      124.4,
+      61.0,
+      52.0,
+      15.4,
+      23.4,
+      120.8,
+      94.4,
+      91.5,
+      39.0,
+      9.0,
+      1.0,
+      42.3,
+      30.4,
+      14.1,
+      57.8,
+      30.1
+    ]
+  }
+}

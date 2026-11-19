@@ -1,0 +1,131 @@
+{
+  "year": 2025,
+  "unit": "kg per person per year",
+  "refs": [
+    {
+      "w": "moa-food-balance",
+      "loc": "表1，民国114年"
+    }
+  ],
+  "columns": [
+    {
+      "key": "cereals",
+      "zh": "谷类",
+      "en": "Cereals"
+    },
+    {
+      "key": "rice",
+      "zh": "米",
+      "en": "Rice",
+      "partOf": "cereals"
+    },
+    {
+      "key": "wheat",
+      "zh": "小麦",
+      "en": "Wheat",
+      "partOf": "cereals"
+    },
+    {
+      "key": "roots",
+      "zh": "薯类",
+      "en": "Starchy roots"
+    },
+    {
+      "key": "sugar",
+      "zh": "糖及蜂蜜",
+      "en": "Sugar and honey"
+    },
+    {
+      "key": "oilseeds",
+      "zh": "子仁及油籽类",
+      "en": "Pulses, nuts and oilseeds"
+    },
+    {
+      "key": "vegetables",
+      "zh": "蔬菜类",
+      "en": "Vegetables"
+    },
+    {
+      "key": "fruit",
+      "zh": "果品类",
+      "en": "Fruit"
+    },
+    {
+      "key": "meat",
+      "zh": "肉类",
+      "en": "Meat"
+    },
+    {
+      "key": "pork",
+      "zh": "猪肉",
+      "en": "Pork",
+      "partOf": "meat"
+    },
+    {
+      "key": "beef",
+      "zh": "牛肉",
+      "en": "Beef",
+      "partOf": "meat"
+    },
+    {
+      "key": "mutton",
+      "zh": "羊肉",
+      "en": "Mutton and goat",
+      "partOf": "meat"
+    },
+    {
+      "key": "poultry",
+      "zh": "家禽肉",
+      "en": "Poultry",
+      "partOf": "meat"
+    },
+    {
+      "key": "eggs",
+      "zh": "蛋类",
+      "en": "Eggs"
+    },
+    {
+      "key": "aquatic",
+      "zh": "水产类",
+      "en": "Fish and seafood"
+    },
+    {
+      "key": "dairy",
+      "zh": "乳品类",
+      "en": "Dairy"
+    },
+    {
+      "key": "oil",
+      "zh": "油脂类",
+      "en": "Oils and fats"
+    },
+    {
+      "key": "veg_oil",
+      "zh": "植物油脂",
+      "en": "Vegetable oils",
+      "partOf": "oil"
+    }
+  ],
+  "areas": {
+    "cn:710000": [
+      84.3,
+      41.8,
+      35.7,
+      29.7,
+      25.8,
+      18.4,
+      108.6,
+      107.0,
+      91.6,
+      35.7,
+      8.2,
+      1.1,
+      46.5,
+      25.3,
+      35.2,
+      30.6,
+      23.6,
+      20.9
+    ]
+  }
+}

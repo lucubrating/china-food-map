@@ -1,0 +1,1422 @@
+/* China Food Map: styles.
+
+   Every colour is a variable, given twice: once for the light theme and once for the dark.
+   js/theme.js sets data-scheme on the root element to say which applies. A new colour goes in
+   both lists. */
+
+:root {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --text: #0b0b0b;
+  --text-2: #52514e;
+  --muted: #898781;
+  --hairline: #e1e0d9;
+  --axis: #c3c2b7;
+  --ring: rgba(11, 11, 11, 0.1);
+  --water: #f1f4f5;
+  --land: #e8e6dd;
+  --land-open: #f3f1ea; /* a province that has been opened into its parts */
+  --land-lit: #faf9f6; /* the selected place inside it: the same colour under a white tint */
+  --no-data: #f0efec;
+  /* Point layers: the first three slots of the chart palette. */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --link: #1c5cab;
+  --field: #fff; /* boxes that hold a value or a name: inputs, pills, the switches */
+  --on-strong: #fff; /* text on a box filled with --text */
+  --on-strong-2: rgba(255, 255, 255, 0.78);
+  --shadow: rgba(11, 11, 11, 0.12);
+  --hover: rgba(11, 11, 11, 0.06);
+  --pick: rgba(42, 120, 214, 0.1); /* the row that is picked out */
+  --glass: rgba(252, 252, 251, 0.95); /* boxes that lie over the map */
+  --label: var(--text-2); /* names on the map, and the edge that keeps them readable */
+  --label-halo: rgba(252, 252, 251, 0.85);
+  --label-strong: #fff; /* a name over deep shading */
+  --label-strong-halo: rgba(13, 54, 107, 0.6);
+  --border: rgba(11, 11, 11, 0.42); /* lines between units */
+  --border-2: rgba(11, 11, 11, 0.34);
+  --border-shaded: rgba(255, 255, 255, 0.75); /* the same lines over shading */
+  --unit-hover: rgba(11, 11, 11, 0.08);
+  --unit-lit-hover: rgba(255, 255, 255, 0.55);
+  --faint: 0.6; /* how strongly the quiet dots of closed provinces show */
+  --radius: 8px;
+  --sans: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+:root[data-scheme="dark"] {
+  color-scheme: dark;
+  --page: #151514;
+  --surface: #1c1c1a;
+  --text: #f1f0ec;
+  --text-2: #b9b7b0;
+  --muted: #86847d;
+  --hairline: #32312e;
+  --axis: #4a4944;
+  --ring: rgba(255, 255, 255, 0.12);
+  /* Water is the darkest, land a step lighter, and each opening lighter again. */
+  --water: #0f1416;
+  --land: #2b2a27;
+  --land-open: #36352f;
+  --land-lit: #45433c;
+  --no-data: #232321;
+  /* The same three hues, lighter: each stands out from the land by more than 3.6 to 1. */
+  --series-1: #5aa0f0;
+  --series-2: #f08a5c;
+  --series-3: #3cc795;
+  --link: #8bbcf5;
+  --field: #262624;
+  --on-strong: #111110;
+  --on-strong-2: rgba(17, 17, 16, 0.72);
+  --shadow: rgba(0, 0, 0, 0.5);
+  --hover: rgba(255, 255, 255, 0.08);
+  --pick: rgba(90, 160, 240, 0.2);
+  --glass: rgba(28, 28, 26, 0.94);
+  --label: #d8d6cf;
+  --label-halo: rgba(21, 21, 20, 0.85);
+  /* Deep shading is bright here, so the name over it is dark. */
+  --label-strong: #0b0b0b;
+  --label-strong-halo: rgba(205, 226, 251, 0.6);
+  --border: rgba(255, 255, 255, 0.36);
+  --border-2: rgba(255, 255, 255, 0.26);
+  --border-shaded: rgba(0, 0, 0, 0.55);
+  --unit-hover: rgba(255, 255, 255, 0.08);
+  --unit-lit-hover: rgba(255, 255, 255, 0.14);
+  --faint: 0.7;
+}
+
+/* Traditional Chinese: the same faces in their Traditional cuts, so characters take the
+   shapes readers of that script expect. */
+:root:lang(zh-Hant) {
+  --sans: system-ui, -apple-system, "Segoe UI", "PingFang TC", "Hiragino Sans CNS", "Microsoft JhengHei", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  background: var(--page);
+  color: var(--text);
+  font: 14px/1.5 var(--sans);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--link);
+}
+
+/* ---------- top bar ---------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.brand h1 span {
+  margin-left: 6px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.search {
+  position: relative;
+  margin-left: auto;
+  width: min(380px, 44vw);
+}
+
+.search input {
+  width: 100%;
+  padding: 7px 12px;
+  border: 1px solid var(--axis);
+  border-radius: var(--radius);
+  background: var(--field);
+}
+
+.search input:focus-visible,
+select:focus-visible,
+button:focus-visible,
+.prov:focus-visible {
+  outline: 2px solid var(--series-1);
+  outline-offset: 2px;
+}
+
+/* An outline around a unit inside a province would be a rectangle. Its own border is coloured
+   instead. */
+.unit:focus-visible {
+  stroke: var(--series-1);
+  stroke-width: 2.5px;
+}
+
+/* The language switch: a globe for the browser's own language, then one link per language, each
+   written in its own language. */
+.lang {
+  display: flex;
+  flex: none;
+  border: 1px solid var(--axis);
+  border-radius: var(--radius);
+  background: var(--field);
+  overflow: hidden;
+}
+
+.lang a {
+  padding: 7px 11px;
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.5;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.lang .lang-auto {
+  display: flex;
+  align-items: center;
+  padding: 7px 9px;
+}
+
+.lang-auto svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+}
+
+/* The two switches sit together at the end of the top bar. */
+.switches {
+  display: flex;
+  flex: none;
+  gap: 8px;
+}
+
+/* Light and dark: three icons, for the system's setting, light and dark. */
+.theme button {
+  display: flex;
+  align-items: center;
+  padding: 7px 9px;
+  border: 0;
+  background: none;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.theme button + button {
+  border-left: 1px solid var(--hairline);
+}
+
+.theme button:hover {
+  background: var(--page);
+}
+
+.theme button[aria-pressed="true"] {
+  background: var(--text);
+  color: var(--on-strong);
+}
+
+.theme button:focus-visible {
+  outline: 2px solid var(--series-1);
+  outline-offset: -2px;
+}
+
+.theme svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme svg .solid {
+  fill: currentColor;
+  stroke: none;
+}
+
+.lang a + a {
+  border-left: 1px solid var(--hairline);
+}
+
+.lang a:hover {
+  background: var(--page);
+}
+
+.lang a[aria-current] {
+  background: var(--text);
+  color: var(--on-strong);
+}
+
+.lang a:focus-visible {
+  outline: 2px solid var(--series-1);
+  outline-offset: -2px;
+}
+
+.search-results {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  max-height: 60vh;
+  overflow: auto;
+  background: var(--surface);
+  border: 1px solid var(--axis);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.search-results button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.search-results button:hover,
+.search-results button:focus-visible {
+  background: var(--hover);
+}
+
+.hit-sub,
+.search-results .empty {
+  color: var(--text-2);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.search-results .empty {
+  padding: 6px 8px;
+}
+
+/* ---------- options row ---------- */
+
+.filters {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding: 8px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.filter > label,
+.filter > legend {
+  padding: 0;
+  color: var(--text-2);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.filter > legend {
+  float: left;
+  margin-right: 8px;
+}
+
+.filter select {
+  max-width: 100%;
+  padding: 5px 8px;
+  border: 1px solid var(--axis);
+  border-radius: var(--radius);
+  background: var(--field);
+}
+
+.layer-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+
+.toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* A switch shows a short name. Its full name appears on hover or keyboard focus. */
+.toggle[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 8px);
+  left: 0;
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: var(--text);
+  color: var(--on-strong);
+  font-size: 12.5px;
+  line-height: 1.4;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+
+.toggle[data-tip]:hover::after,
+.toggle[data-tip]:focus-within::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.swatch {
+  display: inline-block;
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.5px var(--surface), 0 0 0 2.5px var(--ring);
+}
+
+.swatch-products {
+  background: var(--series-1);
+}
+
+.swatch-heritage {
+  background: var(--series-2);
+}
+
+.swatch-farm {
+  background: var(--series-3);
+}
+
+.swatch-nodata {
+  border-radius: 2px;
+  background: var(--no-data);
+  box-shadow: inset 0 0 0 1px var(--axis);
+}
+
+/* ---------- layout ---------- */
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  min-height: 0;
+}
+
+.map-wrap {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--water);
+}
+
+#map {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: var(--sans);
+}
+
+#map.is-dragging {
+  cursor: grabbing;
+}
+
+/* ---------- map marks ---------- */
+
+.prov {
+  fill: var(--land);
+  fill-rule: evenodd;
+  stroke: var(--surface);
+  stroke-width: 1px;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  cursor: pointer;
+  outline: none;
+}
+
+.prov.no-data {
+  fill: var(--no-data);
+}
+
+.prov:hover {
+  filter: brightness(0.95);
+}
+
+#map.is-dragging .prov:hover {
+  filter: none;
+}
+
+/* An opened unit is redrawn in more detail: `.base` is its outline, taken from the outer borders
+   of its parts, and the parts lie on top. Its usual, coarser shape is hidden meanwhile, and so
+   are its borders with its neighbours, which come from the same coarser file. */
+.prov.is-open,
+.unit.is-open,
+.border.is-open {
+  visibility: hidden;
+}
+
+/* An open province is lighter than the provinces around it, and what is opened inside it has the
+   same colour. The fill is solid, so it covers the coarser lines beneath it. */
+.base {
+  fill: var(--land-open);
+  fill-rule: evenodd;
+  stroke: none;
+}
+
+.units.depth-2 .base {
+  stroke: var(--surface);
+  stroke-width: 1px;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+#map .base.no-data {
+  fill: var(--no-data);
+}
+
+/* The units inside an opened one. Their fill is clear, so the colour beneath shows through, and
+   a tint marks the one under the pointer. Their borders are drawn apart, each one once. */
+.unit {
+  fill: transparent;
+  fill-rule: evenodd;
+  stroke: none;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  cursor: pointer;
+  outline: none;
+}
+
+.border {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 0.7px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+/* Borders inside a city are lighter than the borders between cities. */
+.units:not(.depth-2) .border {
+  stroke: var(--border-2);
+  stroke-width: 0.6px;
+}
+
+.unit:hover {
+  fill: var(--unit-hover);
+}
+
+#map.is-dragging .unit:hover {
+  fill: transparent;
+}
+
+/* The selected unit is lit up a little, on top of its heavy outline. */
+.unit.is-selected,
+#map.is-dragging .unit.is-selected:hover {
+  fill: var(--unit-lit-hover);
+}
+
+.units:not(.depth-2) .base.is-selected {
+  fill: var(--land-lit);
+}
+
+/* On a province shaded by a number, light borders read better than dark ones, and the selected
+   unit keeps the province's colour, because a tint would look like a different value. (The page
+   sets that colour on each `.base` itself.) */
+#map.has-metric .border {
+  stroke: var(--border-shaded);
+}
+
+#map.has-metric .unit.is-selected {
+  fill: transparent;
+}
+
+.maritime {
+  fill: var(--muted);
+  stroke: var(--muted);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+#selection-outline,
+#open-outline {
+  fill: none;
+  fill-rule: evenodd;
+  stroke: var(--text);
+  stroke-width: 2px;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+/* The units a selected place sits in: a lighter line than the selection's own. */
+#open-outline {
+  stroke: var(--text-2);
+  stroke-width: 1.2px;
+}
+
+.place-label {
+  text-anchor: middle;
+  dominant-baseline: central;
+  fill: var(--label);
+  font-weight: 500;
+  paint-order: stroke;
+  stroke: var(--label-halo);
+  stroke-width: 0.22em;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.prov-name.on-dark .place-label,
+.unit-labels.on-dark .place-label {
+  fill: var(--label-strong);
+  stroke: var(--label-strong-halo);
+}
+
+/* The count under a closed province's name. It is left out where there is no room for it. */
+.badge {
+  font-size: 0.9em;
+  pointer-events: none;
+}
+
+.prov-name.no-room .badge {
+  display: none;
+}
+
+.badge rect {
+  fill: var(--glass);
+  stroke: var(--axis);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+.badge text {
+  text-anchor: middle;
+  dominant-baseline: central;
+  fill: var(--text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Names of the units inside an open province, a little smaller than province names. */
+.unit-labels {
+  font-size: 0.92em;
+}
+
+/* The entries of provinces that are not open: small quiet dots, one path per province and
+   category, that show where things lie and cannot be picked. */
+#g-faint path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 3px;
+  vector-effect: non-scaling-stroke;
+  opacity: var(--faint);
+  pointer-events: none;
+}
+
+#map.is-far #g-faint path {
+  stroke-width: 2.4px;
+}
+
+#g-faint .layer-products path {
+  stroke: var(--series-1);
+}
+
+#g-faint .layer-heritage path {
+  stroke: var(--series-2);
+}
+
+#g-faint .layer-farm path {
+  stroke: var(--series-3);
+}
+
+.pt path {
+  fill: none;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.pt {
+  cursor: pointer;
+}
+
+.pt-hit {
+  stroke: transparent;
+  stroke-width: 24px;
+  pointer-events: stroke;
+}
+
+.pt.is-stacked .pt-hit {
+  stroke-width: 11px;
+}
+
+.pt-ring {
+  stroke: var(--surface);
+  stroke-width: 11px;
+  pointer-events: none;
+}
+
+.pt-dot {
+  stroke-width: 8px;
+  pointer-events: none;
+}
+
+.layer-products .pt-dot {
+  stroke: var(--series-1);
+}
+
+.layer-heritage .pt-dot {
+  stroke: var(--series-2);
+}
+
+.layer-farm .pt-dot {
+  stroke: var(--series-3);
+}
+
+.pt:hover .pt-ring,
+.pt.is-focus .pt-ring {
+  stroke: var(--text);
+  stroke-width: 13px;
+}
+
+.pt.is-focus .pt-dot {
+  stroke-width: 9px;
+}
+
+/* Zoomed far out, dots shrink a little so they crowd the map less. */
+#map.is-far .pt-ring {
+  stroke-width: 8.5px;
+}
+
+#map.is-far .pt-dot {
+  stroke-width: 6px;
+}
+
+#map.is-far .pt:hover .pt-ring,
+#map.is-far .pt.is-focus .pt-ring {
+  stroke-width: 11px;
+}
+
+#map.is-far .pt.is-focus .pt-dot {
+  stroke-width: 8px;
+}
+
+/* ---------- map overlays ---------- */
+
+.map-tools {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.map-tools button {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border: 1px solid var(--axis);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.map-tools #zoom-reset {
+  font-size: 12px;
+}
+
+.map-tools button:hover {
+  background: var(--field);
+  border-color: var(--muted);
+}
+
+.legend {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  max-width: min(300px, calc(100% - 24px));
+  padding: 10px 12px;
+  background: var(--glass);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  font-size: 12.5px;
+}
+
+.legend ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legend-layers li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+}
+
+.legend-layers li.is-off {
+  opacity: 0.45;
+}
+
+.legend-name {
+  flex: 1;
+}
+
+.legend-count {
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.legend-metric {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--hairline);
+}
+
+.legend-title {
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.ramp {
+  height: 10px;
+  border-radius: 3px;
+}
+
+.ramp-ends {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.legend-nodata {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  color: var(--text-2);
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 260px;
+  padding: 6px 10px;
+  background: var(--text);
+  color: var(--on-strong);
+  border-radius: 6px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+.tooltip[hidden] {
+  display: none;
+}
+
+.tooltip strong {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.tooltip span {
+  color: var(--on-strong-2);
+}
+
+.timeline {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  max-width: calc(100% - 80px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: var(--glass);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.timeline[hidden] {
+  display: none;
+}
+
+/* The trail sits where the time axis would. With the axis on, it moves below it. */
+.trail {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  max-width: calc(100% - 80px);
+  padding: 5px 12px;
+  background: var(--glass);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  font-size: 13px;
+}
+
+.trail[hidden] {
+  display: none;
+}
+
+.timeline:not([hidden]) ~ .trail {
+  top: 64px;
+}
+
+.trail ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trail li + li::before {
+  content: "›";
+  margin: 0 7px;
+  color: var(--muted);
+}
+
+.trail button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--link);
+  cursor: pointer;
+}
+
+.trail button:hover {
+  text-decoration: underline;
+}
+
+.trail [aria-current] {
+  font-weight: 600;
+}
+
+/* The place being shown reads as a name, not a link, though a click brings it back into view. */
+.trail [aria-current] button {
+  color: var(--text);
+  font-weight: inherit;
+}
+
+.timeline input[type="range"] {
+  width: min(260px, 34vw);
+}
+
+.timeline-year {
+  min-width: 3.2em;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- side panel ---------- */
+
+.panel {
+  min-height: 0;
+  overflow: auto;
+  padding: 18px 18px 28px;
+  background: var(--surface);
+  border-left: 1px solid var(--hairline);
+}
+
+.panel h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.panel h2 .en {
+  margin-left: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.panel-title {
+  min-width: 0;
+}
+
+/* The link back up to the unit a place sits in, above the place's name. */
+.up {
+  margin-bottom: 2px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--link);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.up:hover {
+  text-decoration: underline;
+}
+
+.kind {
+  margin: 2px 0 0;
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.close {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--axis);
+  border-radius: 50%;
+  background: none;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.close:hover {
+  background: var(--hover);
+}
+
+.lede {
+  margin: 8px 0 14px;
+  color: var(--text-2);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stats li {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+}
+
+.stats strong {
+  font-size: 22px;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.stats span {
+  color: var(--text-2);
+  font-size: 12.5px;
+}
+
+.panel-section {
+  margin-top: 20px;
+}
+
+.panel-section h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.panel-section h3 .count {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.hint {
+  margin: 6px 0 0;
+  color: var(--text-2);
+  font-size: 12.5px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  padding: 3px 10px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--field);
+  font-size: 14px;
+}
+
+/* The places a unit divides into: one pill each, with a count. */
+.places {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.places li > * {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 3px 10px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--field);
+  font-size: 14px;
+}
+
+.places button {
+  color: var(--link);
+  cursor: pointer;
+}
+
+.places button:hover {
+  border-color: var(--muted);
+}
+
+.places .n {
+  color: var(--text-2);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.places .is-empty > * {
+  background: none;
+}
+
+.places .is-empty .n {
+  color: var(--muted);
+}
+
+.hint.aside {
+  margin-top: 20px;
+}
+
+.hint .rec {
+  font-size: inherit;
+}
+
+.records {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.records li {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 8px;
+  margin: 0 -8px;
+  border-radius: 6px;
+}
+
+.records li.is-focus {
+  background: var(--pick);
+}
+
+.records li + li {
+  border-top: 1px solid var(--hairline);
+}
+
+.rec {
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-size: 14px;
+  color: var(--link);
+  cursor: pointer;
+}
+
+.rec:hover {
+  text-decoration: underline;
+}
+
+.meta {
+  color: var(--text-2);
+  font-size: 12.5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th,
+td {
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--hairline);
+  text-align: left;
+  font-weight: 400;
+}
+
+th {
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Headings sit on the bottom line, so a one-line heading lines up with the last line of a
+   wrapped one (see the narrowest screens below). */
+th {
+  vertical-align: bottom;
+}
+
+/* On the narrowest phones a column heading over figures may wrap between words ("Inner
+   Mongolia"), each line staying right-aligned over the figures, and cells are a little
+   tighter. Wider screens keep headings on one line: given the choice, the browser would
+   rather break a heading than the food names beside it. Chinese headings break only where
+   they would anyway, not between characters. */
+@media (max-width: 359px) {
+  th.num {
+    white-space: normal;
+    word-break: keep-all;
+  }
+
+  th,
+  td {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
+
+.muted {
+  color: var(--text-2);
+}
+
+.eat tr.sub td:first-child {
+  padding-left: 18px;
+}
+
+.eat tr.is-metric td {
+  background: var(--pick);
+}
+
+.rank td:first-child {
+  width: 2.2em;
+  color: var(--muted);
+}
+
+.sources {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+.sources li + li {
+  margin-top: 4px;
+}
+
+.source-note {
+  color: var(--muted);
+}
+
+/* ---------- narrow screens ---------- */
+
+@media (max-width: 860px) {
+  html,
+  body {
+    height: auto;
+  }
+
+  /* A switch's full name appears below the row of switches, from its left edge, and wraps if
+     it must. Below the switch itself it could reach past the edge of a narrow screen. */
+  .layer-toggles {
+    position: relative;
+  }
+
+  .toggle {
+    position: static;
+  }
+
+  .toggle[data-tip]::after {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  body {
+    display: block;
+  }
+
+  .topbar {
+    flex-wrap: wrap;
+  }
+
+  /* The switches stay beside the title, and the search box takes the row below. */
+  .switches {
+    order: 1;
+    margin-left: auto;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .search {
+    order: 2;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .filter {
+    flex: 1 1 100%;
+  }
+
+  .filter select {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .layout {
+    display: block;
+  }
+
+  .map-wrap {
+    height: 62vh;
+    min-height: 320px;
+  }
+
+  .panel {
+    border-left: 0;
+    border-top: 1px solid var(--hairline);
+    overflow: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* An entry's own page: its facts as a list of labels and values. */
+.facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 14px;
+  margin: 14px 0 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.facts dt {
+  color: var(--text-2);
+}
+
+.facts dd {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.facts .places {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+}
+
+.facts .plain {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li .rec {
+  font: inherit;
+  color: inherit;
+}

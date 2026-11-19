@@ -1,0 +1,26 @@
+[
+  {
+    "id": "gi:555-1",
+    "title": "如皋火腿",
+    "kind": "meat",
+    "region": "cn:320000",
+    "areas": [
+      "cn:320682"
+    ],
+    "placed_by": "text",
+    "applicant": "江苏省南通市如皋市人民政府",
+    "area": "江苏省南通市如皋市现辖行政区域",
+    "since": 2023,
+    "refs": [
+      {
+        "w": "cnipa-notice-555",
+        "loc": "附件1"
+      }
+    ],
+    "coord": [
+      120.573,
+      32.268
+    ],
+    "approx": true
+  }
+]

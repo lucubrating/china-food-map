@@ -1,0 +1,5840 @@
+[
+  {
+    "id": "farm:1-1",
+    "title": "新疆吐鲁番坎儿井农业系统",
+    "region": "cn:650000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第1项"
+      }
+    ],
+    "areas": [
+      "cn:650400"
+    ],
+    "coord": [
+      89.829,
+      42.399
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-2",
+    "title": "甘肃迭部扎尕那农林牧复合系统",
+    "region": "cn:620000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第2项"
+      }
+    ],
+    "areas": [
+      "cn:623024"
+    ],
+    "coord": [
+      103.564,
+      34.004
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-3",
+    "title": "甘肃皋兰什川古梨园",
+    "region": "cn:620000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第3项"
+      }
+    ],
+    "areas": [
+      "cn:620122"
+    ],
+    "coord": [
+      103.88,
+      36.39
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-4",
+    "title": "陕西佳县古枣园",
+    "region": "cn:610000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第4项"
+      }
+    ],
+    "areas": [
+      "cn:610828"
+    ],
+    "coord": [
+      110.367,
+      38.072
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-5",
+    "title": "贵州从江侗乡稻鱼鸭复合系统",
+    "region": "cn:520000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第5项"
+      }
+    ],
+    "areas": [
+      "cn:522633"
+    ],
+    "coord": [
+      108.723,
+      25.713
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-6",
+    "title": "云南漾濞核桃-作物复合系统",
+    "region": "cn:530000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第6项"
+      }
+    ],
+    "areas": [
+      "cn:532922"
+    ],
+    "coord": [
+      99.892,
+      25.6
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-7",
+    "title": "云南普洱古茶园与茶文化系统",
+    "region": "cn:530000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第7项"
+      }
+    ],
+    "areas": [
+      "cn:530800"
+    ],
+    "coord": [
+      100.722,
+      23.188
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-8",
+    "title": "云南红河哈尼稻作梯田系统",
+    "region": "cn:530000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第8项"
+      }
+    ],
+    "areas": [
+      "cn:532500"
+    ],
+    "coord": [
+      103.037,
+      23.44
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-9",
+    "title": "湖南新化紫鹊界梯田",
+    "region": "cn:430000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第9项"
+      }
+    ],
+    "areas": [
+      "cn:431322"
+    ],
+    "coord": [
+      111.238,
+      27.868
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-10",
+    "title": "江西万年稻作文化系统",
+    "region": "cn:360000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第10项"
+      }
+    ],
+    "areas": [
+      "cn:361129"
+    ],
+    "coord": [
+      117.008,
+      28.699
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-11",
+    "title": "福建尤溪联合梯田",
+    "region": "cn:350000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第11项"
+      }
+    ],
+    "areas": [
+      "cn:350426"
+    ],
+    "coord": [
+      118.242,
+      26.144
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-12",
+    "title": "福建福州茉莉花种植与茶文化系统",
+    "region": "cn:350000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第12项"
+      }
+    ],
+    "areas": [
+      "cn:350100"
+    ],
+    "coord": [
+      119.201,
+      26.048
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-13",
+    "title": "浙江绍兴会稽山古香榧群",
+    "region": "cn:330000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第13项"
+      }
+    ],
+    "areas": [
+      "cn:330600"
+    ],
+    "coord": [
+      120.641,
+      29.733
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-14",
+    "title": "浙江青田稻鱼共生系统",
+    "region": "cn:330000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第14项"
+      }
+    ],
+    "areas": [
+      "cn:331121"
+    ],
+    "coord": [
+      120.14,
+      28.203
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-15",
+    "title": "江苏兴化垛田传统农业系统",
+    "region": "cn:320000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第15项"
+      }
+    ],
+    "areas": [
+      "cn:321281"
+    ],
+    "coord": [
+      119.99,
+      32.955
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-16",
+    "title": "辽宁宽甸柱参传统栽培体系",
+    "region": "cn:210000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第16项"
+      }
+    ],
+    "areas": [
+      "cn:210624"
+    ],
+    "coord": [
+      124.925,
+      40.764
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-17",
+    "title": "辽宁鞍山南果梨栽培系统",
+    "region": "cn:210000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第17项"
+      }
+    ],
+    "areas": [
+      "cn:210300"
+    ],
+    "coord": [
+      123.016,
+      40.718
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-18",
+    "title": "内蒙古敖汉旱作农业系统",
+    "region": "cn:150000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第18项"
+      }
+    ],
+    "areas": [
+      "cn:150430"
+    ],
+    "coord": [
+      120.151,
+      42.426
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:1-19",
+    "title": "河北宣化传统葡萄园",
+    "region": "cn:130000",
+    "batch": 1,
+    "since": 2013,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第1批 第19项"
+      }
+    ],
+    "areas": [
+      "cn:130705"
+    ],
+    "coord": [
+      115.051,
+      40.528
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-1",
+    "title": "天津滨海崔庄古冬枣园",
+    "region": "cn:120000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第1项"
+      }
+    ],
+    "areas": [
+      "cn:120116"
+    ],
+    "coord": [
+      117.598,
+      38.912
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-2",
+    "title": "河北宽城传统板栗栽培系统",
+    "region": "cn:130000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第2项"
+      }
+    ],
+    "areas": [
+      "cn:130827"
+    ],
+    "coord": [
+      118.63,
+      40.572
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-3",
+    "title": "河北涉县旱作梯田系统",
+    "region": "cn:130000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第3项"
+      }
+    ],
+    "areas": [
+      "cn:130426"
+    ],
+    "coord": [
+      113.738,
+      36.59
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-4",
+    "title": "内蒙古阿鲁科尔沁草原游牧系统",
+    "region": "cn:150000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第4项"
+      }
+    ],
+    "areas": [
+      "cn:150421"
+    ],
+    "coord": [
+      120.033,
+      44.202
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-5",
+    "title": "浙江杭州西湖龙井茶文化系统",
+    "region": "cn:330000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第5项"
+      }
+    ],
+    "areas": [
+      "cn:330100"
+    ],
+    "coord": [
+      119.476,
+      29.899
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-6",
+    "title": "浙江湖州桑基鱼塘系统",
+    "region": "cn:330000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第6项"
+      }
+    ],
+    "areas": [
+      "cn:330500"
+    ],
+    "coord": [
+      119.874,
+      30.743
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-7",
+    "title": "浙江庆元香菇文化系统",
+    "region": "cn:330000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第7项"
+      }
+    ],
+    "areas": [
+      "cn:331126"
+    ],
+    "coord": [
+      119.15,
+      27.624
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-8",
+    "title": "福建安溪铁观音茶文化系统",
+    "region": "cn:350000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第8项"
+      }
+    ],
+    "areas": [
+      "cn:350524"
+    ],
+    "coord": [
+      117.902,
+      25.121
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-9",
+    "title": "江西崇义客家梯田系统",
+    "region": "cn:360000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第9项"
+      }
+    ],
+    "areas": [
+      "cn:360725"
+    ],
+    "coord": [
+      114.192,
+      25.673
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-10",
+    "title": "山东夏津黄河故道古桑树群",
+    "region": "cn:370000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第10项"
+      }
+    ],
+    "areas": [
+      "cn:371427"
+    ],
+    "coord": [
+      116.031,
+      37.01
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-11",
+    "title": "湖北赤壁羊楼洞砖茶文化系统",
+    "region": "cn:420000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第11项"
+      }
+    ],
+    "areas": [
+      "cn:421281"
+    ],
+    "coord": [
+      113.883,
+      29.737
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-12",
+    "title": "湖南新晃侗藏红米种植系统",
+    "region": "cn:430000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第12项"
+      }
+    ],
+    "areas": [
+      "cn:431227"
+    ],
+    "coord": [
+      109.162,
+      27.229
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-13",
+    "title": "广东潮安凤凰单丛茶文化系统",
+    "region": "cn:440000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第13项"
+      }
+    ],
+    "areas": [
+      "cn:445103"
+    ],
+    "coord": [
+      116.679,
+      23.461
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-14",
+    "title": "广西龙胜龙脊梯田系统",
+    "region": "cn:450000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第14项"
+      }
+    ],
+    "areas": [
+      "cn:450328"
+    ],
+    "coord": [
+      110.001,
+      25.863
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-15",
+    "title": "四川江油辛夷花传统栽培体系",
+    "region": "cn:510000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第15项"
+      }
+    ],
+    "areas": [
+      "cn:510781"
+    ],
+    "coord": [
+      104.927,
+      31.947
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-16",
+    "title": "云南广南八宝稻作生态系统",
+    "region": "cn:530000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第16项"
+      }
+    ],
+    "areas": [
+      "cn:532627"
+    ],
+    "coord": [
+      104.999,
+      23.963
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-17",
+    "title": "云南剑川稻麦复种系统",
+    "region": "cn:530000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第17项"
+      }
+    ],
+    "areas": [
+      "cn:532931"
+    ],
+    "coord": [
+      99.744,
+      26.433
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-18",
+    "title": "甘肃岷县当归种植系统",
+    "region": "cn:620000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第18项"
+      }
+    ],
+    "areas": [
+      "cn:621126"
+    ],
+    "coord": [
+      104.24,
+      34.424
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-19",
+    "title": "宁夏灵武长枣种植系统",
+    "region": "cn:640000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第19项"
+      }
+    ],
+    "areas": [
+      "cn:640181"
+    ],
+    "coord": [
+      106.547,
+      37.987
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:2-20",
+    "title": "新疆哈密市哈密瓜栽培与贡瓜文化系统",
+    "region": "cn:650000",
+    "batch": 2,
+    "since": 2014,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第2批 第20项"
+      }
+    ],
+    "areas": [
+      "cn:650500"
+    ],
+    "coord": [
+      93.513,
+      43.066
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-1",
+    "title": "黑龙江宁安响水稻作文化系统",
+    "region": "cn:230000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第1项"
+      }
+    ],
+    "areas": [
+      "cn:231084"
+    ],
+    "coord": [
+      129.21,
+      44.054
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-2",
+    "title": "河南灵宝川塬古枣林",
+    "region": "cn:410000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第2项"
+      }
+    ],
+    "areas": [
+      "cn:411282"
+    ],
+    "coord": [
+      110.773,
+      34.431
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-3",
+    "title": "山东乐陵枣林复合系统",
+    "region": "cn:370000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第3项"
+      }
+    ],
+    "areas": [
+      "cn:371481"
+    ],
+    "coord": [
+      117.14,
+      37.668
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-4",
+    "title": "山东枣庄古枣林",
+    "region": "cn:370000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第4项"
+      }
+    ],
+    "areas": [
+      "cn:370400"
+    ],
+    "coord": [
+      117.398,
+      34.916
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-5",
+    "title": "安徽休宁山泉流水养鱼系统",
+    "region": "cn:340000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第5项"
+      }
+    ],
+    "areas": [
+      "cn:341022"
+    ],
+    "coord": [
+      118.083,
+      29.661
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-6",
+    "title": "安徽寿县芍陂（安丰塘）及灌区农业系统",
+    "region": "cn:340000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第6项"
+      }
+    ],
+    "areas": [
+      "cn:340422"
+    ],
+    "coord": [
+      116.759,
+      32.258
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-7",
+    "title": "新疆奇台旱作农业系统",
+    "region": "cn:650000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第7项"
+      }
+    ],
+    "areas": [
+      "cn:652325"
+    ],
+    "coord": [
+      90.105,
+      44.523
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-8",
+    "title": "浙江云和梯田农业系统",
+    "region": "cn:330000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第8项"
+      }
+    ],
+    "areas": [
+      "cn:331125"
+    ],
+    "coord": [
+      119.536,
+      28.126
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-9",
+    "title": "宁夏中宁枸杞种植系统",
+    "region": "cn:640000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第9项"
+      }
+    ],
+    "areas": [
+      "cn:640521"
+    ],
+    "coord": [
+      105.668,
+      37.316
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-10",
+    "title": "贵州花溪古茶树与茶文化系统",
+    "region": "cn:520000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第10项"
+      }
+    ],
+    "areas": [
+      "cn:520111"
+    ],
+    "coord": [
+      106.658,
+      26.38
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-11",
+    "title": "四川美姑苦荞栽培系统",
+    "region": "cn:510000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第11项"
+      }
+    ],
+    "areas": [
+      "cn:513436"
+    ],
+    "coord": [
+      103.095,
+      28.44
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-12",
+    "title": "浙江仙居杨梅栽培系统",
+    "region": "cn:330000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第12项"
+      }
+    ],
+    "areas": [
+      "cn:331024"
+    ],
+    "coord": [
+      120.634,
+      28.733
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-13",
+    "title": "四川苍溪雪梨栽培系统",
+    "region": "cn:510000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第13项"
+      }
+    ],
+    "areas": [
+      "cn:510824"
+    ],
+    "coord": [
+      106.107,
+      31.91
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-14",
+    "title": "黑龙江抚远赫哲族鱼文化系统",
+    "region": "cn:230000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第14项"
+      }
+    ],
+    "areas": [
+      "cn:230883"
+    ],
+    "coord": [
+      134.277,
+      47.967
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-15",
+    "title": "广西隆安壮族“那文化”稻作文化系统",
+    "region": "cn:450000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第15项"
+      }
+    ],
+    "areas": [
+      "cn:450123"
+    ],
+    "coord": [
+      107.687,
+      23.103
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-16",
+    "title": "吉林延边苹果梨栽培系统",
+    "region": "cn:220000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第16项"
+      }
+    ],
+    "areas": [
+      "cn:222400"
+    ],
+    "coord": [
+      129.131,
+      43.151
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-17",
+    "title": "甘肃永登苦水玫瑰农作系统",
+    "region": "cn:620000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第17项"
+      }
+    ],
+    "areas": [
+      "cn:620121"
+    ],
+    "coord": [
+      103.251,
+      36.604
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-18",
+    "title": "湖北恩施玉露茶文化系统",
+    "region": "cn:420000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第18项"
+      }
+    ],
+    "areas": [
+      "cn:422800"
+    ],
+    "coord": [
+      109.555,
+      30.192
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-19",
+    "title": "辽宁桓仁京租稻栽培系统",
+    "region": "cn:210000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第19项"
+      }
+    ],
+    "areas": [
+      "cn:210522"
+    ],
+    "coord": [
+      125.282,
+      41.256
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-20",
+    "title": "北京京西稻作文化系统",
+    "region": "cn:110000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第20项"
+      }
+    ],
+    "areas": [
+      "cn:110000"
+    ]
+  },
+  {
+    "id": "farm:3-21",
+    "title": "北京平谷四座楼麻核桃生产系统",
+    "region": "cn:110000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第21项"
+      }
+    ],
+    "areas": [
+      "cn:110117"
+    ],
+    "coord": [
+      117.145,
+      40.209
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-22",
+    "title": "江苏泰兴银杏栽培系统",
+    "region": "cn:320000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第22项"
+      }
+    ],
+    "areas": [
+      "cn:321283"
+    ],
+    "coord": [
+      120.134,
+      32.2
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:3-23",
+    "title": "云南双江勐库古茶园与茶文化系统",
+    "region": "cn:530000",
+    "batch": 3,
+    "since": 2015,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第3批 第23项"
+      }
+    ],
+    "areas": [
+      "cn:530925"
+    ],
+    "coord": [
+      99.877,
+      23.466
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-1",
+    "title": "海南琼中山兰稻作文化系统",
+    "region": "cn:460000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第1项"
+      }
+    ],
+    "areas": [
+      "cn:469030"
+    ],
+    "coord": [
+      109.855,
+      19.034
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-2",
+    "title": "重庆石柱黄连生产系统",
+    "region": "cn:500000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第2项"
+      }
+    ],
+    "areas": [
+      "cn:500240"
+    ],
+    "coord": [
+      108.298,
+      30.094
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-3",
+    "title": "四川盐亭嫘祖蚕桑生产系统",
+    "region": "cn:510000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第3项"
+      }
+    ],
+    "areas": [
+      "cn:510723"
+    ],
+    "coord": [
+      105.473,
+      31.242
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-4",
+    "title": "四川名山蒙顶山茶文化系统",
+    "region": "cn:510000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第4项"
+      }
+    ],
+    "areas": [
+      "cn:511803"
+    ],
+    "coord": [
+      103.221,
+      30.127
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-5",
+    "title": "云南腾冲槟榔江水牛养殖系统",
+    "region": "cn:530000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第5项"
+      }
+    ],
+    "areas": [
+      "cn:530581"
+    ],
+    "coord": [
+      98.495,
+      25.273
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-6",
+    "title": "陕西凤县大红袍花椒栽培系统",
+    "region": "cn:610000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第6项"
+      }
+    ],
+    "areas": [
+      "cn:610330"
+    ],
+    "coord": [
+      106.76,
+      33.988
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-7",
+    "title": "陕西蓝田大杏种植系统",
+    "region": "cn:610000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第7项"
+      }
+    ],
+    "areas": [
+      "cn:610122"
+    ],
+    "coord": [
+      109.417,
+      34.095
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-8",
+    "title": "宁夏盐池滩羊养殖系统",
+    "region": "cn:640000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第8项"
+      }
+    ],
+    "areas": [
+      "cn:640323"
+    ],
+    "coord": [
+      107.061,
+      37.627
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-9",
+    "title": "新疆伊犁察布查尔布哈农业系统",
+    "region": "cn:650000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第9项"
+      }
+    ],
+    "areas": [
+      "cn:654000"
+    ],
+    "coord": [
+      82.213,
+      43.349
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-10",
+    "title": "河北迁西板栗复合栽培系统",
+    "region": "cn:130000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第10项"
+      }
+    ],
+    "areas": [
+      "cn:130227"
+    ],
+    "coord": [
+      118.365,
+      40.233
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-11",
+    "title": "河北兴隆传统山楂栽培系统",
+    "region": "cn:130000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第11项"
+      }
+    ],
+    "areas": [
+      "cn:130822"
+    ],
+    "coord": [
+      117.507,
+      40.402
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-12",
+    "title": "山西稷山板枣生产系统",
+    "region": "cn:140000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第12项"
+      }
+    ],
+    "areas": [
+      "cn:140824"
+    ],
+    "coord": [
+      110.958,
+      35.591
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-13",
+    "title": "内蒙古伊金霍洛旗农牧生产系统",
+    "region": "cn:150000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第13项"
+      }
+    ],
+    "areas": [
+      "cn:150627"
+    ],
+    "coord": [
+      109.699,
+      39.418
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-14",
+    "title": "吉林柳河山葡萄栽培系统",
+    "region": "cn:220000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第14项"
+      }
+    ],
+    "areas": [
+      "cn:220524"
+    ],
+    "coord": [
+      125.909,
+      42.179
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-15",
+    "title": "吉林九台五官屯贡米栽培系统",
+    "region": "cn:220000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第15项"
+      }
+    ],
+    "areas": [
+      "cn:220113"
+    ],
+    "coord": [
+      125.979,
+      44.204
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-16",
+    "title": "江苏高邮湖泊湿地农业系统",
+    "region": "cn:320000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第16项"
+      }
+    ],
+    "areas": [
+      "cn:321084"
+    ],
+    "coord": [
+      119.504,
+      32.829
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-17",
+    "title": "江苏无锡阳山水蜜桃栽培系统",
+    "region": "cn:320000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第17项"
+      }
+    ],
+    "areas": [
+      "cn:320200"
+    ],
+    "coord": [
+      120.302,
+      31.575
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-18",
+    "title": "浙江德清淡水珍珠传统养殖与利用系统",
+    "region": "cn:330000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第18项"
+      }
+    ],
+    "areas": [
+      "cn:330521"
+    ],
+    "coord": [
+      120.044,
+      30.562
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-19",
+    "title": "安徽铜陵白姜生产系统",
+    "region": "cn:340000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第19项"
+      }
+    ],
+    "areas": [
+      "cn:340700"
+    ],
+    "coord": [
+      117.567,
+      30.888
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-20",
+    "title": "安徽黄山太平猴魁茶文化系统",
+    "region": "cn:340000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第20项"
+      }
+    ],
+    "areas": [
+      "cn:341000"
+    ],
+    "coord": [
+      118.076,
+      29.905
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-21",
+    "title": "福建福鼎白茶文化系统",
+    "region": "cn:350000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第21项"
+      }
+    ],
+    "areas": [
+      "cn:350982"
+    ],
+    "coord": [
+      120.196,
+      27.221
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-22",
+    "title": "江西南丰蜜橘栽培系统",
+    "region": "cn:360000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第22项"
+      }
+    ],
+    "areas": [
+      "cn:361023"
+    ],
+    "coord": [
+      116.493,
+      27.11
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-23",
+    "title": "江西广昌传统莲作文化系统",
+    "region": "cn:360000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第23项"
+      }
+    ],
+    "areas": [
+      "cn:361030"
+    ],
+    "coord": [
+      116.356,
+      26.756
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-24",
+    "title": "山东章丘大葱栽培系统",
+    "region": "cn:370000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第24项"
+      }
+    ],
+    "areas": [
+      "cn:370114"
+    ],
+    "coord": [
+      117.473,
+      36.738
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-25",
+    "title": "河南新安传统樱桃种植系统",
+    "region": "cn:410000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第25项"
+      }
+    ],
+    "areas": [
+      "cn:410323"
+    ],
+    "coord": [
+      112.122,
+      34.832
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-26",
+    "title": "湖南新田三味辣椒种植系统",
+    "region": "cn:430000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第26项"
+      }
+    ],
+    "areas": [
+      "cn:431128"
+    ],
+    "coord": [
+      112.228,
+      25.884
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-27",
+    "title": "湖南花垣子腊贡米复合种养系统",
+    "region": "cn:430000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第27项"
+      }
+    ],
+    "areas": [
+      "cn:433124"
+    ],
+    "coord": [
+      109.432,
+      28.426
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-28",
+    "title": "广西恭城月柿栽培系统",
+    "region": "cn:450000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第28项"
+      }
+    ],
+    "areas": [
+      "cn:450332"
+    ],
+    "coord": [
+      110.901,
+      24.943
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:4-29",
+    "title": "海南海口羊山荔枝种植系统",
+    "region": "cn:460000",
+    "batch": 4,
+    "since": 2017,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-1-4",
+        "loc": "第4批 第29项"
+      }
+    ],
+    "areas": [
+      "cn:460100"
+    ],
+    "coord": [
+      110.423,
+      19.852
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-1",
+    "title": "天津津南小站稻种植系统",
+    "region": "cn:120000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第1项"
+      }
+    ],
+    "areas": [
+      "cn:120112"
+    ],
+    "coord": [
+      117.388,
+      38.963
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-2",
+    "title": "内蒙古乌拉特后旗戈壁红驼牧养系统",
+    "region": "cn:150000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第2项"
+      }
+    ],
+    "areas": [
+      "cn:150825"
+    ],
+    "coord": [
+      106.417,
+      41.528
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-3",
+    "title": "辽宁阜蒙旱作农业系统",
+    "region": "cn:210000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第3项"
+      }
+    ],
+    "areas": [
+      "cn:210921"
+    ],
+    "coord": [
+      121.453,
+      42.118
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-4",
+    "title": "江苏吴中碧螺春茶果复合系统",
+    "region": "cn:320000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第4项"
+      }
+    ],
+    "areas": [
+      "cn:320506"
+    ],
+    "coord": [
+      120.37,
+      31.165
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-5",
+    "title": "江苏宿豫丁嘴金针菜生产系统",
+    "region": "cn:320000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第5项"
+      }
+    ],
+    "areas": [
+      "cn:321311"
+    ],
+    "coord": [
+      118.359,
+      34.003
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-6",
+    "title": "浙江宁波黄古林蔺草-水稻轮作系统",
+    "region": "cn:330000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第6项"
+      }
+    ],
+    "areas": [
+      "cn:330200"
+    ],
+    "coord": [
+      121.479,
+      29.733
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-7",
+    "title": "浙江安吉竹文化系统",
+    "region": "cn:330000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第7项"
+      }
+    ],
+    "areas": [
+      "cn:330523"
+    ],
+    "coord": [
+      119.577,
+      30.62
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-8",
+    "title": "浙江黄岩蜜橘筑墩栽培系统",
+    "region": "cn:330000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第8项"
+      }
+    ],
+    "areas": [
+      "cn:331003"
+    ],
+    "coord": [
+      121.081,
+      28.599
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-9",
+    "title": "浙江开化山泉流水养鱼系统",
+    "region": "cn:330000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第9项"
+      }
+    ],
+    "areas": [
+      "cn:330824"
+    ],
+    "coord": [
+      118.325,
+      29.185
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-10",
+    "title": "江西泰和乌鸡林下养殖系统",
+    "region": "cn:360000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第10项"
+      }
+    ],
+    "areas": [
+      "cn:360826"
+    ],
+    "coord": [
+      114.934,
+      26.737
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-11",
+    "title": "江西横峰葛栽培系统",
+    "region": "cn:360000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第11项"
+      }
+    ],
+    "areas": [
+      "cn:361125"
+    ],
+    "coord": [
+      117.637,
+      28.508
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-12",
+    "title": "山东岱岳汶阳田农作系统",
+    "region": "cn:370000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第12项"
+      }
+    ],
+    "areas": [
+      "cn:370911"
+    ],
+    "coord": [
+      117.044,
+      36.184
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-13",
+    "title": "河南嵩县银杏文化系统",
+    "region": "cn:410000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第13项"
+      }
+    ],
+    "areas": [
+      "cn:410325"
+    ],
+    "coord": [
+      112.043,
+      34.006
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-14",
+    "title": "湖南安化黑茶文化系统",
+    "region": "cn:430000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第14项"
+      }
+    ],
+    "areas": [
+      "cn:430923"
+    ],
+    "coord": [
+      111.384,
+      28.281
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-15",
+    "title": "湖南保靖黄金寨古茶园与茶文化系统",
+    "region": "cn:430000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第15项"
+      }
+    ],
+    "areas": [
+      "cn:433125"
+    ],
+    "coord": [
+      109.564,
+      28.666
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-16",
+    "title": "湖南永顺油茶林农复合系统",
+    "region": "cn:430000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第16项"
+      }
+    ],
+    "areas": [
+      "cn:433127"
+    ],
+    "coord": [
+      109.97,
+      29.01
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-17",
+    "title": "广东佛山基塘农业系统",
+    "region": "cn:440000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第17项"
+      }
+    ],
+    "areas": [
+      "cn:440600"
+    ],
+    "coord": [
+      112.95,
+      23.004
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-18",
+    "title": "广东岭南荔枝种植系统",
+    "region": "cn:440000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第18项"
+      }
+    ],
+    "area": "增城、东莞",
+    "areas": [
+      "cn:440118",
+      "cn:441900"
+    ],
+    "coord": [
+      113.822,
+      23.136
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-19",
+    "title": "广西横县茉莉花复合栽培系统",
+    "region": "cn:450000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第19项"
+      }
+    ],
+    "areas": [
+      "cn:450181"
+    ],
+    "coord": [
+      109.162,
+      22.769
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-20",
+    "title": "重庆大足黑山羊传统养殖系统",
+    "region": "cn:500000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第20项"
+      }
+    ],
+    "areas": [
+      "cn:500111"
+    ],
+    "coord": [
+      105.743,
+      29.65
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-21",
+    "title": "重庆万州红桔栽培系统",
+    "region": "cn:500000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第21项"
+      }
+    ],
+    "areas": [
+      "cn:500101"
+    ],
+    "coord": [
+      108.407,
+      30.704
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-22",
+    "title": "四川郫都林盘农耕文化系统",
+    "region": "cn:510000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第22项"
+      }
+    ],
+    "areas": [
+      "cn:510117"
+    ],
+    "coord": [
+      103.863,
+      30.839
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-23",
+    "title": "四川宜宾竹文化系统",
+    "region": "cn:510000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第23项"
+      }
+    ],
+    "areas": [
+      "cn:511500"
+    ],
+    "coord": [
+      104.638,
+      28.572
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-24",
+    "title": "四川石渠扎溪卡游牧系统",
+    "region": "cn:510000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第24项"
+      }
+    ],
+    "areas": [
+      "cn:513332"
+    ],
+    "coord": [
+      98.192,
+      33.194
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-25",
+    "title": "贵州锦屏杉木传统种植与管理系统",
+    "region": "cn:520000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第25项"
+      }
+    ],
+    "areas": [
+      "cn:522628"
+    ],
+    "coord": [
+      109.126,
+      26.559
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-26",
+    "title": "贵州安顺屯堡农业系统",
+    "region": "cn:520000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第26项"
+      }
+    ],
+    "areas": [
+      "cn:520400"
+    ],
+    "coord": [
+      105.953,
+      25.993
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:5-27",
+    "title": "陕西临潼石榴种植系统",
+    "region": "cn:610000",
+    "batch": 5,
+    "since": 2020,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-5",
+        "loc": "名单 第27项"
+      }
+    ],
+    "areas": [
+      "cn:610115"
+    ],
+    "coord": [
+      109.288,
+      34.457
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-1",
+    "title": "山西阳城蚕桑文化系统",
+    "region": "cn:140000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第1项"
+      }
+    ],
+    "areas": [
+      "cn:140522"
+    ],
+    "coord": [
+      112.353,
+      35.422
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-2",
+    "title": "内蒙古武川燕麦传统旱作系统",
+    "region": "cn:150000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第2项"
+      }
+    ],
+    "areas": [
+      "cn:150125"
+    ],
+    "coord": [
+      111.174,
+      41.11
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-3",
+    "title": "内蒙古东乌珠穆沁旗游牧生产系统",
+    "region": "cn:150000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第3项"
+      }
+    ],
+    "areas": [
+      "cn:152525"
+    ],
+    "coord": [
+      117.772,
+      45.814
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-4",
+    "title": "吉林和龙林下参—芝抚育系统",
+    "region": "cn:220000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第4项"
+      }
+    ],
+    "areas": [
+      "cn:222406"
+    ],
+    "coord": [
+      128.904,
+      42.46
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-5",
+    "title": "江苏启东沙地圩田农业系统",
+    "region": "cn:320000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第5项"
+      }
+    ],
+    "areas": [
+      "cn:320681"
+    ],
+    "coord": [
+      121.704,
+      31.855
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-6",
+    "title": "江苏吴江蚕桑文化系统",
+    "region": "cn:320000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第6项"
+      }
+    ],
+    "areas": [
+      "cn:320509"
+    ],
+    "coord": [
+      120.632,
+      31.008
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-7",
+    "title": "浙江缙云茭白—麻鸭共生系统",
+    "region": "cn:330000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第7项"
+      }
+    ],
+    "areas": [
+      "cn:331122"
+    ],
+    "coord": [
+      120.185,
+      28.659
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-8",
+    "title": "浙江桐乡蚕桑文化系统",
+    "region": "cn:330000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第8项"
+      }
+    ],
+    "areas": [
+      "cn:330483"
+    ],
+    "coord": [
+      120.484,
+      30.606
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-9",
+    "title": "安徽太湖山地复合农业系统",
+    "region": "cn:340000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第9项"
+      }
+    ],
+    "areas": [
+      "cn:340825"
+    ],
+    "coord": [
+      116.178,
+      30.493
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-10",
+    "title": "福建松溪竹蔗栽培系统",
+    "region": "cn:350000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第10项"
+      }
+    ],
+    "areas": [
+      "cn:350724"
+    ],
+    "coord": [
+      118.757,
+      27.606
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-11",
+    "title": "江西浮梁茶文化系统",
+    "region": "cn:360000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第11项"
+      }
+    ],
+    "areas": [
+      "cn:360222"
+    ],
+    "coord": [
+      117.301,
+      29.552
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-12",
+    "title": "山东莱阳古梨树群系统",
+    "region": "cn:370000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第12项"
+      }
+    ],
+    "areas": [
+      "cn:370682"
+    ],
+    "coord": [
+      120.745,
+      36.897
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-13",
+    "title": "山东峄城石榴种植系统",
+    "region": "cn:370000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第13项"
+      }
+    ],
+    "areas": [
+      "cn:370404"
+    ],
+    "coord": [
+      117.597,
+      34.71
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-14",
+    "title": "湖南龙山油桐种植系统",
+    "region": "cn:430000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第14项"
+      }
+    ],
+    "areas": [
+      "cn:433130"
+    ],
+    "coord": [
+      109.509,
+      29.219
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-15",
+    "title": "广东海珠高畦深沟传统农业系统",
+    "region": "cn:440000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第15项"
+      }
+    ],
+    "areas": [
+      "cn:440105"
+    ],
+    "coord": [
+      113.327,
+      23.082
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-16",
+    "title": "广西桂西北山地稻鱼复合系统",
+    "region": "cn:450000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第16项"
+      }
+    ],
+    "area": "柳州市三江侗族自治县、融水苗族自治县，桂林市全州县，百色市靖西市、那坡县",
+    "areas": [
+      "cn:450226",
+      "cn:450225",
+      "cn:450324",
+      "cn:451081",
+      "cn:451026"
+    ],
+    "coord": [
+      109.051,
+      25.337
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-17",
+    "title": "云南文山三七种植系统",
+    "region": "cn:530000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第17项"
+      }
+    ],
+    "areas": [
+      "cn:532600"
+    ],
+    "coord": [
+      104.716,
+      23.689
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-18",
+    "title": "西藏当雄高寒游牧系统",
+    "region": "cn:540000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第18项"
+      }
+    ],
+    "areas": [
+      "cn:540122"
+    ],
+    "coord": [
+      90.883,
+      30.419
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-19",
+    "title": "西藏乃东青稞种植系统",
+    "region": "cn:540000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第19项"
+      }
+    ],
+    "areas": [
+      "cn:540502"
+    ],
+    "coord": [
+      91.821,
+      29.211
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-20",
+    "title": "陕西汉阴凤堰稻作梯田系统",
+    "region": "cn:610000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第20项"
+      }
+    ],
+    "areas": [
+      "cn:610921"
+    ],
+    "coord": [
+      108.488,
+      32.897
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:6-21",
+    "title": "广东岭南荔枝种植系统",
+    "region": "cn:440000",
+    "batch": 6,
+    "since": 2021,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-6",
+        "loc": "名单 第21项"
+      }
+    ],
+    "area": "茂名",
+    "areas": [
+      "cn:440900"
+    ],
+    "coord": [
+      110.959,
+      22.009
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-1",
+    "title": "北京怀柔板栗栽培系统",
+    "region": "cn:110000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第1项"
+      }
+    ],
+    "areas": [
+      "cn:110116"
+    ],
+    "coord": [
+      116.586,
+      40.631
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-2",
+    "title": "北京门头沟京白梨栽培系统",
+    "region": "cn:110000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第2项"
+      }
+    ],
+    "areas": [
+      "cn:110109"
+    ],
+    "coord": [
+      115.792,
+      39.994
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-3",
+    "title": "河北赵县古梨园",
+    "region": "cn:130000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第3项"
+      }
+    ],
+    "areas": [
+      "cn:130133"
+    ],
+    "coord": [
+      114.826,
+      37.763
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-4",
+    "title": "河北涿鹿龙眼葡萄栽培系统",
+    "region": "cn:130000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第4项"
+      }
+    ],
+    "areas": [
+      "cn:130731"
+    ],
+    "coord": [
+      115.219,
+      40.097
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-5",
+    "title": "河北泊头古桑林",
+    "region": "cn:130000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第5项"
+      }
+    ],
+    "areas": [
+      "cn:130981"
+    ],
+    "coord": [
+      116.382,
+      38.084
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-6",
+    "title": "山西浑源恒山黄芪栽培系统",
+    "region": "cn:140000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第6项"
+      }
+    ],
+    "areas": [
+      "cn:140225"
+    ],
+    "coord": [
+      113.705,
+      39.628
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-7",
+    "title": "山西长治党参栽培系统",
+    "region": "cn:140000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第7项"
+      }
+    ],
+    "area": "长治市平顺县、壶关县",
+    "areas": [
+      "cn:140425",
+      "cn:140427"
+    ],
+    "coord": [
+      113.446,
+      36.1
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-8",
+    "title": "内蒙古库伦荞麦旱作系统",
+    "region": "cn:150000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第8项"
+      }
+    ],
+    "areas": [
+      "cn:150524"
+    ],
+    "coord": [
+      121.561,
+      42.801
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-9",
+    "title": "辽宁西丰梅花鹿养殖系统",
+    "region": "cn:210000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第9项"
+      }
+    ],
+    "areas": [
+      "cn:211223"
+    ],
+    "coord": [
+      124.732,
+      42.707
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-10",
+    "title": "吉林长白山人参栽培系统",
+    "region": "cn:220000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第10项"
+      }
+    ],
+    "area": "通化市集安市、白山市抚松县、延边朝鲜族自治州安图县",
+    "areas": [
+      "cn:220582",
+      "cn:220621",
+      "cn:222426"
+    ],
+    "coord": [
+      127.346,
+      42.07
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-11",
+    "title": "上海金山蟠桃栽培系统",
+    "region": "cn:310000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第11项"
+      }
+    ],
+    "areas": [
+      "cn:310116"
+    ],
+    "coord": [
+      121.255,
+      30.819
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-12",
+    "title": "江苏吴中传统水生蔬菜栽培系统",
+    "region": "cn:320000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第12项"
+      }
+    ],
+    "areas": [
+      "cn:320506"
+    ],
+    "coord": [
+      120.37,
+      31.165
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-13",
+    "title": "江苏吴江基塘农业系统",
+    "region": "cn:320000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第13项"
+      }
+    ],
+    "areas": [
+      "cn:320509"
+    ],
+    "coord": [
+      120.632,
+      31.008
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-14",
+    "title": "浙江吴兴溇港圩田农业系统",
+    "region": "cn:330000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第14项"
+      }
+    ],
+    "areas": [
+      "cn:330502"
+    ],
+    "coord": [
+      120.085,
+      30.803
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-15",
+    "title": "浙江东阳元胡水稻轮作系统",
+    "region": "cn:330000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第15项"
+      }
+    ],
+    "areas": [
+      "cn:330783"
+    ],
+    "coord": [
+      120.376,
+      29.232
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-16",
+    "title": "浙江天台乌药林下栽培系统",
+    "region": "cn:330000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第16项"
+      }
+    ],
+    "areas": [
+      "cn:331023"
+    ],
+    "coord": [
+      120.977,
+      29.145
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-17",
+    "title": "安徽义安凤丹栽培系统",
+    "region": "cn:340000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第17项"
+      }
+    ],
+    "areas": [
+      "cn:340706"
+    ],
+    "coord": [
+      117.925,
+      30.957
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-18",
+    "title": "安徽青阳九华黄精栽培系统",
+    "region": "cn:340000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第18项"
+      }
+    ],
+    "areas": [
+      "cn:341723"
+    ],
+    "coord": [
+      117.9,
+      30.596
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-19",
+    "title": "安徽歙县梯地茶园系统",
+    "region": "cn:340000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第19项"
+      }
+    ],
+    "areas": [
+      "cn:341021"
+    ],
+    "coord": [
+      118.569,
+      29.865
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-20",
+    "title": "福建长乐番薯种植系统",
+    "region": "cn:350000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第20项"
+      }
+    ],
+    "areas": [
+      "cn:350112"
+    ],
+    "coord": [
+      119.563,
+      25.909
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-21",
+    "title": "福建武夷岩茶文化系统",
+    "region": "cn:350000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第21项"
+      }
+    ],
+    "areas": [
+      "cn:350782"
+    ],
+    "coord": [
+      118.005,
+      27.742
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-22",
+    "title": "江西湖口大豆栽培系统",
+    "region": "cn:360000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第22项"
+      }
+    ],
+    "areas": [
+      "cn:360429"
+    ],
+    "coord": [
+      116.286,
+      29.662
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-23",
+    "title": "山东昌邑山阳大梨栽培系统",
+    "region": "cn:370000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第23项"
+      }
+    ],
+    "areas": [
+      "cn:370786"
+    ],
+    "coord": [
+      119.441,
+      36.877
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-24",
+    "title": "山东平邑金银花—山楂复合系统",
+    "region": "cn:370000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第24项"
+      }
+    ],
+    "areas": [
+      "cn:371326"
+    ],
+    "coord": [
+      117.676,
+      35.429
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-25",
+    "title": "山东临清黄河故道古桑树群",
+    "region": "cn:370000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第25项"
+      }
+    ],
+    "areas": [
+      "cn:371581"
+    ],
+    "coord": [
+      115.775,
+      36.776
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-26",
+    "title": "河南宁陵黄河故道古梨园",
+    "region": "cn:410000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第26项"
+      }
+    ],
+    "areas": [
+      "cn:411423"
+    ],
+    "coord": [
+      115.292,
+      34.449
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-27",
+    "title": "河南林州太行菊栽培系统",
+    "region": "cn:410000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第27项"
+      }
+    ],
+    "areas": [
+      "cn:410581"
+    ],
+    "coord": [
+      113.854,
+      36.01
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-28",
+    "title": "湖北秭归柑橘栽培系统",
+    "region": "cn:420000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第28项"
+      }
+    ],
+    "areas": [
+      "cn:420527"
+    ],
+    "coord": [
+      110.679,
+      30.898
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-29",
+    "title": "湖北京山稻作文化系统",
+    "region": "cn:420000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第29项"
+      }
+    ],
+    "areas": [
+      "cn:420882"
+    ],
+    "coord": [
+      113.107,
+      31.081
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-30",
+    "title": "湖北咸宁古桂花树群",
+    "region": "cn:420000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第30项"
+      }
+    ],
+    "areas": [
+      "cn:421200"
+    ],
+    "coord": [
+      114.181,
+      29.622
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-31",
+    "title": "湖南洪江山地香稻栽培文化系统",
+    "region": "cn:430000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第31项"
+      }
+    ],
+    "areas": [
+      "cn:431281"
+    ],
+    "coord": [
+      110.079,
+      27.232
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-32",
+    "title": "广东增城丝苗米文化系统",
+    "region": "cn:440000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第32项"
+      }
+    ],
+    "areas": [
+      "cn:440118"
+    ],
+    "coord": [
+      113.764,
+      23.341
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-33",
+    "title": "广东南雄水旱轮作系统",
+    "region": "cn:440000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第33项"
+      }
+    ],
+    "areas": [
+      "cn:440282"
+    ],
+    "coord": [
+      114.381,
+      25.184
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-34",
+    "title": "广东饶平单丛茶文化系统",
+    "region": "cn:440000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第34项"
+      }
+    ],
+    "areas": [
+      "cn:445122"
+    ],
+    "coord": [
+      116.912,
+      23.834
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-35",
+    "title": "广西永福罗汉果栽培系统",
+    "region": "cn:450000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第35项"
+      }
+    ],
+    "areas": [
+      "cn:450326"
+    ],
+    "coord": [
+      109.911,
+      24.991
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-36",
+    "title": "广西苍梧六堡茶文化系统",
+    "region": "cn:450000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第36项"
+      }
+    ],
+    "areas": [
+      "cn:450421"
+    ],
+    "coord": [
+      111.313,
+      23.758
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-37",
+    "title": "海南白沙黎族山兰稻作文化系统",
+    "region": "cn:460000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第37项"
+      }
+    ],
+    "areas": [
+      "cn:469025"
+    ],
+    "coord": [
+      109.352,
+      19.21
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-38",
+    "title": "重庆江津花椒栽培系统",
+    "region": "cn:500000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第38项"
+      }
+    ],
+    "areas": [
+      "cn:500116"
+    ],
+    "coord": [
+      106.263,
+      29.03
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-39",
+    "title": "重庆荣昌猪养殖系统",
+    "region": "cn:500000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第39项"
+      }
+    ],
+    "areas": [
+      "cn:500153"
+    ],
+    "coord": [
+      105.507,
+      29.465
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-40",
+    "title": "四川北川苔子茶复合栽培系统",
+    "region": "cn:510000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第40项"
+      }
+    ],
+    "areas": [
+      "cn:510726"
+    ],
+    "coord": [
+      104.265,
+      31.937
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-41",
+    "title": "四川高坪蚕桑文化系统",
+    "region": "cn:510000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第41项"
+      }
+    ],
+    "areas": [
+      "cn:511303"
+    ],
+    "coord": [
+      106.25,
+      30.782
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-42",
+    "title": "四川筠连山地茶文化系统",
+    "region": "cn:510000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第42项"
+      }
+    ],
+    "areas": [
+      "cn:511527"
+    ],
+    "coord": [
+      104.582,
+      28.036
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-43",
+    "title": "贵州兴仁薏仁米栽培系统",
+    "region": "cn:520000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第43项"
+      }
+    ],
+    "areas": [
+      "cn:522302"
+    ],
+    "coord": [
+      105.272,
+      25.496
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-44",
+    "title": "西藏芒康葡萄栽培系统",
+    "region": "cn:540000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第44项"
+      }
+    ],
+    "areas": [
+      "cn:540328"
+    ],
+    "coord": [
+      98.615,
+      29.615
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-45",
+    "title": "西藏工布江达藏猪养殖系统",
+    "region": "cn:540000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第45项"
+      }
+    ],
+    "areas": [
+      "cn:540421"
+    ],
+    "coord": [
+      93.236,
+      30.018
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-46",
+    "title": "陕西府谷海红果栽培系统",
+    "region": "cn:610000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第46项"
+      }
+    ],
+    "areas": [
+      "cn:610822"
+    ],
+    "coord": [
+      110.861,
+      39.182
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-47",
+    "title": "青海三江源曲麻莱高寒游牧系统",
+    "region": "cn:630000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第47项"
+      }
+    ],
+    "areas": [
+      "cn:632726"
+    ],
+    "coord": [
+      95.261,
+      34.954
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-48",
+    "title": "宁夏平原引黄灌溉农业系统",
+    "region": "cn:640000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第48项"
+      }
+    ],
+    "area": "石嘴山市平罗县，吴忠市利通区、青铜峡市，中卫市沙坡头区",
+    "areas": [
+      "cn:640221",
+      "cn:640302",
+      "cn:640381",
+      "cn:640502"
+    ],
+    "coord": [
+      105.972,
+      37.962
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-49",
+    "title": "新疆叶城核桃栽培系统",
+    "region": "cn:650000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第49项"
+      }
+    ],
+    "areas": [
+      "cn:653126"
+    ],
+    "coord": [
+      77.222,
+      36.99
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:7-50",
+    "title": "新疆昭苏草原马牧养系统",
+    "region": "cn:650000",
+    "batch": 7,
+    "since": 2023,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-7",
+        "loc": "名单 第50项"
+      }
+    ],
+    "areas": [
+      "cn:654026"
+    ],
+    "coord": [
+      80.979,
+      42.771
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-1",
+    "title": "北京门头沟妙峰山玫瑰栽培系统",
+    "region": "cn:110000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第1项"
+      }
+    ],
+    "areas": [
+      "cn:110109"
+    ],
+    "coord": [
+      115.792,
+      39.994
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-2",
+    "title": "天津西青沙窝萝卜种植系统",
+    "region": "cn:120000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第2项"
+      }
+    ],
+    "areas": [
+      "cn:120111"
+    ],
+    "coord": [
+      117.118,
+      39.029
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-3",
+    "title": "河北赞皇枣蜂种养系统",
+    "region": "cn:130000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第3项"
+      }
+    ],
+    "areas": [
+      "cn:130129"
+    ],
+    "coord": [
+      114.281,
+      37.621
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-4",
+    "title": "河北黄骅古冬枣园",
+    "region": "cn:130000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第4项"
+      }
+    ],
+    "areas": [
+      "cn:130983"
+    ],
+    "coord": [
+      117.435,
+      38.398
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-5",
+    "title": "河北满城磨盘柿栽培系统",
+    "region": "cn:130000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第5项"
+      }
+    ],
+    "areas": [
+      "cn:130607"
+    ],
+    "coord": [
+      115.246,
+      38.971
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-6",
+    "title": "河北魏县古梨园",
+    "region": "cn:130000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第6项"
+      }
+    ],
+    "areas": [
+      "cn:130434"
+    ],
+    "coord": [
+      114.93,
+      36.245
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-7",
+    "title": "山西沁县小米种植系统",
+    "region": "cn:140000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第7项"
+      }
+    ],
+    "areas": [
+      "cn:140430"
+    ],
+    "coord": [
+      112.647,
+      36.701
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-8",
+    "title": "山西大同黄花种植系统",
+    "region": "cn:140000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第8项"
+      }
+    ],
+    "areas": [
+      "cn:140200"
+    ],
+    "coord": [
+      113.725,
+      39.905
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-9",
+    "title": "山西高平黄梨栽培系统",
+    "region": "cn:140000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第9项"
+      }
+    ],
+    "areas": [
+      "cn:140581"
+    ],
+    "coord": [
+      112.929,
+      35.804
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-10",
+    "title": "山西平定连翘栽培系统",
+    "region": "cn:140000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第10项"
+      }
+    ],
+    "areas": [
+      "cn:140321"
+    ],
+    "coord": [
+      113.764,
+      37.843
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-11",
+    "title": "内蒙古兴安寒地稻作系统",
+    "region": "cn:150000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第11项"
+      }
+    ],
+    "areas": [
+      "cn:152200"
+    ],
+    "coord": [
+      121.341,
+      46.241
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-12",
+    "title": "内蒙古扎鲁特草原游牧系统",
+    "region": "cn:150000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第12项"
+      }
+    ],
+    "areas": [
+      "cn:150526"
+    ],
+    "coord": [
+      120.596,
+      44.807
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-13",
+    "title": "辽宁凤城柞蚕文化系统",
+    "region": "cn:210000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第13项"
+      }
+    ],
+    "areas": [
+      "cn:210682"
+    ],
+    "coord": [
+      124.059,
+      40.584
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-14",
+    "title": "辽宁桓仁人参抚育系统",
+    "region": "cn:210000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第14项"
+      }
+    ],
+    "areas": [
+      "cn:210522"
+    ],
+    "coord": [
+      125.282,
+      41.256
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-15",
+    "title": "吉林前郭查干湖渔文化系统",
+    "region": "cn:220000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第15项"
+      }
+    ],
+    "areas": [
+      "cn:220721"
+    ],
+    "coord": [
+      124.469,
+      44.863
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-16",
+    "title": "吉林东丰梅花鹿养殖系统",
+    "region": "cn:220000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第16项"
+      }
+    ],
+    "areas": [
+      "cn:220421"
+    ],
+    "coord": [
+      125.449,
+      42.678
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-17",
+    "title": "黑龙江兰西民猪养殖系统",
+    "region": "cn:230000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第17项"
+      }
+    ],
+    "areas": [
+      "cn:231222"
+    ],
+    "coord": [
+      126.207,
+      46.352
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-18",
+    "title": "黑龙江饶河东北黑蜂养殖系统",
+    "region": "cn:230000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第18项"
+      }
+    ],
+    "areas": [
+      "cn:230524"
+    ],
+    "coord": [
+      133.797,
+      47.131
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-19",
+    "title": "上海浦东崩瓜栽培系统",
+    "region": "cn:310000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第19项"
+      }
+    ],
+    "areas": [
+      "cn:310115"
+    ],
+    "coord": [
+      121.742,
+      31.084
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-20",
+    "title": "上海浦东水蜜桃栽培系统",
+    "region": "cn:310000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第20项"
+      }
+    ],
+    "areas": [
+      "cn:310115"
+    ],
+    "coord": [
+      121.742,
+      31.084
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-21",
+    "title": "上海青浦滩荡圩田农业系统",
+    "region": "cn:310000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第21项"
+      }
+    ],
+    "areas": [
+      "cn:310118"
+    ],
+    "coord": [
+      121.085,
+      31.125
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-22",
+    "title": "江苏张家港沙上长江圩田农业系统",
+    "region": "cn:320000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第22项"
+      }
+    ],
+    "areas": [
+      "cn:320582"
+    ],
+    "coord": [
+      120.628,
+      31.903
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-23",
+    "title": "江苏东海淮猪养殖系统",
+    "region": "cn:320000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第23项"
+      }
+    ],
+    "areas": [
+      "cn:320722"
+    ],
+    "coord": [
+      118.756,
+      34.544
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-24",
+    "title": "江苏淮安蒲菜栽培系统",
+    "region": "cn:320000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第24项"
+      }
+    ],
+    "areas": [
+      "cn:320800"
+    ],
+    "coord": [
+      118.971,
+      33.352
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-25",
+    "title": "江苏宜兴阳羡茶文化系统",
+    "region": "cn:320000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第25项"
+      }
+    ],
+    "areas": [
+      "cn:320282"
+    ],
+    "coord": [
+      119.787,
+      31.352
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-26",
+    "title": "浙江山地灵芝文化系统",
+    "region": "cn:330000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第26项"
+      }
+    ],
+    "area": "龙泉市、武义县",
+    "areas": [
+      "cn:331181",
+      "cn:330723"
+    ],
+    "coord": [
+      119.715,
+      28.768
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-27",
+    "title": "浙江雁荡山铁皮石斛文化系统",
+    "region": "cn:330000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第27项"
+      }
+    ],
+    "area": "乐清市、天台县",
+    "areas": [
+      "cn:330382",
+      "cn:331023"
+    ],
+    "coord": [
+      120.977,
+      29.145
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-28",
+    "title": "浙江桐庐古澳及灌区农业系统",
+    "region": "cn:330000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第28项"
+      }
+    ],
+    "areas": [
+      "cn:330122"
+    ],
+    "coord": [
+      119.554,
+      29.831
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-29",
+    "title": "安徽祁门红茶文化系统",
+    "region": "cn:340000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第29项"
+      }
+    ],
+    "areas": [
+      "cn:341024"
+    ],
+    "coord": [
+      117.594,
+      29.867
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-30",
+    "title": "安徽含山湿地稻作文化系统",
+    "region": "cn:340000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第30项"
+      }
+    ],
+    "areas": [
+      "cn:340522"
+    ],
+    "coord": [
+      118.047,
+      31.657
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-31",
+    "title": "安徽湾沚圩田农业系统",
+    "region": "cn:340000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第31项"
+      }
+    ],
+    "areas": [
+      "cn:340210"
+    ],
+    "coord": [
+      118.573,
+      31.144
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-32",
+    "title": "安徽南谯滁菊栽培系统",
+    "region": "cn:340000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第32项"
+      }
+    ],
+    "areas": [
+      "cn:341103"
+    ],
+    "coord": [
+      118.18,
+      32.313
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-33",
+    "title": "福建福州橄榄种植系统",
+    "region": "cn:350000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第33项"
+      }
+    ],
+    "areas": [
+      "cn:350100"
+    ],
+    "coord": [
+      119.201,
+      26.048
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-34",
+    "title": "福建永定芋稻水旱轮作系统",
+    "region": "cn:350000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第34项"
+      }
+    ],
+    "areas": [
+      "cn:350803"
+    ],
+    "coord": [
+      116.819,
+      24.756
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-35",
+    "title": "福建永春金豆栽培系统",
+    "region": "cn:350000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第35项"
+      }
+    ],
+    "areas": [
+      "cn:350525"
+    ],
+    "coord": [
+      118.14,
+      25.39
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-36",
+    "title": "福建武夷山正山小种茶文化系统",
+    "region": "cn:350000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第36项"
+      }
+    ],
+    "areas": [
+      "cn:350782"
+    ],
+    "coord": [
+      118.005,
+      27.742
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-37",
+    "title": "江西弋阳大禾谷栽培系统",
+    "region": "cn:360000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第37项"
+      }
+    ],
+    "areas": [
+      "cn:361126"
+    ],
+    "coord": [
+      117.409,
+      28.446
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-38",
+    "title": "江西庐山云雾茶文化系统",
+    "region": "cn:360000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第38项"
+      }
+    ],
+    "areas": [
+      "cn:360483"
+    ],
+    "coord": [
+      115.986,
+      29.417
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-39",
+    "title": "山东菏泽牡丹栽培系统",
+    "region": "cn:370000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第39项"
+      }
+    ],
+    "areas": [
+      "cn:371700"
+    ],
+    "coord": [
+      115.698,
+      35.152
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-40",
+    "title": "山东肥城佛桃栽培系统",
+    "region": "cn:370000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第40项"
+      }
+    ],
+    "areas": [
+      "cn:370983"
+    ],
+    "coord": [
+      116.738,
+      36.106
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-41",
+    "title": "山东胶州大白菜栽培系统",
+    "region": "cn:370000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第41项"
+      }
+    ],
+    "areas": [
+      "cn:370281"
+    ],
+    "coord": [
+      119.953,
+      36.24
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-42",
+    "title": "山东平阴玫瑰栽培系统",
+    "region": "cn:370000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第42项"
+      }
+    ],
+    "areas": [
+      "cn:370124"
+    ],
+    "coord": [
+      116.416,
+      36.196
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-43",
+    "title": "河南洛阳牡丹文化系统",
+    "region": "cn:410000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第43项"
+      }
+    ],
+    "areas": [
+      "cn:410300"
+    ],
+    "coord": [
+      112.039,
+      34.293
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-44",
+    "title": "河南信阳毛尖茶文化系统",
+    "region": "cn:410000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第44项"
+      }
+    ],
+    "areas": [
+      "cn:411500"
+    ],
+    "coord": [
+      114.889,
+      32.08
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-45",
+    "title": "湖北蕲春蕲艾文化系统",
+    "region": "cn:420000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第45项"
+      }
+    ],
+    "areas": [
+      "cn:421126"
+    ],
+    "coord": [
+      115.594,
+      30.323
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-46",
+    "title": "湖北房县黑木耳栽培系统",
+    "region": "cn:420000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第46项"
+      }
+    ],
+    "areas": [
+      "cn:420325"
+    ],
+    "coord": [
+      110.625,
+      32.072
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-47",
+    "title": "湖北五峰茶文化系统",
+    "region": "cn:420000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第47项"
+      }
+    ],
+    "areas": [
+      "cn:420529"
+    ],
+    "coord": [
+      110.708,
+      30.169
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-48",
+    "title": "湖北沙洋油菜水稻轮作系统",
+    "region": "cn:420000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第48项"
+      }
+    ],
+    "areas": [
+      "cn:420822"
+    ],
+    "coord": [
+      112.392,
+      30.66
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-49",
+    "title": "湖南道县稻作文化系统",
+    "region": "cn:430000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第49项"
+      }
+    ],
+    "areas": [
+      "cn:431124"
+    ],
+    "coord": [
+      111.596,
+      25.493
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-50",
+    "title": "湖南靖州茯苓栽培系统",
+    "region": "cn:430000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第50项"
+      }
+    ],
+    "areas": [
+      "cn:431229"
+    ],
+    "coord": [
+      109.585,
+      26.543
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-51",
+    "title": "湖南山地莓茶文化系统",
+    "region": "cn:430000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第51项"
+      }
+    ],
+    "area": "永顺县、张家界市永定区",
+    "areas": [
+      "cn:433127",
+      "cn:430802"
+    ],
+    "coord": [
+      110.216,
+      29.065
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-52",
+    "title": "湖南新化黄精栽培系统",
+    "region": "cn:430000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第52项"
+      }
+    ],
+    "areas": [
+      "cn:431322"
+    ],
+    "coord": [
+      111.238,
+      27.868
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-53",
+    "title": "广东东莞土沉香栽培与莞香文化系统",
+    "region": "cn:440000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第53项"
+      }
+    ],
+    "areas": [
+      "cn:441900"
+    ],
+    "coord": [
+      113.88,
+      22.932
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-54",
+    "title": "广东汕尾晨洲蚝养殖系统",
+    "region": "cn:440000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第54项"
+      }
+    ],
+    "areas": [
+      "cn:441500"
+    ],
+    "coord": [
+      115.538,
+      23.005
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-55",
+    "title": "广东连山梯田系统",
+    "region": "cn:440000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第55项"
+      }
+    ],
+    "areas": [
+      "cn:441825"
+    ],
+    "coord": [
+      112.087,
+      24.567
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-56",
+    "title": "广东化州化橘红种植系统",
+    "region": "cn:440000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第56项"
+      }
+    ],
+    "areas": [
+      "cn:440982"
+    ],
+    "coord": [
+      110.535,
+      21.839
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-57",
+    "title": "广西合浦南珠文化系统",
+    "region": "cn:450000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第57项"
+      }
+    ],
+    "areas": [
+      "cn:450521"
+    ],
+    "coord": [
+      109.343,
+      21.724
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-58",
+    "title": "广西容县沙田柚栽培系统",
+    "region": "cn:450000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第58项"
+      }
+    ],
+    "areas": [
+      "cn:450921"
+    ],
+    "coord": [
+      110.605,
+      22.827
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-59",
+    "title": "海南昌江木棉稻田复合系统",
+    "region": "cn:460000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第59项"
+      }
+    ],
+    "areas": [
+      "cn:469026"
+    ],
+    "coord": [
+      108.994,
+      19.226
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-60",
+    "title": "海南屯昌猪养殖系统",
+    "region": "cn:460000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第60项"
+      }
+    ],
+    "areas": [
+      "cn:469022"
+    ],
+    "coord": [
+      110.056,
+      19.342
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-61",
+    "title": "海南儋州古盐田",
+    "region": "cn:460000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第61项"
+      }
+    ],
+    "areas": [
+      "cn:460400"
+    ],
+    "coord": [
+      109.39,
+      19.579
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-62",
+    "title": "海南五指山热带雨林大叶茶文化系统",
+    "region": "cn:460000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第62项"
+      }
+    ],
+    "areas": [
+      "cn:469001"
+    ],
+    "coord": [
+      109.512,
+      18.824
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-63",
+    "title": "重庆南川大树茶文化系统",
+    "region": "cn:500000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第63项"
+      }
+    ],
+    "areas": [
+      "cn:500119"
+    ],
+    "coord": [
+      107.171,
+      29.135
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-64",
+    "title": "重庆巫山魔芋栽培系统",
+    "region": "cn:500000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第64项"
+      }
+    ],
+    "areas": [
+      "cn:500237"
+    ],
+    "coord": [
+      109.901,
+      31.115
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-65",
+    "title": "重庆巫溪老鹰茶文化系统",
+    "region": "cn:500000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第65项"
+      }
+    ],
+    "areas": [
+      "cn:500238"
+    ],
+    "coord": [
+      109.353,
+      31.503
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-66",
+    "title": "重庆北碚静观蜡梅栽培系统",
+    "region": "cn:500000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第66项"
+      }
+    ],
+    "areas": [
+      "cn:500109"
+    ],
+    "coord": [
+      106.514,
+      29.861
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-67",
+    "title": "四川叙永凤凰李栽培系统",
+    "region": "cn:510000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第67项"
+      }
+    ],
+    "areas": [
+      "cn:510524"
+    ],
+    "coord": [
+      105.463,
+      28.093
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-68",
+    "title": "四川平武果梅栽培系统",
+    "region": "cn:510000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第68项"
+      }
+    ],
+    "areas": [
+      "cn:510727"
+    ],
+    "coord": [
+      104.398,
+      32.441
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-69",
+    "title": "四川汉源花椒栽培系统",
+    "region": "cn:510000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第69项"
+      }
+    ],
+    "areas": [
+      "cn:511823"
+    ],
+    "coord": [
+      102.617,
+      29.426
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-70",
+    "title": "四川通江段木银耳栽培系统",
+    "region": "cn:510000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第70项"
+      }
+    ],
+    "areas": [
+      "cn:511921"
+    ],
+    "coord": [
+      107.346,
+      32.128
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-71",
+    "title": "贵州仁怀高粱种植系统",
+    "region": "cn:520000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第71项"
+      }
+    ],
+    "areas": [
+      "cn:520382"
+    ],
+    "coord": [
+      106.342,
+      27.834
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-72",
+    "title": "贵州普安四球茶文化系统",
+    "region": "cn:520000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第72项"
+      }
+    ],
+    "areas": [
+      "cn:522323"
+    ],
+    "coord": [
+      104.994,
+      25.722
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-73",
+    "title": "云南墨江梯田系统",
+    "region": "cn:530000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第73项"
+      }
+    ],
+    "areas": [
+      "cn:530822"
+    ],
+    "coord": [
+      101.55,
+      23.357
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-74",
+    "title": "云南洱源古梅园",
+    "region": "cn:530000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第74项"
+      }
+    ],
+    "areas": [
+      "cn:532930"
+    ],
+    "coord": [
+      99.865,
+      26.081
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-75",
+    "title": "西藏亚东帕里牦牛养殖系统",
+    "region": "cn:540000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第75项"
+      }
+    ],
+    "areas": [
+      "cn:540233"
+    ],
+    "coord": [
+      89.073,
+      27.808
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-76",
+    "title": "西藏朗县古核桃林",
+    "region": "cn:540000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第76项"
+      }
+    ],
+    "areas": [
+      "cn:540426"
+    ],
+    "coord": [
+      93.101,
+      28.957
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-77",
+    "title": "陕西米脂小米种植系统",
+    "region": "cn:610000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第77项"
+      }
+    ],
+    "areas": [
+      "cn:610827"
+    ],
+    "coord": [
+      110.18,
+      37.822
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-78",
+    "title": "陕西兴平辣椒栽培系统",
+    "region": "cn:610000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第78项"
+      }
+    ],
+    "areas": [
+      "cn:610481"
+    ],
+    "coord": [
+      108.469,
+      34.302
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-79",
+    "title": "甘肃靖远古枣林",
+    "region": "cn:620000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第79项"
+      }
+    ],
+    "areas": [
+      "cn:620421"
+    ],
+    "coord": [
+      104.69,
+      36.506
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-80",
+    "title": "甘肃陇西黄芪栽培系统",
+    "region": "cn:620000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第80项"
+      }
+    ],
+    "areas": [
+      "cn:621122"
+    ],
+    "coord": [
+      104.628,
+      35.106
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-81",
+    "title": "甘肃古浪砂田小麦种植系统",
+    "region": "cn:620000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第81项"
+      }
+    ],
+    "areas": [
+      "cn:620622"
+    ],
+    "coord": [
+      103.333,
+      37.528
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-82",
+    "title": "甘肃东乡大接杏栽培系统",
+    "region": "cn:620000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第82项"
+      }
+    ],
+    "areas": [
+      "cn:622926"
+    ],
+    "coord": [
+      103.446,
+      35.693
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-83",
+    "title": "青海祁连草原游牧系统",
+    "region": "cn:630000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第83项"
+      }
+    ],
+    "areas": [
+      "cn:632222"
+    ],
+    "coord": [
+      99.717,
+      38.312
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-84",
+    "title": "青海河南草原游牧系统",
+    "region": "cn:630000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第84项"
+      }
+    ],
+    "areas": [
+      "cn:632324"
+    ],
+    "coord": [
+      101.553,
+      34.506
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-85",
+    "title": "宁夏贺兰山东麓葡萄文化系统",
+    "region": "cn:640000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第85项"
+      }
+    ],
+    "areas": [
+      "cn:640122"
+    ],
+    "coord": [
+      106.252,
+      38.684
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-86",
+    "title": "宁夏沙坡头砂田西瓜种植系统",
+    "region": "cn:640000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第86项"
+      }
+    ],
+    "areas": [
+      "cn:640502"
+    ],
+    "coord": [
+      105.138,
+      37.288
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-87",
+    "title": "新疆莎车巴旦木栽培系统",
+    "region": "cn:650000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第87项"
+      }
+    ],
+    "areas": [
+      "cn:653125"
+    ],
+    "coord": [
+      77.006,
+      38.32
+    ],
+    "approx": true
+  },
+  {
+    "id": "farm:8-88",
+    "title": "新疆伊犁湟渠农业系统",
+    "region": "cn:650000",
+    "batch": 8,
+    "since": 2026,
+    "refs": [
+      {
+        "w": "moa-farm-heritage-8",
+        "loc": "名单 第88项"
+      }
+    ],
+    "area": "伊宁市、伊宁县、霍城县",
+    "areas": [
+      "cn:654002",
+      "cn:654021",
+      "cn:654023"
+    ],
+    "coord": [
+      81.334,
+      44.092
+    ],
+    "approx": true
+  }
+]

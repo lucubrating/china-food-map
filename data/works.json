@@ -1,0 +1,355 @@
+{
+  "cca-2018": {
+    "zh": "中国烹饪协会《中国菜——全国省籍地域经典名菜、主题名宴名录》",
+    "en": "China Cuisine Association, list of regional signature dishes",
+    "kind": "association",
+    "year": 2018,
+    "url": "https://www.thepaper.cn/newsDetail_forward_2437871",
+    "note": "Read from a press repost. An industry association's selection, not a government register.",
+    "noteZh": "据媒体转载整理。属行业协会评选，并非政府名录。"
+  },
+  "ich-national": {
+    "zh": "国家级非物质文化遗产代表性项目名录",
+    "en": "National register of intangible cultural heritage",
+    "kind": "register",
+    "url": "https://www.ihchina.cn/project.html",
+    "note": "Food and drink entries chosen item by item from all ten categories: mostly traditional craftsmanship, with a few from customs, fine art and traditional medicine.",
+    "noteZh": "从全部十个类别中逐项选出的饮食类项目，以“传统技艺”为主，另有少量来自民俗、传统美术和传统医药。"
+  },
+  "cnipa-notice-414": {
+    "zh": "国家知识产权局公告第414号：批准贯头山酒等2个产品实施地理标志产品保护",
+    "en": "CNIPA notice 414, recognising geographical indication products",
+    "kind": "register",
+    "year": 2021,
+    "url": "https://www.cnipa.gov.cn/art/2021/4/13/art_1400_159147.html"
+  },
+  "cnipa-notice-424": {
+    "zh": "国家知识产权局公告第424号：批准桐城水芹等3个产品实施地理标志产品保护",
+    "en": "CNIPA notice 424, recognising geographical indication products",
+    "kind": "register",
+    "year": 2021,
+    "url": "https://www.cnipa.gov.cn/art/2021/5/25/art_1400_160087.html"
+  },
+  "cnipa-notice-444": {
+    "zh": "国家知识产权局公告第444号：批准潮州手拉朱泥壶等4个产品实施地理标志产品保护",
+    "en": "CNIPA notice 444, recognising geographical indication products",
+    "kind": "register",
+    "year": 2021,
+    "url": "https://www.cnipa.gov.cn/art/2021/8/26/art_1400_169786.html"
+  },
+  "cnipa-notice-452": {
+    "zh": "国家知识产权局公告第452号：批准阜平大枣等5个产品实施地理标志产品保护",
+    "en": "CNIPA notice 452, recognising geographical indication products",
+    "kind": "register",
+    "year": 2021,
+    "url": "https://www.cnipa.gov.cn/art/2021/10/8/art_1400_170822.html"
+  },
+  "cnipa-notice-459": {
+    "zh": "国家知识产权局公告第459号：批准望江风酿酱油等3个产品实施地理标志产品保护",
+    "en": "CNIPA notice 459, recognising geographical indication products",
+    "kind": "register",
+    "year": 2021,
+    "url": "https://www.cnipa.gov.cn/art/2021/11/17/art_1400_172750.html"
+  },
+  "cnipa-notice-473": {
+    "zh": "国家知识产权局公告第473号：批准滦南虾酱等3个产品实施地理标志产品保护",
+    "en": "CNIPA notice 473, recognising geographical indication products",
+    "kind": "register",
+    "year": 2022,
+    "url": "https://www.cnipa.gov.cn/art/2022/4/7/art_1400_174395.html"
+  },
+  "cnipa-notice-494": {
+    "zh": "国家知识产权局公告第494号：批准亳菊等产品实施地理标志产品保护",
+    "en": "CNIPA notice 494, recognising geographical indication products",
+    "kind": "register",
+    "year": 2022,
+    "url": "https://www.cnipa.gov.cn/art/2022/7/22/art_1400_176812.html"
+  },
+  "cnipa-notice-512": {
+    "zh": "国家知识产权局公告第512号：批准对紫云春茶等产品实施地理标志产品保护",
+    "en": "CNIPA notice 512, recognising geographical indication products",
+    "kind": "register",
+    "year": 2023,
+    "url": "https://www.cnipa.gov.cn/art/2023/1/5/art_1400_181329.html"
+  },
+  "cnipa-notice-535": {
+    "zh": "国家知识产权局公告第535号：批准对合阳远志实施地理标志产品保护",
+    "en": "CNIPA notice 535, recognising geographical indication products",
+    "kind": "register",
+    "year": 2023,
+    "url": "https://www.cnipa.gov.cn/art/2023/7/3/art_1400_186042.html"
+  },
+  "cnipa-notice-539": {
+    "zh": "国家知识产权局公告第539号：批准对黄骅梭子蟹等产品实施地理标志产品保护",
+    "en": "CNIPA notice 539, recognising geographical indication products",
+    "kind": "register",
+    "year": 2023,
+    "url": "https://www.cnipa.gov.cn/art/2023/8/3/art_1400_186731.html"
+  },
+  "cnipa-notice-546": {
+    "zh": "国家知识产权局公告第546号：批准对歙县珠兰花茶等产品实施地理标志产品保护",
+    "en": "CNIPA notice 546, recognising geographical indication products",
+    "kind": "register",
+    "year": 2023,
+    "url": "https://www.cnipa.gov.cn/art/2023/10/17/art_1400_188527.html"
+  },
+  "cnipa-notice-555": {
+    "zh": "国家知识产权局公告第555号：批准对如皋火腿实施地理标志产品保护",
+    "en": "CNIPA notice 555, recognising geographical indication products",
+    "kind": "register",
+    "year": 2023,
+    "url": "https://www.cnipa.gov.cn/art/2023/11/28/art_1400_188813.html"
+  },
+  "cnipa-notice-557": {
+    "zh": "国家知识产权局公告第557号：批准对洪江雪峰乌骨鸡等产品实施地理标志产品保护",
+    "en": "CNIPA notice 557, recognising geographical indication products",
+    "kind": "register",
+    "year": 2023,
+    "url": "https://www.cnipa.gov.cn/art/2023/12/12/art_1400_189168.html"
+  },
+  "cnipa-notice-566": {
+    "zh": "国家知识产权局公告第566号：批准对长白石等2个产品实施地理标志产品保护",
+    "en": "CNIPA notice 566, recognising geographical indication products",
+    "kind": "register",
+    "year": 2024,
+    "url": "https://www.cnipa.gov.cn/art/2024/2/8/art_1400_190266.html"
+  },
+  "cnipa-notice-588": {
+    "zh": "国家知识产权局公告第588号：对介休绵芪等9个产品予以地理标志产品认定",
+    "en": "CNIPA notice 588, recognising geographical indication products",
+    "kind": "register",
+    "year": 2024,
+    "url": "https://www.cnipa.gov.cn/art/2024/7/17/art_1400_193870.html",
+    "note": "The notice names the products. Their applicants and production areas are in preliminary notice 577.",
+    "noteZh": "公告列出产品名称，申请人和产地范围见第577号初步认定公告。"
+  },
+  "cnipa-notice-589": {
+    "zh": "国家知识产权局公告第589号：对阜城鸭梨等2个产品予以地理标志产品认定",
+    "en": "CNIPA notice 589, recognising geographical indication products",
+    "kind": "register",
+    "year": 2024,
+    "url": "https://www.cnipa.gov.cn/art/2024/7/23/art_1400_193871.html",
+    "note": "The notice names the products. Their applicants and production areas are in preliminary notice 574.",
+    "noteZh": "公告列出产品名称，申请人和产地范围见第574号初步认定公告。"
+  },
+  "cnipa-notice-598": {
+    "zh": "国家知识产权局公告第598号：对天等指天椒酱等2个产品予以地理标志产品认定",
+    "en": "CNIPA notice 598, recognising geographical indication products",
+    "kind": "register",
+    "year": 2024,
+    "url": "https://www.cnipa.gov.cn/art/2024/10/18/art_1400_195582.html",
+    "note": "The notice names the products. Their applicants and production areas are in preliminary notice 592.",
+    "noteZh": "公告列出产品名称，申请人和产地范围见第592号初步认定公告。"
+  },
+  "cnipa-notice-599": {
+    "zh": "国家知识产权局公告第599号：对迁西栗蘑等13个产品予以地理标志产品认定",
+    "en": "CNIPA notice 599, recognising geographical indication products",
+    "kind": "register",
+    "year": 2024,
+    "url": "https://www.cnipa.gov.cn/art/2024/10/18/art_1400_195583.html",
+    "note": "The notice names the products. Their applicants and production areas are in preliminary notice 591.",
+    "noteZh": "公告列出产品名称，申请人和产地范围见第591号初步认定公告。"
+  },
+  "cnipa-notice-600": {
+    "zh": "国家知识产权局公告第600号：对金寨天麻等3个产品予以地理标志产品认定",
+    "en": "CNIPA notice 600, recognising geographical indication products",
+    "kind": "register",
+    "year": 2024,
+    "url": "https://www.cnipa.gov.cn/art/2024/10/18/art_1400_195584.html",
+    "note": "The notice names the products. Their applicants and production areas are in preliminary notice 580.",
+    "noteZh": "公告列出产品名称，申请人和产地范围见第580号初步认定公告。"
+  },
+  "cnipa-notice-601": {
+    "zh": "国家知识产权局公告第601号：对南阳艾等3个产品予以地理标志产品认定",
+    "en": "CNIPA notice 601, recognising geographical indication products",
+    "kind": "register",
+    "year": 2024,
+    "url": "https://www.cnipa.gov.cn/art/2024/10/18/art_1400_195585.html",
+    "note": "The notice names the products. Their applicants and production areas are in preliminary notice 586.",
+    "noteZh": "公告列出产品名称，申请人和产地范围见第586号初步认定公告。"
+  },
+  "cnipa-notice-619": {
+    "zh": "国家知识产权局公告第619号：对行唐大枣等3个产品予以地理标志产品认定",
+    "en": "CNIPA notice 619, recognising 3 geographical indication products",
+    "kind": "register",
+    "year": 2025,
+    "url": "https://www.cnipa.gov.cn/art/2025/3/3/art_1400_197918.html",
+    "note": "The notice names the products. Their applicants and production areas are in preliminary notice 611.",
+    "noteZh": "公告列出产品名称，申请人和产地范围见第611号初步认定公告。"
+  },
+  "cnipa-notice-637": {
+    "zh": "国家知识产权局公告第637号：对陵川连翘等25个产品予以地理标志产品认定",
+    "en": "CNIPA notice 637, recognising 25 geographical indication products",
+    "kind": "register",
+    "year": 2025,
+    "url": "https://www.cnipa.gov.cn/art/2025/7/21/art_1400_200737.html",
+    "note": "The notice names the products. Their applicants and production areas are in preliminary notice 626.",
+    "noteZh": "公告列出产品名称，申请人和产地范围见第626号初步认定公告。"
+  },
+  "cnipa-notice-625": {
+    "zh": "国家知识产权局公告第625号 附件1：北京鸭等90个地理标志产品公告信息",
+    "en": "CNIPA notice 625, list of 90 geographical indication products",
+    "kind": "register",
+    "year": 2025,
+    "url": "https://www.cnipa.gov.cn/art/2025/4/14/art_1400_199082.html"
+  },
+  "cnipa-notice-632": {
+    "zh": "国家知识产权局公告第632号 附件1：崇明白山羊等224个地理标志产品公告信息",
+    "en": "CNIPA notice 632, list of 224 geographical indication products",
+    "kind": "register",
+    "year": 2025,
+    "url": "https://www.cnipa.gov.cn/art/2025/6/27/art_1400_200560.html"
+  },
+  "cnipa-notice-640": {
+    "zh": "国家知识产权局公告第640号 附件1：延庆国光苹果等1409个地理标志产品公告信息",
+    "en": "CNIPA notice 640, list of 1,409 geographical indication products",
+    "kind": "register",
+    "year": 2025,
+    "url": "https://www.cnipa.gov.cn/art/2025/8/13/art_1400_201426.html"
+  },
+  "cnipa-notice-646": {
+    "zh": "国家知识产权局公告第646号 附件1：宝坻大葱等870个地理标志产品公告信息",
+    "en": "CNIPA notice 646, list of 870 geographical indication products",
+    "kind": "register",
+    "year": 2025,
+    "url": "https://www.cnipa.gov.cn/art/2025/10/9/art_1400_202244.html"
+  },
+  "cnipa-notice-657": {
+    "zh": "国家知识产权局公告第657号 附件1：北景柿子等55个地理标志产品公告信息",
+    "en": "CNIPA notice 657, list of 55 geographical indication products",
+    "kind": "register",
+    "year": 2025,
+    "url": "https://www.cnipa.gov.cn/art/2025/12/25/art_1400_203493.html"
+  },
+  "cnipa-notice-663": {
+    "zh": "国家知识产权局公告第663号 附件1：长林岛龙垦杏等6个地理标志产品公告信息",
+    "en": "CNIPA notice 663, list of 6 geographical indication products",
+    "kind": "register",
+    "year": 2026,
+    "url": "https://www.cnipa.gov.cn/art/2026/2/2/art_1400_203920.html"
+  },
+  "cnipa-notice-677": {
+    "zh": "国家知识产权局公告第677号 附件1：交城骏枣等63个地理标志产品公告信息",
+    "en": "CNIPA notice 677, list of 63 geographical indication products",
+    "kind": "register",
+    "year": 2026,
+    "url": "https://www.cnipa.gov.cn/art/2026/5/20/art_1400_206478.html"
+  },
+  "cnipa-notice-687": {
+    "zh": "国家知识产权局公告第687号 附件1：临晋江石榴等58个地理标志产品公告信息",
+    "en": "CNIPA notice 687, list of 58 geographical indication products",
+    "kind": "register",
+    "year": 2026,
+    "url": "https://www.cnipa.gov.cn/art/2026/8/12/art_1400_207705.html"
+  },
+  "moa-farm-heritage-1-4": {
+    "zh": "农业农村部《中国重要农业文化遗产实录》专题（第一至四批）",
+    "en": "Agriculture ministry, topic page on nationally important agricultural heritage systems, batches 1 to 4",
+    "kind": "register",
+    "year": 2017,
+    "url": "https://www.moa.gov.cn/ztzl/zywhycsl/"
+  },
+  "moa-farm-heritage-5": {
+    "zh": "农业农村部关于公布第五批中国重要农业文化遗产名单的通知（农社发〔2020〕1号）",
+    "en": "Agriculture ministry, fifth batch of nationally important agricultural heritage systems",
+    "kind": "register",
+    "year": 2020,
+    "url": "https://www.moa.gov.cn/govpublic/ncshsycjs/202004/t20200403_6340776.htm"
+  },
+  "moa-farm-heritage-6": {
+    "zh": "农业农村部关于公布第六批中国重要农业文化遗产名单的通知（农社发〔2021〕2号）",
+    "en": "Agriculture ministry, sixth batch of nationally important agricultural heritage systems",
+    "kind": "register",
+    "year": 2021,
+    "url": "https://www.moa.gov.cn/govpublic/ncshsycjs/202111/t20211122_6382568.htm"
+  },
+  "moa-farm-heritage-7": {
+    "zh": "农业农村部关于公布第七批中国重要农业文化遗产名单的通知（农社发〔2023〕3号）",
+    "en": "Agriculture ministry, seventh batch of nationally important agricultural heritage systems",
+    "kind": "register",
+    "year": 2023,
+    "url": "https://www.moa.gov.cn/govpublic/ncshsycjs/202309/t20230921_6436984.htm"
+  },
+  "moa-farm-heritage-8": {
+    "zh": "农业农村部关于公布第八批中国重要农业文化遗产名单的通知（农社发〔2026〕2号）",
+    "en": "Agriculture ministry, eighth batch of nationally important agricultural heritage systems",
+    "kind": "register",
+    "year": 2026,
+    "url": "https://www.moa.gov.cn/govpublic/ncshsycjs/202610/t20261012_6488523.htm"
+  },
+  "nbs-yearbook-2025": {
+    "zh": "《中国统计年鉴2025》表6-22 分地区居民家庭人均主要食品消费量（2024年）",
+    "en": "China Statistical Yearbook 2025, table 6-22",
+    "kind": "statistics",
+    "year": 2025,
+    "url": "https://www.stats.gov.cn/sj/ndsj/2025/html/C06-22.jpg",
+    "note": "Transcribed by hand from the table image.",
+    "noteZh": "由表格图片手工录入。"
+  },
+  "datav-geoatlas": {
+    "zh": "DataV.GeoAtlas 行政区划边界",
+    "en": "DataV GeoAtlas administrative boundaries",
+    "kind": "boundaries",
+    "url": "https://datav.aliyun.com/portal/school/atlas/area_selector",
+    "note": "Administrative boundaries at three levels, version of May 2021.",
+    "noteZh": "三级行政区划边界，2021年5月版。"
+  },
+  "nlsc-taiwan-boundaries": {
+    "zh": "台湾内政部门国土测绘中心乡镇市区界线（2023年3月版）",
+    "en": "Township and district boundaries, National Land Surveying and Mapping Center, Taiwan (March 2023)",
+    "kind": "boundaries",
+    "url": "https://data.gov.tw/dataset/7441",
+    "note": "Open Government Data License, version 1. Simplified for this map.",
+    "noteZh": "依政府资料开放授权条款第1版使用，边界经简化。"
+  },
+  "tipo-origin-marks": {
+    "zh": "台湾智慧财产局产地标章注册资讯",
+    "en": "Registered place marks, Taiwan Intellectual Property Office",
+    "kind": "register",
+    "url": "https://data.gov.tw/dataset/59715",
+    "note": "Certification marks and collective trademarks for place-named products, domestic holders only. Each product's name is taken from the wording of its mark. Open Government Data License, version 1.",
+    "noteZh": "产地证明标章与产地团体商标，仅收台湾本地权利人；产品名称取自标章文字。依政府资料开放授权条款第1版使用。"
+  },
+  "boch-register": {
+    "zh": "台湾文化资产局文化资产名录（民俗、传统知识与实践）",
+    "en": "Cultural heritage register, Bureau of Cultural Heritage, Taiwan (folk customs; traditional knowledge and practices)",
+    "kind": "register",
+    "url": "https://nchdb.boch.gov.tw/",
+    "note": "City and county listings about food, chosen by reading every name. None of the nationally designated entries is about food. Open Government Data License, version 1.",
+    "noteZh": "逐项阅读名称后选出的饮食类项目，均为市县登录；指定为“重要”的项目中没有饮食类。依政府资料开放授权条款第1版使用。"
+  },
+  "macau-ich-inventory": {
+    "zh": "澳门文化局非物质文化遗产清单",
+    "en": "Inventory of intangible cultural heritage, Cultural Affairs Bureau, Macau",
+    "kind": "register",
+    "url": "https://www.culturalheritage.mo/detail/102318",
+    "note": "Food items chosen by reading all 98 names on the inventory as of August 2026. The two items already on the national register are not repeated.",
+    "noteZh": "逐项阅读清单全部98个项目名称后选出的饮食类项目（截至2026年8月的清单）。已列入国家级名录的两项不再重复。"
+  },
+  "hk-ich-inventory": {
+    "zh": "香港非物质文化遗产清单（2024年12月更新版）",
+    "en": "Intangible Cultural Heritage Inventory of Hong Kong (updated December 2024), Intangible Cultural Heritage Office",
+    "kind": "register",
+    "url": "https://www.icho.hk/en/web/icho/ich_inventory_of_hong_kong.html",
+    "note": "Food items chosen by reading every name on the inventory of 507 items. Main items only; their sub-items are not listed separately. 涼茶, already on the national register, is not repeated.",
+    "noteZh": "逐项阅读清单507个项目名称后选出的饮食类项目。只收主项目，次项目不另列。已列入国家级名录的凉茶不再重复。"
+  },
+  "fao-fbs": {
+    "zh": "联合国粮食及农业组织（FAO）。2025。FAOSTAT：食物平衡表（2010年以后）。许可：CC-BY-4.0。",
+    "en": "FAO. 2025. FAOSTAT: Food Balances (2010-). Licence: CC-BY-4.0.",
+    "kind": "statistics",
+    "year": 2025,
+    "url": "https://www.fao.org/faostat/en/#data/FBS",
+    "note": "Food supply quantity per person for China, mainland; China, Hong Kong SAR; China, Macao SAR; and China, Taiwan Province of. The file for Asia, released October 2025. The latest year's figures are FAO's estimates.",
+    "noteZh": "取中国大陆、中国香港特别行政区、中国澳门特别行政区和中国台湾省的人均食物供应量，亚洲分卷，2025年10月发布。最新年份为粮农组织估计值。"
+  },
+  "moa-food-balance": {
+    "zh": "台湾农业部《粮食供需年报》（114年）表1 粮食平衡表",
+    "en": "Food balance sheet, table 1 of the Food Supply and Utilization Yearbook, 2025 edition, Ministry of Agriculture, Taiwan",
+    "kind": "statistics",
+    "year": 2026,
+    "url": "https://agrstat.moa.gov.tw/moasdweb/book/Book.aspx",
+    "note": "Net food supply per person per year, in kilograms, from the sheet for 2025. Used with attribution, as the ministry's open-data declaration allows; the same table is also published as open data under the Open Government Data License, version 1.",
+    "noteZh": "取2025年平衡表的每人每年纯粮食供给量（千克）。依农业部网站资料开放宣告注明出处使用；同一表格亦依政府资料开放授权条款第1版公开。"
+  }
+}

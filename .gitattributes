@@ -1,0 +1,5 @@
+# Release archives: the site only
+/data export-ignore
+/scripts export-ignore
+/.gitignore export-ignore
+/.gitattributes export-ignore

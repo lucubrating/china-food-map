@@ -1,0 +1,50 @@
+[
+  {
+    "id": "gi:414-1",
+    "title": "贯头山酒",
+    "kind": "drink",
+    "region": "cn:130000",
+    "areas": [
+      "cn:130283"
+    ],
+    "placed_by": "text",
+    "applicant": "河北省唐山市迁安市人民政府",
+    "area": "河北省唐山市迁安市大五里乡现辖行政区域",
+    "since": 2021,
+    "refs": [
+      {
+        "w": "cnipa-notice-414",
+        "loc": "附件1"
+      }
+    ],
+    "coord": [
+      118.68,
+      40.035
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:414-2",
+    "title": "赫章红花山茶油",
+    "kind": "condiment",
+    "region": "cn:520000",
+    "areas": [
+      "cn:520527"
+    ],
+    "placed_by": "text",
+    "applicant": "贵州省毕节市赫章县人民政府",
+    "area": "贵州省毕节市赫章县现辖行政区域",
+    "since": 2021,
+    "refs": [
+      {
+        "w": "cnipa-notice-414",
+        "loc": "附件2"
+      }
+    ],
+    "coord": [
+      104.631,
+      27.13
+    ],
+    "approx": true
+  }
+]

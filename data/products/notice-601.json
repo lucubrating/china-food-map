@@ -1,0 +1,74 @@
+[
+  {
+    "id": "gi:601-1",
+    "title": "南阳艾",
+    "kind": "herb",
+    "region": "cn:410000",
+    "areas": [
+      "cn:411300"
+    ],
+    "placed_by": "text",
+    "applicant": "河南省南阳市人民政府",
+    "area": "河南省南阳市现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-601",
+        "loc": "第586号公告 附件1"
+      }
+    ],
+    "coord": [
+      112.288,
+      33.045
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:601-2",
+    "title": "彭州蒜薹",
+    "kind": "vegetable",
+    "region": "cn:510000",
+    "areas": [
+      "cn:510182"
+    ],
+    "placed_by": "text",
+    "applicant": "四川省成都市彭州市人民政府",
+    "area": "四川省成都市彭州市天彭街道、致和街道、隆丰街道、丽春镇、九尺镇、丹景山镇、葛仙山镇共7个镇、街道现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-601",
+        "loc": "第586号公告 附件2"
+      }
+    ],
+    "coord": [
+      103.883,
+      31.143
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:601-3",
+    "title": "沙雅小刀",
+    "kind": "not-food",
+    "region": "cn:650000",
+    "areas": [
+      "cn:652924"
+    ],
+    "placed_by": "text",
+    "applicant": "新疆维吾尔自治区阿克苏地区沙雅县人民政府",
+    "area": "新疆维吾尔自治区阿克苏地区沙雅县红旗镇、英买力镇、沙雅镇、古勒巴格镇、央塔克协海尔乡共5个乡、镇现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-601",
+        "loc": "第586号公告 附件3"
+      }
+    ],
+    "coord": [
+      82.915,
+      40.4
+    ],
+    "approx": true
+  }
+]

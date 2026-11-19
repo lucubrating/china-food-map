@@ -1,0 +1,50 @@
+[
+  {
+    "id": "gi:598-1",
+    "title": "天等指天椒酱",
+    "kind": "condiment",
+    "region": "cn:450000",
+    "areas": [
+      "cn:451425"
+    ],
+    "placed_by": "text",
+    "applicant": "广西壮族自治区崇左市天等县人民政府",
+    "area": "广西壮族自治区崇左市天等县现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-598",
+        "loc": "第592号公告 附件1"
+      }
+    ],
+    "coord": [
+      107.074,
+      23.111
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:598-2",
+    "title": "宝鸡柴胡",
+    "kind": "herb",
+    "region": "cn:610000",
+    "areas": [
+      "cn:610304"
+    ],
+    "placed_by": "text",
+    "applicant": "陕西省宝鸡市陈仓区人民政府",
+    "area": "陕西省宝鸡市陈仓区拓石镇、凤阁岭镇、坪头镇、香泉镇、赤沙镇、新街镇、县功镇、贾村镇共8个镇现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-598",
+        "loc": "第592号公告 附件2"
+      }
+    ],
+    "coord": [
+      107.384,
+      34.353
+    ],
+    "approx": true
+  }
+]

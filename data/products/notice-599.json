@@ -1,0 +1,319 @@
+[
+  {
+    "id": "gi:599-1",
+    "title": "迁西栗蘑",
+    "kind": "vegetable",
+    "region": "cn:130000",
+    "areas": [
+      "cn:130227"
+    ],
+    "placed_by": "text",
+    "applicant": "河北省唐山市迁西县人民政府",
+    "area": "河北省唐山市迁西县汉儿庄镇、滦阳镇、洒河桥镇、三屯营镇、白庙子镇、渔户寨乡、上营镇、金厂峪镇、太平寨镇、东荒峪镇、旧城乡、罗家屯镇、兴城镇、尹庄乡、新集镇、新庄子镇、东莲花院镇共17个乡、镇现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-599",
+        "loc": "第591号公告 附件1"
+      }
+    ],
+    "coord": [
+      118.365,
+      40.233
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:599-2",
+    "title": "张北马铃薯",
+    "kind": "vegetable",
+    "region": "cn:130000",
+    "areas": [
+      "cn:130722"
+    ],
+    "placed_by": "text",
+    "applicant": "河北省张家口市张北县人民政府",
+    "area": "河北省张家口市张北县现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-599",
+        "loc": "第591号公告 附件2"
+      }
+    ],
+    "coord": [
+      114.764,
+      41.287
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:599-3",
+    "title": "砀山黄桃",
+    "kind": "fruit",
+    "region": "cn:340000",
+    "areas": [
+      "cn:341321"
+    ],
+    "placed_by": "text",
+    "applicant": "安徽省宿州市砀山县人民政府",
+    "area": "安徽省宿州市砀山县砀城镇、李庄镇、葛集镇、周寨镇、玄庙镇、官庄坝镇、良梨镇共7个乡、镇现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-599",
+        "loc": "第591号公告 附件3"
+      }
+    ],
+    "coord": [
+      116.413,
+      34.449
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:599-4",
+    "title": "黟县香榧",
+    "kind": "nut",
+    "region": "cn:340000",
+    "areas": [
+      "cn:341023"
+    ],
+    "placed_by": "text",
+    "applicant": "安徽省黄山市黟县人民政府",
+    "area": "安徽省黄山市黟县现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-599",
+        "loc": "第591号公告 附件4"
+      }
+    ],
+    "coord": [
+      117.904,
+      30.008
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:599-5",
+    "title": "和县辣椒",
+    "kind": "vegetable",
+    "region": "cn:340000",
+    "areas": [
+      "cn:340523"
+    ],
+    "placed_by": "text",
+    "applicant": "安徽省马鞍山市和县人民政府",
+    "area": "安徽省马鞍山市和县现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-599",
+        "loc": "第591号公告 附件5"
+      }
+    ],
+    "coord": [
+      118.298,
+      31.756
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:599-6",
+    "title": "王庄花生",
+    "kind": "nut",
+    "region": "cn:340000",
+    "areas": [
+      "cn:340323"
+    ],
+    "placed_by": "text",
+    "applicant": "安徽省蚌埠市固镇县人民政府",
+    "area": "安徽省蚌埠市固镇县现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-599",
+        "loc": "第591号公告 附件6"
+      }
+    ],
+    "coord": [
+      117.346,
+      33.282
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:599-7",
+    "title": "阳信鸭梨",
+    "kind": "fruit",
+    "region": "cn:370000",
+    "areas": [
+      "cn:371622"
+    ],
+    "placed_by": "text",
+    "applicant": "山东省滨州市阳信县人民政府",
+    "area": "山东省滨州市阳信县现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-599",
+        "loc": "第591号公告 附件7"
+      }
+    ],
+    "coord": [
+      117.567,
+      37.6
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:599-8",
+    "title": "莒南花生",
+    "kind": "nut",
+    "region": "cn:370000",
+    "areas": [
+      "cn:371327"
+    ],
+    "placed_by": "text",
+    "applicant": "山东省临沂市莒南县人民政府",
+    "area": "山东省临沂市莒南县现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-599",
+        "loc": "第591号公告 附件8"
+      }
+    ],
+    "coord": [
+      118.884,
+      35.208
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:599-9",
+    "title": "金湾黄立鱼",
+    "kind": "aquatic",
+    "region": "cn:440000",
+    "areas": [
+      "cn:440404"
+    ],
+    "placed_by": "text",
+    "applicant": "广东省珠海市金湾区人民政府",
+    "area": "广东省珠海市金湾区现辖行政区毗邻海域，即东经113°04′57″至113°30′16″，北纬21°49′33″至22°11′20″之间",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-599",
+        "loc": "第591号公告 附件9"
+      }
+    ],
+    "bbox": [
+      113.0825,
+      21.8258,
+      113.5044,
+      22.1889
+    ],
+    "coord": [
+      113.2935,
+      22.0074
+    ]
+  },
+  {
+    "id": "gi:599-10",
+    "title": "德庆巴戟",
+    "kind": "herb",
+    "region": "cn:440000",
+    "areas": [
+      "cn:441226"
+    ],
+    "placed_by": "text",
+    "applicant": "广东省肇庆市德庆县人民政府",
+    "area": "广东省肇庆市德庆县现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-599",
+        "loc": "第591号公告 附件10"
+      }
+    ],
+    "coord": [
+      111.98,
+      23.27
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:599-11",
+    "title": "平南石硖龙眼",
+    "kind": "fruit",
+    "region": "cn:450000",
+    "areas": [
+      "cn:450821"
+    ],
+    "placed_by": "text",
+    "applicant": "广西壮族自治区贵港市平南县人民政府",
+    "area": "广西壮族自治区贵港市平南县现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-599",
+        "loc": "第591号公告 附件11"
+      }
+    ],
+    "coord": [
+      110.406,
+      23.533
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:599-12",
+    "title": "北海沙虫",
+    "kind": "aquatic",
+    "region": "cn:450000",
+    "areas": [
+      "cn:450500"
+    ],
+    "placed_by": "text",
+    "applicant": "广西壮族自治区北海市人民政府",
+    "area": "广西壮族自治区北海市海城区地角街道、高德街道，银海区福成镇、银滩镇、侨港镇，合浦县西场镇、党江镇、廉州镇、沙岗镇、闸口镇、公馆镇、白沙镇、沙田镇，铁山港区营盘镇、兴港镇、南康镇共16个镇、街道现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-599",
+        "loc": "第591号公告 附件12"
+      }
+    ],
+    "coord": [
+      109.344,
+      21.665
+    ],
+    "approx": true
+  },
+  {
+    "id": "gi:599-13",
+    "title": "石棉枇杷",
+    "kind": "fruit",
+    "region": "cn:510000",
+    "areas": [
+      "cn:511824"
+    ],
+    "placed_by": "text",
+    "applicant": "四川省雅安市石棉县人民政府",
+    "area": "四川省雅安市石棉县现辖行政区域",
+    "since": 2024,
+    "refs": [
+      {
+        "w": "cnipa-notice-599",
+        "loc": "第591号公告 附件13"
+      }
+    ],
+    "coord": [
+      102.287,
+      29.229
+    ],
+    "approx": true
+  }
+]

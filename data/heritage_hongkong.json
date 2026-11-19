@@ -1,0 +1,1182 @@
+[
+  {
+    "id": "heritage:hk:3.57",
+    "title": "菜茶",
+    "hant": {
+      "title": "菜茶"
+    },
+    "kind": "cuisine",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第3.57项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:3.58",
+    "title": "食山头",
+    "hant": {
+      "title": "食山頭"
+    },
+    "kind": "cuisine",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第3.58项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:3.59",
+    "title": "盆菜",
+    "hant": {
+      "title": "盆菜"
+    },
+    "kind": "cuisine",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第3.59项；已列入代表作名录"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:3.79",
+    "title": "坐月姜醋",
+    "hant": {
+      "title": "坐月薑醋"
+    },
+    "kind": "cuisine",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第3.79项"
+      }
+    ],
+    "since": 2024
+  },
+  {
+    "id": "heritage:hk:4.1.2",
+    "title": "蛇酒",
+    "hant": {
+      "title": "蛇酒"
+    },
+    "kind": "liquor",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第4.1.2项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:4.1.4.1",
+    "title": "甘和茶/盒仔茶",
+    "hant": {
+      "title": "甘和茶/盒仔茶"
+    },
+    "kind": "tea",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第4.1.4.1项"
+      }
+    ],
+    "since": 2024
+  },
+  {
+    "id": "heritage:hk:5.1",
+    "title": "豆豉制作技艺",
+    "hant": {
+      "title": "豆豉製作技藝"
+    },
+    "kind": "condiment",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.1项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.2",
+    "title": "豆品制作技艺",
+    "hant": {
+      "title": "豆品製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.2项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.3",
+    "title": "海鲜酱制作技艺",
+    "hant": {
+      "title": "海鮮醬製作技藝"
+    },
+    "kind": "condiment",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.3项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.4",
+    "title": "凉果制作技艺",
+    "hant": {
+      "title": "涼果製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.4项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.5",
+    "title": "豉油酿制技艺（本地酱园）",
+    "hant": {
+      "title": "豉油釀製技藝（本地醬園）"
+    },
+    "kind": "condiment",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.5项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.6",
+    "title": "麻油制作技艺",
+    "hant": {
+      "title": "麻油製作技藝"
+    },
+    "kind": "condiment",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.6项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.7",
+    "title": "鱼胶制作技艺",
+    "hant": {
+      "title": "魚膠製作技藝"
+    },
+    "kind": "meat",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.7项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.8",
+    "title": "虾膏虾酱制作技艺",
+    "hant": {
+      "title": "蝦膏蝦醬製作技藝"
+    },
+    "kind": "condiment",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.8项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.9",
+    "title": "腌菜制作技艺",
+    "hant": {
+      "title": "醃菜製作技藝"
+    },
+    "kind": "condiment",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.9项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.10",
+    "title": "酱油酿制技艺（福建酱园）",
+    "hant": {
+      "title": "醬油釀製技藝（福建醬園）"
+    },
+    "kind": "condiment",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.10项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.11",
+    "title": "腊味制作技艺",
+    "hant": {
+      "title": "臘味製作技藝"
+    },
+    "kind": "meat",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.11项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.12",
+    "title": "糯米酒酿制技艺",
+    "hant": {
+      "title": "糯米酒釀製技藝"
+    },
+    "kind": "liquor",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.12项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.13",
+    "title": "蚝豉蚝油制作技艺",
+    "hant": {
+      "title": "蠔豉蠔油製作技藝"
+    },
+    "kind": "condiment",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.13项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.14",
+    "title": "面豉制作技艺",
+    "hant": {
+      "title": "麵豉製作技藝"
+    },
+    "kind": "condiment",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.14项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.15",
+    "title": "咸鱼制作技艺",
+    "hant": {
+      "title": "鹹魚製作技藝"
+    },
+    "kind": "meat",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.15项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.16",
+    "title": "月饼制作技艺",
+    "hant": {
+      "title": "月餅製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.16项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.17",
+    "title": "瓜子制作技艺",
+    "hant": {
+      "title": "瓜子製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.17项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.18",
+    "title": "婚嫁礼饼制作技艺",
+    "hant": {
+      "title": "婚嫁禮餅製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.18项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.19",
+    "title": "潮州食品制作技艺",
+    "hant": {
+      "title": "潮州食品製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.19项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.21",
+    "title": "糭制作技艺",
+    "hant": {
+      "title": "糭製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.21项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.22",
+    "title": "手粉制作技艺",
+    "hant": {
+      "title": "手粉製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.22项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.23",
+    "title": "石榴仔制作技艺",
+    "hant": {
+      "title": "石榴仔製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.23项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.24",
+    "title": "茶粿制作技艺",
+    "hant": {
+      "title": "茶粿製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.24项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.25",
+    "title": "清明仔制作技艺",
+    "hant": {
+      "title": "清明仔製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.25项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.26",
+    "title": "蕃薯饼制作技艺",
+    "hant": {
+      "title": "蕃薯餅製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.26项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.27",
+    "title": "客家菜菜式",
+    "hant": {
+      "title": "客家菜菜式"
+    },
+    "kind": "cuisine",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.27项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.28",
+    "title": "粤菜菜式",
+    "hant": {
+      "title": "粵菜菜式"
+    },
+    "kind": "cuisine",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.28项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.29",
+    "title": "茶楼点心制作技艺",
+    "hant": {
+      "title": "茶樓點心製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.29项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.30",
+    "title": "潮州卤水食品制作技艺",
+    "hant": {
+      "title": "潮州滷水食品製作技藝"
+    },
+    "kind": "cuisine",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.30项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.31",
+    "title": "水饺制作技艺",
+    "hant": {
+      "title": "水餃製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.31项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.32",
+    "title": "打面技艺",
+    "hant": {
+      "title": "打麵技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.32项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.33",
+    "title": "蛋挞制作技艺",
+    "hant": {
+      "title": "蛋撻製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.33项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.34",
+    "title": "菠萝包制作技艺",
+    "hant": {
+      "title": "菠蘿包製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.34项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.35",
+    "title": "云吞制作技艺",
+    "hant": {
+      "title": "雲吞製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.35项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.36",
+    "title": "港式奶茶制作技艺",
+    "hant": {
+      "title": "港式奶茶製作技藝"
+    },
+    "kind": "tea",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.36项；已列入代表作名录"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.37",
+    "title": "鸳鸯制作技艺",
+    "hant": {
+      "title": "鴛鴦製作技藝"
+    },
+    "kind": "tea",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.37项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.38",
+    "title": "叮叮糖制作技艺",
+    "hant": {
+      "title": "叮叮糖製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.38项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.39",
+    "title": "吹糖技艺",
+    "hant": {
+      "title": "吹糖技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.39项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.40",
+    "title": "龙须糖技艺",
+    "hant": {
+      "title": "龍鬚糖技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.40项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.89",
+    "title": "捕鱼技艺",
+    "hant": {
+      "title": "捕魚技藝"
+    },
+    "kind": "farming",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.89项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.91",
+    "title": "海水鱼养殖技艺",
+    "hant": {
+      "title": "海水魚養殖技藝"
+    },
+    "kind": "farming",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.91项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.92",
+    "title": "基围操作技艺",
+    "hant": {
+      "title": "基圍操作技藝"
+    },
+    "kind": "farming",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.92项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.93",
+    "title": "淡水鱼养殖技艺",
+    "hant": {
+      "title": "淡水魚養殖技藝"
+    },
+    "kind": "farming",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.93项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.94",
+    "title": "蚝养殖技艺",
+    "hant": {
+      "title": "蠔養殖技藝"
+    },
+    "kind": "farming",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.94项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.95",
+    "title": "稻米种植技艺",
+    "hant": {
+      "title": "稻米種植技藝"
+    },
+    "kind": "farming",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.95项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.96",
+    "title": "蔬菜种植技艺",
+    "hant": {
+      "title": "蔬菜種植技藝"
+    },
+    "kind": "farming",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.96项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.97",
+    "title": "盐晒制技艺",
+    "hant": {
+      "title": "鹽曬製技藝"
+    },
+    "kind": "farming",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.97项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.98",
+    "title": "蜂蜜制作技艺",
+    "hant": {
+      "title": "蜂蜜製作技藝"
+    },
+    "kind": "farming",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.98项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.99",
+    "title": "猪只饲养技艺",
+    "hant": {
+      "title": "豬隻飼養技藝"
+    },
+    "kind": "farming",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.99项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.100",
+    "title": "鸡只饲养技艺",
+    "hant": {
+      "title": "雞隻飼養技藝"
+    },
+    "kind": "farming",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.100项"
+      }
+    ],
+    "since": 2014
+  },
+  {
+    "id": "heritage:hk:5.102",
+    "title": "炒米饼制作技艺",
+    "hant": {
+      "title": "炒米餅製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.102项"
+      }
+    ],
+    "since": 2024
+  },
+  {
+    "id": "heritage:hk:5.103",
+    "title": "炒米通制作技艺",
+    "hant": {
+      "title": "炒米通製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.103项"
+      }
+    ],
+    "since": 2024
+  },
+  {
+    "id": "heritage:hk:5.104",
+    "title": "潮州工夫茶艺",
+    "hant": {
+      "title": "潮州工夫茶藝"
+    },
+    "kind": "tea",
+    "level": "regional",
+    "region": "cn:810000",
+    "areas": [
+      "cn:810000"
+    ],
+    "refs": [
+      {
+        "w": "hk-ich-inventory",
+        "loc": "清单第5.104项"
+      }
+    ],
+    "since": 2024
+  }
+]

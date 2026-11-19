@@ -1,0 +1,422 @@
+[
+  {
+    "id": "heritage:mo:62",
+    "title": "土生葡人美食烹饪技艺－牛油糕制作技艺",
+    "hant": {
+      "title": "土生葡人美食烹飪技藝－牛油糕製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第62项（2020年）"
+      }
+    ],
+    "since": 2020
+  },
+  {
+    "id": "heritage:mo:63",
+    "title": "葡挞制作技艺",
+    "hant": {
+      "title": "葡撻製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第63项（2020年）；2025年列入名录"
+      }
+    ],
+    "since": 2020
+  },
+  {
+    "id": "heritage:mo:64",
+    "title": "龙须糖制作技艺",
+    "hant": {
+      "title": "龍鬚糖製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第64项（2020年）"
+      }
+    ],
+    "since": 2020
+  },
+  {
+    "id": "heritage:mo:65",
+    "title": "唐饼制作技艺",
+    "hant": {
+      "title": "唐餅製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第65项（2020年）"
+      }
+    ],
+    "since": 2020
+  },
+  {
+    "id": "heritage:mo:66",
+    "title": "杏仁饼制作技艺",
+    "hant": {
+      "title": "杏仁餅製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第66项（2020年）；2025年列入名录"
+      }
+    ],
+    "since": 2020
+  },
+  {
+    "id": "heritage:mo:67",
+    "title": "嫁喜礼饼制作技艺",
+    "hant": {
+      "title": "嫁喜禮餅製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第67项（2020年）；2025年列入名录"
+      }
+    ],
+    "since": 2020
+  },
+  {
+    "id": "heritage:mo:68",
+    "title": "酱料酿造技艺",
+    "hant": {
+      "title": "醬料釀造技藝"
+    },
+    "kind": "condiment",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第68项（2020年）"
+      }
+    ],
+    "since": 2020
+  },
+  {
+    "id": "heritage:mo:69",
+    "title": "凉果制作技艺",
+    "hant": {
+      "title": "涼果製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第69项（2020年）"
+      }
+    ],
+    "since": 2020
+  },
+  {
+    "id": "heritage:mo:70",
+    "title": "竹升面制作技艺",
+    "hant": {
+      "title": "竹昇麵製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第70项（2020年）；2025年列入名录"
+      }
+    ],
+    "since": 2020
+  },
+  {
+    "id": "heritage:mo:76",
+    "title": "土生葡人肥茶习俗",
+    "hant": {
+      "title": "土生葡人肥茶習俗"
+    },
+    "kind": "cuisine",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第76项（2026年）"
+      }
+    ],
+    "since": 2026
+  },
+  {
+    "id": "heritage:mo:77",
+    "title": "饮茶习俗",
+    "hant": {
+      "title": "飲茶習俗"
+    },
+    "kind": "tea",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第77项（2026年）"
+      }
+    ],
+    "since": 2026
+  },
+  {
+    "id": "heritage:mo:85",
+    "title": "烧味制作技艺",
+    "hant": {
+      "title": "燒味製作技藝"
+    },
+    "kind": "meat",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第85项（2026年）"
+      }
+    ],
+    "since": 2026
+  },
+  {
+    "id": "heritage:mo:86",
+    "title": "粽制作技艺",
+    "hant": {
+      "title": "糉製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第86项（2026年）"
+      }
+    ],
+    "since": 2026
+  },
+  {
+    "id": "heritage:mo:87",
+    "title": "花生糖制作技艺",
+    "hant": {
+      "title": "花生糖製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第87项（2026年）"
+      }
+    ],
+    "since": 2026
+  },
+  {
+    "id": "heritage:mo:88",
+    "title": "西饼制作技艺",
+    "hant": {
+      "title": "西餅製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第88项（2026年）"
+      }
+    ],
+    "since": 2026
+  },
+  {
+    "id": "heritage:mo:89",
+    "title": "缅甸面食制作技艺",
+    "hant": {
+      "title": "緬甸麵食製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第89项（2026年）"
+      }
+    ],
+    "since": 2026
+  },
+  {
+    "id": "heritage:mo:90",
+    "title": "印尼糕点小食制作技艺",
+    "hant": {
+      "title": "印尼糕點小食製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第90项（2026年）"
+      }
+    ],
+    "since": 2026
+  },
+  {
+    "id": "heritage:mo:91",
+    "title": "客家茶粿制作技艺",
+    "hant": {
+      "title": "客家茶粿製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第91项（2026年）"
+      }
+    ],
+    "since": 2026
+  },
+  {
+    "id": "heritage:mo:92",
+    "title": "冷糕制作技艺",
+    "hant": {
+      "title": "冷糕製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第92项（2026年）"
+      }
+    ],
+    "since": 2026
+  },
+  {
+    "id": "heritage:mo:93",
+    "title": "猪扒包制作技艺",
+    "hant": {
+      "title": "豬扒包製作技藝"
+    },
+    "kind": "staple",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第93项（2026年）"
+      }
+    ],
+    "since": 2026
+  },
+  {
+    "id": "heritage:mo:94",
+    "title": "奶茶制作技艺",
+    "hant": {
+      "title": "奶茶製作技藝"
+    },
+    "kind": "tea",
+    "level": "regional",
+    "region": "cn:820000",
+    "areas": [
+      "cn:820000"
+    ],
+    "refs": [
+      {
+        "w": "macau-ich-inventory",
+        "loc": "清单第94项（2026年）"
+      }
+    ],
+    "since": 2026
+  }
+]
