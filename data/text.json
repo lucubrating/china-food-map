@@ -29,6 +29,10 @@
       "en": "China Food Map · 中国美食地图",
       "zh": "中国美食地图"
     },
+    "site.pageTitleOf": {
+      "en": "{name} | China Food Map · 中国美食地图",
+      "zh": "{name} | 中国美食地图"
+    },
     "site.description": {
       "en": "A map of regional food across Greater China: signature dishes, protected regional products, heritage food traditions, farm heritage systems and what people eat, by province.",
       "zh": "中国各地饮食地图：按省份展示经典名菜、地理标志产品、饮食类非遗项目、重要农业文化遗产和居民食品消费情况。"

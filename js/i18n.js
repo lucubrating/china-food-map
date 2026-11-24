@@ -151,6 +151,18 @@
     return svg;
   }
 
+  /**
+   * A click on the switch: remember the choice and load the page in it in place of the current
+   * step, so the browser's back goes to the place before, not to the other language. A click
+   * that opens a new tab or window is left to the browser.
+   */
+  function choose(e, key) {
+    remember(key);
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    location.replace(e.currentTarget.href);
+  }
+
   const links = [];
   const holder = document.getElementById('lang-switch');
   if (holder) {
@@ -161,7 +173,7 @@
     auto.title = t('lang.auto', { language: t('lang.name.' + followed) });
     auto.setAttribute('aria-label', auto.title);
     if (!explicit) auto.setAttribute('aria-current', 'true');
-    auto.addEventListener('click', () => remember(null));
+    auto.addEventListener('click', (e) => choose(e, null));
     holder.append(auto);
     links.push({ key: null, node: auto });
     for (const language of FILE.languages) {
@@ -173,7 +185,7 @@
       link.title = language.name;
       link.setAttribute('aria-label', language.name);
       if (explicit && language.key === lang) link.setAttribute('aria-current', 'true');
-      link.addEventListener('click', () => remember(language.key));
+      link.addEventListener('click', (e) => choose(e, language.key));
       holder.append(link);
       links.push({ key: language.key, node: link });
     }

@@ -35,6 +35,11 @@ window.FoodMapText.ready.then(function () {
     // The window of the earth the map covers. Widen it to add other countries later.
     bounds: { west: 72.5, east: 136, south: 2.5, north: 54.5 },
     width: 1000,
+    // The view the page opens at, and returns to from the trail's first item and Reset. Zooming
+    // out still reaches the whole window above.
+    home: { west: 72.5, east: 136, south: 17.5, north: 54.5 },
+    // The space left around a frame the map fits, as a share of the frame.
+    margin: 0.04,
     // Close enough to read the smallest districts. Boundaries are stored to 0.001 of a degree,
     // which is about four pixels on screen at this zoom.
     maxZoom: 320,
@@ -192,6 +197,11 @@ window.FoodMapText.ready.then(function () {
 
   const projector = new Projector(CONFIG.bounds, CONFIG.width);
   const full = { x0: 0, y0: 0, x1: projector.width, y1: projector.height };
+  const home = (function () {
+    const [x0, y0] = projector.project(CONFIG.home.west, CONFIG.home.north);
+    const [x1, y1] = projector.project(CONFIG.home.east, CONFIG.home.south);
+    return { x0: x0, y0: y0, x1: x1, y1: y1 };
+  })();
 
   /** Path data for a list of encoded polygons, and the box that frames their main body. */
   function trace(polys, scale, whole) {
@@ -895,7 +905,7 @@ window.FoodMapText.ready.then(function () {
   }
 
   function setView(cx, cy, w) {
-    const maxW = widthToFit(full, 0.04);
+    const maxW = widthToFit(full, CONFIG.margin);
     const minW = (full.x1 - full.x0) / CONFIG.maxZoom;
     view = {
       cx: clamp(cx, full.x0, full.x1),
@@ -1025,7 +1035,7 @@ window.FoodMapText.ready.then(function () {
     const h = view.w * (size.H / size.W);
     const ux = view.cx - view.w / 2 + (clientX - size.left) / scale;
     const uy = view.cy - h / 2 + (clientY - size.top) / scale;
-    const maxW = widthToFit(full, 0.04);
+    const maxW = widthToFit(full, CONFIG.margin);
     const minW = (full.x1 - full.x0) / CONFIG.maxZoom;
     const w = clamp(view.w * factor, minW, maxW);
     const k = w / view.w;
@@ -1149,7 +1159,7 @@ window.FoodMapText.ready.then(function () {
 
   document.getElementById('zoom-in').addEventListener('click', () => zoomAt(size.left + size.W / 2, size.top + size.H / 2, 1 / 1.6));
   document.getElementById('zoom-out').addEventListener('click', () => zoomAt(size.left + size.W / 2, size.top + size.H / 2, 1.6));
-  document.getElementById('zoom-reset').addEventListener('click', () => fitBox(full, 0.04, true));
+  document.getElementById('zoom-reset').addEventListener('click', () => fitBox(home, CONFIG.margin, true));
 
   // ---------- hover ----------
 
@@ -2012,9 +2022,46 @@ window.FoodMapText.ready.then(function () {
     const name = state.item ? sourceNames.get(state.item) || params.get('name') : null;
     if (name) q.set('name', name);
     const text = q.toString().replace(/%3A/g, ':').replace(/%2C/g, ',');
-    history.replaceState(null, '', text ? '?' + text : location.pathname);
+    // The tab names the entry or place shown, before the step is recorded, so that each step in
+    // the browser's history carries its own name.
+    const shown = state.item && entryById.get(state.item);
+    const unit = units.get(state.region);
+    const named = shown ? shown.record.title : unit ? fullName(unit, true) : '';
+    document.title = named ? t('site.pageTitleOf', { name: named }) : t('site.pageTitle');
+    // A new place or entry chosen by a click or a key is a step of its own for the browser's
+    // back and forward. Anything else, and anything that follows in the same step once a file
+    // has loaded, rewrites the current step.
+    const here = new URLSearchParams(location.search);
+    const moved = (here.get('region') || null) !== (region || null) || (here.get('item') || null) !== (state.item || null);
+    if (moved && stepPending) {
+      stepPending = false;
+      history.pushState(null, '', text ? '?' + text : location.pathname);
+    } else {
+      history.replaceState(null, '', text ? '?' + text : location.pathname);
+    }
     TEXT.refreshLinks(); // the language switch leads to this same view in another language
   }
+
+  // Set by a press (the map acts on pointerup, before the click), a click or a key, and spent by the first change of place or entry it causes.
+  let stepPending = false;
+  for (const type of ['pointerup', 'click', 'keydown']) {
+    document.addEventListener(type, function () {
+      stepPending = true;
+      setTimeout(function () { stepPending = false; }, 0);
+    }, true);
+  }
+
+  /** Back or forward: show the place and entry the address names. The shading and the switches stay as they are. */
+  window.addEventListener('popstate', function () {
+    const at = new URLSearchParams(location.search);
+    const region = at.get('region') || null;
+    const item = at.get('item') || null;
+    if (region === state.region && item === state.item) return;
+    stepPending = false;
+    state.item = item;
+    selectRegion(region, { fly: true, keepItem: true });
+    if (item) showItem(item);
+  });
 
   /** Bring the map, the trail, the panel and the address in line with `state.region`. */
   function applySelection() {
@@ -2075,7 +2122,7 @@ window.FoodMapText.ready.then(function () {
     if (!unit || !marked || !recordIn(marked.record, unit)) state.focus = null;
     applySelection();
     if (!unit) {
-      if (move.fly) fitBox(full, 0.04, true);
+      if (move.fly) fitBox(home, CONFIG.margin, true);
     } else if (unit.frame && (move.jump || (move.fly && !wanted))) {
       fitBox(unit.frame, 0.35, !move.jump);
     }
@@ -2374,7 +2421,7 @@ window.FoodMapText.ready.then(function () {
   metricSelect.value = state.metric;
 
   measure();
-  fitBox(full, 0.04, false);
+  fitBox(home, CONFIG.margin, false);
   applyMetric();
   renderLegend();
   refreshCounts();
