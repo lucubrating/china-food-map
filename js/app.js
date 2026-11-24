@@ -1077,7 +1077,9 @@ window.FoodMapText.ready.then(function () {
       const entry = points.get(pt.getAttribute('data-id'));
       if (entry) {
         const current = units.get(state.region);
-        if (!current || !recordIn(entry.record, current)) selectRegion(homeOf(entry.record, current), { fly: false });
+        // keepItem: a place whose city has not been opened is selected once that city's file is in,
+        // and the entry opened below must still be open then.
+        if (!current || !recordIn(entry.record, current)) selectRegion(homeOf(entry.record, current), { fly: false, keepItem: true });
         openItem(entry.record.id, { fly: false });
       }
       return;
@@ -1837,17 +1839,38 @@ window.FoodMapText.ready.then(function () {
   }
 
   /**
-   * Open the page of the entry named in the address. The entry decides: if the place in the
-   * address does not hold it, or there is none, its own place is selected. The place in the
-   * address is tried first only because it says which province's file to fetch.
+   * The place an entry is shown at: the lowest unit that holds every unit it belongs to. An entry
+   * in one county is shown at that county, one in several counties of a city at the city, and one
+   * placed at its province only, such as a dish, at the province. Needs the province's file,
+   * which says what each place lies in.
    */
-  function restoreItem(id) {
+  function placeOf(record) {
+    const areas = record.areas || [];
+    if (!areas.length) return record.region;
+    for (let at = areas[0]; at; at = parentOf(at)) {
+      if (areas.every((area) => within(area, at))) return at;
+    }
+    return record.region;
+  }
+
+  /**
+   * Open the page of an entry by its id, from the address or from search. The place in the
+   * address is tried first only because it says which province's file to fetch.
+   * From the address, the place it names is kept if it holds the entry; otherwise, and always
+   * from search, the entry's own place is selected (placeOf).
+   */
+  function showItem(id, options) {
+    const fromSearch = Boolean(options && options.search);
     const settle = function (provinceId) {
       const province = provinceById.get(provinceId);
       if (!province) throw new Error('no entry ' + id);
       return loadRecords(province).then(function () {
         const entry = entryById.get(id);
         if (!entry || entry.record.region !== provinceId) throw new Error('no entry ' + id);
+        // What each place lies in comes with the province's file. Without it, placeOf falls
+        // back on the province.
+        const unit = units.get(provinceId);
+        return unit && opens(unit) ? loadKids(unit).catch(() => null) : null;
       });
     };
     const hinted = chainOf(state.region)[0];
@@ -1858,7 +1881,13 @@ window.FoodMapText.ready.then(function () {
           if (state.item !== id) return; // something else was picked meanwhile
           const record = entryById.get(id).record;
           const unit = units.get(state.region);
-          if (!unit || !recordIn(record, unit)) selectRegion((record.areas || [])[0] || record.region, { jump: true, keepItem: true });
+          if (fromSearch) {
+            // A record with a dot moves the map to the dot, so the flight to its place is skipped.
+            selectRegion(placeOf(record), { fly: !recordById.has(id), keepItem: true });
+            openItem(id, { fly: true });
+            return;
+          }
+          if (!unit || !recordIn(record, unit)) selectRegion(placeOf(record), { jump: true, keepItem: true });
           openItem(id, { fly: false });
         },
         function (error) {
@@ -2173,7 +2202,7 @@ window.FoodMapText.ready.then(function () {
           for (const row of file.records[id]) {
             const key = file.kinds[row[1]];
             const one = LAYER[key] ? LAYER[key].one : DISHES.one;
-            index.push({ text: plain(row[0]), label: TEXT.writtenAs(row[2], 'title', row[0]), sub: one + ' · ' + regionName(id), region: id, record: row[2] || null, dot: Boolean(LAYER[key]) });
+            index.push({ text: plain(row[0]), label: TEXT.writtenAs(row[2], 'title', row[0]), sub: one + ' · ' + regionName(id), region: id, record: row[2] || null });
           }
         }
         searchIndex = index;
@@ -2219,9 +2248,14 @@ window.FoodMapText.ready.then(function () {
       button.addEventListener('click', function () {
         searchResults.hidden = true;
         searchInput.value = '';
-        // A record moves the map to its own dot, so the flight to its province is skipped.
-        selectRegion(hit.region, { fly: !hit.dot });
-        if (hit.record) openItem(hit.record, { fly: true });
+        if (hit.record) {
+          // The entry's province is selected at once, then its own place once the files are in.
+          selectRegion(hit.region, { fly: false });
+          state.item = hit.record;
+          showItem(hit.record, { search: true });
+        } else {
+          selectRegion(hit.region, { fly: true });
+        }
       });
       searchResults.append(el('li', null, button));
     }
@@ -2288,7 +2322,7 @@ window.FoodMapText.ready.then(function () {
   refreshPoints();
   state.item = params.get('item') || null;
   selectRegion(params.get('region'), { jump: true, keepItem: true });
-  if (state.item) restoreItem(state.item);
+  if (state.item) showItem(state.item);
 
   if (!timeline.enabled) {
     loadScript('js/data/dots.js?v=' + DATA.dotsVersion).then(
