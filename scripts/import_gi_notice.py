@@ -39,6 +39,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import DATA_DIR, DOWNLOADS_DIR, province_code, region_id, write_json  # noqa: E402
 from divisions import Divisions  # noqa: E402
+from towns import Towns  # noqa: E402
 from product_kinds import classify, load_overrides  # noqa: E402
 from shapes import Shapes  # noqa: E402
 
@@ -136,7 +137,9 @@ def requirement_rows(notice, folder):
             for seq, name, applicant, area in found]
 
 
-# Products placed by hand, by name: the units, and why the text alone does not give them.
+# Products placed by hand, by name: the units, and why the text alone does not give them. A third
+# item, {"dot": unit}, moves the dot from the stated position toward a unit inside those units,
+# where the product is named after it but covers more (庐山云雾茶, in all of 九江市).
 PLACES = {
     "安县魔芋": (["cn:510705"], "安县 became 安州区 of 绵阳市 in 2016; the list still uses the old name."),
     "塔里木垦区马鹿胶": (["cn:652800"], "The regiments of the Second Division named in the text (二十一团 to 三十六团) lie in "
@@ -144,6 +147,27 @@ PLACES = {
     "塔里木垦区马鹿花盘": (["cn:652800"], "As 塔里木垦区马鹿胶."),
     "长林岛龙垦杏": (["cn:230523"], "五九七农场 is in 宝清县, whose government is the applicant. The text names no unit, "
                                "and the stated range is wide enough to reach into 佳木斯市."),
+    "同心滩羊肉": (["cn:640324"], "The text names its neighbours (盐池县, 原州区, 海原县, 中卫县) only to say where 同心县 "
+                              "lies; the area is 同心县."),
+    "沐川猕猴桃": (["cn:511129"], "The text names the counties 沐川县 borders (宜宾县, 屏山县, 沙湾区, 马边县) only to "
+                              "bound its nine townships, which are all in 沐川县."),
+    "莱芜黑山羊": (["cn:370116", "cn:370117", "cn:370114", "cn:370911", "cn:370982", "cn:370304"],
+                "Eight towns of the former 莱芜市, now in 莱芜区 and 钢城区 (辛庄 and 里辛), and neighbouring towns of "
+                "岱岳, 新泰, 博山 and 章丘, which the text names by their stems only (\"岱岳和新泰\")."),
+    "宜昌白山羊": (["cn:420506", "cn:420528", "cn:420529", "cn:420581", "cn:420527", "cn:420526"],
+                "The text lists six places of 宜昌市 by their stems only: 夷陵（原宜昌县）、长阳、五峰、宜都、秭归、兴山."),
+    "三明翠碧一号烤烟": (["cn:350400"], "The text lists all of 三明市's places (梅列 is now part of 三元区); \"蒋乐\" is a "
+                                   "slip for 将乐."),
+    "泰山红茶": (["cn:370902", "cn:370911", "cn:370983", "cn:370921", "cn:370982"],
+             "\"泰山市所辖泰山区、高新区、岱岳区、肥城、宁阳、新泰\": 泰山市 is a slip for 泰安市, and 高新区 is not a unit."),
+    "剑门关土鸡": (["cn:510800"], "The text lists all seven places of 广元市, two by former names: 市中区 (now 利州区) and "
+                              "元坝 (now 昭化区)."),
+    "庐山云雾茶": (["cn:360400"], "庐山, the part of 鄱阳湖 under 九江 and 庐山西海, with 185 towns of 九江市's 227 (the three "
+                              "named are examples); the applicant is 九江市人民政府 and the stated range covers the city. "
+                              "The dot is moved toward 庐山市, as the tea is named after 庐山.", {"dot": "cn:360483"}),
+    "湘潭矮脚白": (["cn:430302", "cn:430304", "cn:430321", "cn:430382"],
+                "Its towns are in 雨湖区 (鹤岭, 姜畲), 湘潭县 (易俗河, 射埠, 杨家桥, now written 杨嘉桥), 韶山市 (银田, 韶山) and "
+                "岳塘区 (荷塘乡, now 荷塘街道, which the 2023 town list has under its new name); 响水乡 is in the 九华 zone."),
 }
 
 
@@ -288,6 +312,146 @@ def whole_parents(divisions, areas):
     return areas
 
 
+# Words that make a clause a description of the area's border, naming neighbours only to say where
+# the area ends: 东与通山县接壤, 与宜宾县交界, 西连海原县, 南接长汀.
+BORDER = re.compile(r"接壤|毗邻|毗连|相邻|为邻|相望|交界|临界|相接|相连|接邻|邻接|接界|搭界|"
+                    r"^其?(东南|东北|西南|西北|东|南|西|北)(邻|接|靠|连|临|毗|交|界|至|到)")
+# A direction and the neighbours after it, to the end of the clause: 东邻仙居县、永嘉县; 南接晋江市、
+# 西界南安市. Not 东至县, which is a county.
+DIRECTION = re.compile(r"(东南|东北|西南|西北|东|南|西|北)面?(邻|接|靠|连|临|毗|交|界|至|到)(?!县)[^，,。；;]*")
+# A distance is not a place: 距武汉市120公里.
+DISTANCE = re.compile(r"距[^，,。；;、]*?(公里|千米|km|米)")
+# What may stand between a city's name and a list of its counties: 宜春市所辖袁州区、万载….
+AFTER_CITY = re.compile(r"(现辖行政区域内的?|行政区域内的?|所辖的?|下辖的?|辖区内的?|市辖|辖区|辖|境内的?|的)?")
+# Where an item of such a list stops being a place's name: 平遥境内, 历城南部, 瑞安2个县级市, 兴山等.
+ITEM_END = re.compile(r"(\d|等|共|全境|境内|全部|[东南西北中]部|一带|地区|行政区域).*$")
+# Words that may open an item of such a list: 主要涵盖夷陵, 包括德清.
+ITEM_START = re.compile(r"^(主要涵盖|主要包括|主要分布于|主要分布在|主要涉及|涵盖|包括|涉及|分布于|分布在|其中|所辖|下辖|市辖|辖)")
+UNIT_KIND = re.compile(r"(自治县|自治旗|县|市|区|旗)$")
+
+
+def text_places(divisions, towns, text, region):
+    """The units an area text names, read with four guards on top of divisions.locate.
+
+    1. Clauses that describe the border are left out, since the units they name are neighbours
+       (崇阳野桂花蜜: 东与通山县接壤…西与通城县临界). If that leaves nothing, the whole text is read.
+    2. A city's counties listed by their stems right after the city's name are taken
+       (宜春市所辖袁州区、万载、奉新…; 济南市历城南部; 南通市启东汇龙), unless a stem is the
+       name of a town of a county the text already names.
+    3. Towns are used only when the text names no county of its own, and not when they are a few
+       examples of many (海会镇、岷山乡、赛阳镇等185个乡镇): then the counties whose towns
+       it names in full place it (双井西瓜: 掇刀石街办 is in 掇刀区; 崇阳野桂花蜜: 金塘镇 is in
+       崇阳县). A text that names its counties keeps them, so 达州脆李 is not shrunk to the one
+       county whose towns happen to carry 镇.
+    4. Towns count only by their full names, not inside a longer town's name, and only towns,
+       townships, subdistricts and sumu (see scripts/towns.py), so 水产养殖场 inside
+       南北港水产养殖场 is not a place.
+    """
+    text = DISTANCE.sub("", re.sub(r"\s+", "", text or ""))
+    text = DIRECTION.sub("", text)
+    kept = []
+    for clause in re.split(r"(?<=[，,。；;])", text):
+        if BORDER.search(clause.lstrip("，,。；;")):
+            # Keep what comes before the neighbour: 同心县东北与盐池县相接 keeps 同心县.
+            before = re.match(r"(.*?)(东南|东北|西南|西北|东|南|西|北)?与", clause)
+            clause = before.group(1) if before else ""
+        kept.append(clause)
+    inner = "".join(kept)
+    # If the border clauses held every name, read the whole text after all.
+    used = inner if inner == text or divisions.locate(inner, region) or towns.counties_in(inner, region) else text
+    found = divisions.locate(used, region)
+
+    # 2. Counties listed by their stems after their city. A city followed by 全境 is meant whole.
+    plain = re.sub(r"（[^）]*）|\([^)]*\)", "", used)
+    whole = set()
+    for city_id in [region] + divisions.children.get(region, []):
+        city = divisions.get(city_id)
+        kids = [divisions.get(k) for k in divisions.children.get(city_id, []) if divisions.get(k)["depth"] == city["depth"] + 1]
+        if not kids:
+            continue
+        # The words each county may be listed by: its short name, its name without its kind
+        # (玉树 for 玉树市), and the same for the names it had before (元坝 for 昭化区).
+        own = {city["short"], UNIT_KIND.sub("", city["name"]), re.sub(r"(地区|盟|自治州|州)$", "", city["name"])}
+        words, same_as_city = {}, {}
+        for kid in kids:
+            for name in [kid["name"]] + kid.get("was", []):
+                for word in dict.fromkeys([name, UNIT_KIND.sub("", name), kid["short"] if name == kid["name"] else None]):
+                    if not word or len(word) < 2:
+                        continue
+                    if word in own and word != kid["name"]:
+                        same_as_city.setdefault(word, kid)  # 菏泽 is the city, not 牡丹区 (once 菏泽县)
+                    else:
+                        words.setdefault(word, kid)
+        for label in dict.fromkeys([city["name"], city["short"]]):
+            for match in re.finditer(re.escape(label), plain):
+                rest = plain[match.end():]
+                if city_id != region and re.match(r"(市域)?全境", rest):
+                    whole.add(city_id)
+                rest = rest[AFTER_CITY.match(rest).end():]
+                rest = re.split(r"[。；;]|地理坐标", rest)[0]
+                items = re.split(r"[、，,和及与]+", rest)
+                if re.match(r"[、，,和及与]", rest) and label in same_as_city:
+                    kid = same_as_city[label]  # 玉树、称多、囊谦…: the city's stem is also its county's
+                    if kid["id"] not in found:
+                        found.append(kid["id"])
+                for item in items:
+                    item = ITEM_END.sub("", ITEM_START.sub("", item))
+                    kid = words.get(item)
+                    if not kid:
+                        for short in sorted((w for w in words if 2 <= len(w) < len(item)), key=len, reverse=True):
+                            if item.startswith(short) and towns.is_town_stem(item[len(short):], [words[short]["id"]]):
+                                kid = words[short]  # 启东汇龙: 启东 and its town 汇龙
+                                break
+                    elif item != kid["name"] and towns.is_town_stem(item, [f for f in found if divisions.get(f)["depth"] == 3]):
+                        kid = None  # a town of a county already named (启东's town 东海 is not 东海县)
+                    if kid and kid["id"] not in found:
+                        found.append(kid["id"])
+
+    # 3. Towns, when no county is named. A county counts if at least two of its towns are named
+    # and they weigh at least 1 (see Towns.counties_in); if no county does, the counties with the
+    # most weight. So one stray town (讷河 for 双城甜瓜), or two common names (永胜乡, 朝阳乡), does
+    # not pull in a county elsewhere in the province.
+    if towns.available and not any(divisions.get(f)["depth"] >= 3 for f in found):
+        cities = [f for f in found if divisions.get(f)["depth"] == 2 and f not in whole]
+        within = None
+        if cities:
+            within = set()
+            for c in cities:
+                within |= set(divisions.children.get(c, []))
+        weights = towns.counties_in(used, region, within)
+        # Towns given as examples of many (海会镇、岷山乡、赛阳镇等185个乡镇) do not decide the counties.
+        # What counts is how many places the sentence before 等 names, however they are written and
+        # however grouped: 灵山香鸡 names 17 of its 18 by their stems, 开县锦橙 all 15 in three groups
+        # separated by commas, 哈尔腾哈萨克羊 its 3 towns and then their villages.
+        many = re.search(r"等(\d+)个(乡镇|镇乡|乡|镇|街道|办事处)", used)
+        if many:
+            named = re.split(r"[。；;]", used[:many.start()])[-1]
+            items = [x for x in re.split(r"[、，,和及]", named) if x]
+            if int(many.group(1)) >= 3 * max(1, len(items)):
+                weights = {}
+        # Towns change: a city is narrowed to counties only when most of the towns the text lists
+        # are on the list (锦州海蜇's towns in 凌海市 are no longer, so it stays 锦州市).
+        listed = towns.listed(used)
+        matched = sum(1 for t in listed if t in towns.full.get(region, {}))
+        enough = not cities or not listed or matched >= len(listed) / 2
+        if weights and enough:
+            strong = {c for c, (n, w) in weights.items() if n >= 2 and w >= 1}
+            top = max(w for _n, w in weights.values())
+            counties = strong or {c for c, (_n, w) in weights.items() if w == top}
+            found = [f for f in found if f not in cities or not any(divisions.get(k)["parent"] == f for k in counties)]
+            found += sorted(counties)
+
+    # A city meant whole keeps its place, without its counties.
+    for city_id in whole:
+        found = [f for f in found if divisions.get(f)["parent"] != city_id]
+        if city_id not in found:
+            found.append(city_id)
+
+    # A city is dropped when one of its own counties is named, as in divisions.locate.
+    parents = {divisions.get(f)["parent"] for f in found}
+    return [f for f in found if f not in parents]
+
+
 # How far outside a unit's bounding box, in degrees, the middle of a stated range may fall and
 # still count as that unit's position, to be pulled back inside its border. Measured on the
 # notices imported so far, the stated positions run without a break up to 0.50 degrees outside
@@ -365,6 +529,9 @@ def main():
     rows = load_rows(args.notice, args.reread)
     divisions = Divisions()
     shapes = Shapes(divisions)
+    towns = Towns(divisions)
+    if not towns.available:
+        print("  ? no town list (research/downloads/modood-divisions/streets.json): towns are not used")
     kind_fixes = load_overrides()
 
     listed = FROM_REQUIREMENTS.get(args.notice) or FROM_PRELIMINARY.get(args.notice) or {}
@@ -378,7 +545,7 @@ def main():
             continue
         region = region_id(code)
         # The area text sometimes ends with the coordinate statement; places are named before it.
-        named = whole_parents(divisions, divisions.locate(re.split(r"地理坐标|东经", row["area"])[0], region))
+        named = whole_parents(divisions, text_places(divisions, towns, re.split(r"地理坐标|东经", row["area"])[0], region))
         if row["name"] in PLACES:
             named = list(PLACES[row["name"]][0])
         stated = coordinate_range(row["area"])
@@ -403,6 +570,9 @@ def main():
         # so the dot still says which side of the unit the product is on.
         lower = [a for a in areas if a != region]
         pulled = None
+        toward = PLACES[row["name"]][2].get("dot") if row["name"] in PLACES and len(PLACES[row["name"]]) > 2 else None
+        if toward:
+            lower = [toward]
         if box and lower:
             mx, my = (box[0] + box[2]) / 2, (box[1] + box[3]) / 2
             if not shapes.within_units(mx, my, lower, region):
@@ -424,7 +594,9 @@ def main():
         if box:
             record["bbox"] = list(box)
             record["coord"] = pulled or [round((box[0] + box[2]) / 2, 4), round((box[1] + box[3]) / 2, 4)]
-            if pulled:
+            if toward:
+                record["toward"] = toward  # moved toward the place it is named after
+            elif pulled:
                 record["pulled"] = True  # the stated position, moved inside the unit's border
         else:
             if stated:

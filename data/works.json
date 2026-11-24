@@ -302,6 +302,22 @@
     "note": "Open Government Data License, version 1. Simplified for this map.",
     "noteZh": "依政府资料开放授权条款第1版使用，边界经简化。"
   },
+  "wikidata-place-names": {
+    "zh": "维基数据：行政区英文名称",
+    "en": "Wikidata, English names of places",
+    "kind": "names",
+    "url": "https://www.wikidata.org/",
+    "note": "The English names of the mainland's cities, prefectures, districts and counties, matched by division code; old spellings of place names from their aliases; and former Chinese names from their dated official names and the places they replaced.",
+    "noteZh": "中国大陆地级和县级行政区的英文名称，按行政区划代码匹配；其别名中的旧式拼写；以及据其历年正式名称和所取代的行政区得出的旧称。"
+  },
+  "pinyin-data": {
+    "zh": "pinyin-data 汉字拼音数据",
+    "en": "pinyin-data, readings of Chinese characters",
+    "kind": "names",
+    "url": "https://github.com/mozillazg/pinyin-data",
+    "note": "Readings used to find places by the pinyin of their names.",
+    "noteZh": "用于以拼音查找地名的汉字读音。"
+  },
   "tipo-origin-marks": {
     "zh": "台湾智慧财产局产地标章注册资讯",
     "en": "Registered place marks, Taiwan Intellectual Property Office",

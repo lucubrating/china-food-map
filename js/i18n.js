@@ -85,7 +85,20 @@
    * forms, `vars.n` chooses between them: one, or any other number.
    */
   function t(key, vars) {
-    let entry = table[key];
+    return fill(table, key, vars);
+  }
+
+  /**
+   * A text in the script the names are shown in, for words that join a Chinese name, such as 州
+   * in 阿坝州: the Simplified text in the English interface, which shows names in Simplified,
+   * and the language's own text in a Chinese one.
+   */
+  function namesText(key, vars) {
+    return fill(lang === 'en' ? FILE.text['zh-hans'] : table, key, vars);
+  }
+
+  function fill(from, key, vars) {
+    let entry = from[key];
     if (entry === undefined) {
       console.warn('no text for "' + key + '"');
       return key;
@@ -323,6 +336,7 @@
     // True in a Chinese interface, which shows no English at all.
     chinese: lang !== 'en',
     t: t,
+    namesText: namesText,
     has: has,
     refreshLinks: refreshLinks,
     // Resolves when the page can start: at once, or when the table of names has loaded.

@@ -22,6 +22,7 @@ Usage:
   python3 scripts/build.py --names       # list converted names that have not been read through
   python3 scripts/build.py --names-read  # record that the names listed have been read through
 """
+import collections
 import glob
 import hashlib
 import json
@@ -31,7 +32,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import DATA_DIR, PROVINCES, ROOT, read_json, region_id, write_json  # noqa: E402
+from divisions import short_name  # noqa: E402
 from hant import Converter  # noqa: E402
+from place_names import english_short  # noqa: E402
 
 SCALE = 1000  # coordinates are stored as integers of 0.001 degree, about 100 m
 ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"
@@ -40,7 +43,7 @@ ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"
 PAGE_FIELDS = {
     "dishes": ("id", "title", "region", "listed", "refs"),
     "heritage": ("id", "title", "own", "kind", "level", "region", "areas", "place", "body", "since", "refs", "coord", "approx"),
-    "products": ("id", "title", "own", "kind", "region", "areas", "applicant", "gov", "since", "earlier", "refs", "coord", "approx", "pulled", "unused"),
+    "products": ("id", "title", "own", "kind", "region", "areas", "applicant", "gov", "since", "earlier", "refs", "coord", "approx", "pulled", "unused", "toward"),
     "farm": ("id", "title", "region", "areas", "batch", "since", "refs", "coord", "approx"),
 }
 # What an entry's own page shows beyond that. These are long, and wanted for one entry at a time,
@@ -200,6 +203,88 @@ def unit_file(unit_id):
     return os.path.join(ROOT, "js", "data", "units", unit_id.replace(":", "-") + ".js")
 
 
+def english_tags(divisions):
+    """{unit id: tag} for places below the first level whose English name another place shares.
+
+    The page shows the tag in brackets after the name, in the English interface only: "Suzhou
+    (Jiangsu)" and "Suzhou (Anhui)". The tag is the province's English name, or the city's where
+    two of the places are in one province ("Gulou District (Nanjing)"); every place sharing a name
+    gets the same kind of tag. Names are compared whole, kind included, so "Suzhou District" is
+    not tagged. If the tags still leave two places alike, both province and city are given.
+    """
+    def province(unit):
+        while unit["depth"] > 1:
+            unit = divisions[unit["parent"]]
+        return unit
+
+    def city(unit):
+        return unit if unit["depth"] == 2 else divisions[unit["parent"]]
+
+    groups = collections.defaultdict(list)
+    for unit in divisions.values():
+        if unit["depth"] > 1 and unit.get("en"):
+            groups[unit["en"].lower()].append(unit)
+    tags = {}
+    for group in groups.values():
+        if len(group) < 2:
+            continue
+        provinces = [province(unit)["id"] for unit in group]
+        by_city = len(set(provinces)) < len(provinces)
+        for unit in group:
+            own = province(unit)
+            near = city(unit) if by_city and unit["depth"] > 2 else own
+            tags[unit["id"]] = near.get("en") or own.get("en", "")
+        labels = collections.Counter(tags[unit["id"]] for unit in group)
+        for unit in group:
+            if labels[tags[unit["id"]]] > 1 and city(unit) is not province(unit):
+                tags[unit["id"]] = "%s, %s" % (city(unit).get("en", ""), province(unit).get("en", ""))
+    return tags
+
+
+# Places whose trail names follow the mainland's rules (see trail_names). Taiwan, Hong Kong and
+# Macau keep their official English names in the trail.
+MAINLAND = re.compile(r"^cn:(?!71|81|82)")
+
+
+def trail_names(divisions):
+    """What the trail on the map needs beyond a place's names:
+    ({id: enShort}, {ids of namesakes}, {ids of places named like a province}).
+
+    A place that is not the last item of the trail shows its short Chinese name. On the mainland,
+    below the provinces, it shows a short English name beside it, enShort: the official English
+    name without its kind and, for an autonomous unit, without its peoples ("阿坝 Ngawa"). It is
+    given only where it differs from the English name, and never where the Chinese short name is
+    the full name (吉林市 stays "Jilin City"), so the two halves always shorten together, and only
+    for places that have places under them.
+
+    A namesake is a place whose own short name would be its parent's, the reason the divisions
+    table keeps its full name: 长沙县 under 长沙市, 阿坝县 under 阿坝藏族羌族自治州. When the
+    trail runs from the parent to such a place, the parent shows a longer form made from its kind
+    (the "trail.long." texts): "长沙市 Changsha City", "阿坝州 Ngawa Prefecture". Provinces are left
+    out: 吉林 Jilin stays short above 吉林市.
+
+    A place whose short name is a province's always takes its longer form when it is not the last
+    item, so it is not read as the province: 海南州 Hainan Prefecture, for 海南藏族自治州 in Qinghai.
+    """
+    shorts, namesakes, like_province = {}, set(), set()
+    provinces = {unit["short"] for unit in divisions.values() if unit["depth"] == 1}
+    parents = {unit["parent"] for unit in divisions.values()}
+    for unit in divisions.values():
+        if not MAINLAND.match(unit["id"]) or unit["depth"] == 1:
+            continue
+        # Only a place with places under it can be a middle item of the trail.
+        if unit["id"] in parents and unit.get("en") and unit["short"] != unit["name"]:
+            short = english_short(unit["en"])
+            if short != unit["en"]:
+                shorts[unit["id"]] = short
+        parent = divisions.get(unit["parent"])
+        if parent and parent["depth"] > 1 and short_name(unit["name"], unit["id"]) == parent["short"]:
+            namesakes.add(unit["id"])
+        if unit["id"] in parents and unit["short"] in provinces:
+            like_province.add(unit["id"])
+    return shorts, namesakes, like_province
+
+
 def build_units(divisions, strings):
     """Files the page loads when a unit is opened: the shapes of the units directly under it.
 
@@ -212,6 +297,8 @@ def build_units(divisions, strings):
     children = {}
     for unit in divisions.values():
         children.setdefault(unit["parent"], []).append(unit)
+    tags = english_tags(divisions)
+    shorts, namesakes, like_province = trail_names(divisions)
     outputs, problems = {}, []
     for level in UNIT_LEVELS:
         for path in sorted(glob.glob(os.path.join(DATA_DIR, "regions", "level-%d" % level, "*.geojson"))):
@@ -222,6 +309,14 @@ def build_units(divisions, strings):
                 item = {"id": unit["id"], "name": unit["name"], "short": unit["short"], "kind": unit["kind"]}
                 if "en" in unit:
                     item["en"] = unit["en"]
+                if unit["id"] in tags:
+                    item["tag"] = tags[unit["id"]]
+                if unit["id"] in shorts:
+                    item["enShort"] = shorts[unit["id"]]
+                if unit["id"] in namesakes:
+                    item["namesake"] = True
+                if unit["id"] in like_province:
+                    item["likeProvince"] = True
                 if "frame" in unit:
                     item["frame"] = unit["frame"]
                 if unit.get("centre"):
@@ -258,6 +353,10 @@ def check_divisions():
     for unit in units:
         if not unit.get("name") or not unit.get("short"):
             problems.append("divisions %s: no name" % unit["id"])
+        if not all(isinstance(name, str) and name.strip() for name in unit.get("old", [])):
+            problems.append("divisions %s: an old name is empty" % unit["id"])
+        if "pinyin" in unit and not re.fullmatch(r"[a-zü]+( [a-zü]+)*", unit["pinyin"]):
+            problems.append("divisions %s: pinyin %r is not toneless syllables" % (unit["id"], unit["pinyin"]))
         if unit["depth"] == 1:
             if unit["parent"] is not None:
                 problems.append("divisions %s: a first-level unit with a parent" % unit["id"])
@@ -305,6 +404,10 @@ def build_records(region_ids, divisions):
             for ref in record.get("refs", []):
                 if ref.get("w") not in works:
                     problems.append("%s %s: unknown work %r" % (label, record.get("id"), ref.get("w")))
+            # A dot moved toward a place the entry is named after must stay inside its areas.
+            toward = record.get("toward")
+            if toward and (toward not in divisions or not any(inside(toward, a) for a in record.get("areas", []))):
+                problems.append("%s %s: its dot is moved toward %r, which is not inside its areas" % (label, record.get("id"), toward))
         ids = [r["id"] for r in records]
         if len(ids) != len(set(ids)):
             problems.append("%s: duplicate ids" % label)
@@ -561,30 +664,33 @@ def build_as_written(records, divisions):
 
 
 def build_search(data, divisions):
-    """What the search box looks through: every place below province level and every title.
+    """What the search box looks through: every place and every title.
 
-    places   [id, name, depth] in the order of the divisions table, so the unit a third-level
-             place belongs to is the nearest second-level row above it. A fourth item holds
-             other names to match: an English name, or names the place had before.
+    provinces {province id: [other names to match]}: the pinyin of its name. The page has the
+             provinces' own names and English names already.
+    places   [id, name, depth, English name, tag, [other names to match]] for every place below
+             province level, in the order of the divisions table, so the unit a third-level place
+             belongs to is the nearest second-level row above it. The English name and its tag
+             (see english_tags) are shown in the English interface, "" if there is none. The other
+             names are matched but never shown: names it had before, the pinyin of the name, and old
+             romanizations and old names (Pe-king, Amoy, Canton).
     records  {province id: [[title, kind, id], ...]}, where kind is a position in RECORD_KEYS.
              The page also looks here for the province of an entry named in the address.
     """
-    places = []
+    tags = english_tags(divisions)
+    provinces, places = {}, []
     for unit in divisions.values():
+        other = unit.get("was", []) + ([unit["pinyin"]] if unit.get("pinyin") else []) + unit.get("old", [])
         if unit["depth"] == 1:
+            provinces[unit["id"]] = other
             continue
-        row = [unit["id"], unit["name"], unit["depth"]]
-        other = [unit["en"]] if unit.get("en") else []
-        other += unit.get("was", [])
-        if other:
-            row.append(" ".join(other))
-        places.append(row)
+        places.append([unit["id"], unit["name"], unit["depth"], unit.get("en", ""), tags.get(unit["id"], ""), other])
     records = {}
     for index, key in enumerate(RECORD_KEYS):
         for record in data[key]:
             row = [record["title"], index, record["id"]]
             records.setdefault(record["region"], []).append(row)
-    return {"kinds": list(RECORD_KEYS), "places": places, "records": records}
+    return {"kinds": list(RECORD_KEYS), "provinces": provinces, "places": places, "records": records}
 
 
 HAN = re.compile("[㐀-鿿\U00020000-\U0003ffff]")

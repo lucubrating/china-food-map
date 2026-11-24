@@ -16,6 +16,13 @@ which scripts/import_taiwan.py makes from the boundary file of Taiwan's surveyin
 
 Hand-made corrections are read from data/overrides/divisions.json and are never written back.
 
+English names for mainland places below the first level, and a pinyin reading of every place for
+searching, are worked out by scripts/place_names.py just before the table is written, from two
+more downloads (wikidata-names/names.csv and pinyin-data/pinyin.txt) and the corrections in
+data/overrides/pinyin.json. Old romanizations and old names for searching (`old`) come from
+data/overrides/old-names.json. An English name the table already has (Taiwan's, Hong Kong's,
+Macau's, the provinces') is kept.
+
 Usage: python3 scripts/import_divisions.py
 """
 import collections
@@ -28,6 +35,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import DATA_DIR, DOWNLOADS_DIR, PROVINCES, read_json, region_id  # noqa: E402
 from divisions import TABLE_PATH, kind_of, short_name  # noqa: E402
+from place_names import find_names  # noqa: E402
 
 # Words that mark a row of the statistics list as a development zone or similar, not a unit.
 ZONE = re.compile(r"开发区|园区|管理区|示范区|试验区|保税|工业园|产业园|旅游|度假|风景|管委会|合作区|集聚区|基地|高新|"
@@ -178,6 +186,27 @@ def main():
         if isinstance(extra, list):
             unit["was"] = unit.get("was", []) + [name for name in extra if name not in unit.get("was", [])]
 
+    # English names and pinyin readings (see scripts/place_names.py).
+    english, pinyin, old, former, former_pinyin, name_report, name_problems = find_names(units)
+    problems += name_problems
+    for i, unit in enumerate(units):
+        ordered = {}
+        for key, value in unit.items():
+            ordered[key] = value
+            if key == "short" and "en" not in unit and unit["id"] in english:
+                ordered["en"] = english[unit["id"]]
+        if unit["id"] in pinyin:
+            ordered["pinyin"] = pinyin[unit["id"]]
+        # Former Chinese names join the names the place went by, which the importers match in
+        # texts; their readings join the old names, matched by search only.
+        extra = [name for name in former.get(unit["id"], []) if name not in ordered.get("was", [])]
+        if extra:
+            ordered["was"] = ordered.get("was", []) + extra
+        search_only = list(old.get(unit["id"], [])) + [r for r in former_pinyin.get(unit["id"], []) if r != ordered.get("pinyin")]
+        if search_only:
+            ordered["old"] = list(dict.fromkeys(search_only))
+        units[i] = ordered
+
     # A short name must tell a unit apart from its siblings and from its parent.
     by_id = {unit["id"]: unit for unit in units}
     siblings = collections.defaultdict(list)
@@ -268,6 +297,8 @@ def main():
         print("  ? " + warning)
     if not warnings:
         print("every difference from the 2023 list is accounted for")
+    for line in name_report:
+        print(line)
     print("wrote %s (%d KB)" % (os.path.relpath(TABLE_PATH, os.path.dirname(DATA_DIR)), os.path.getsize(TABLE_PATH) // 1024))
 
 

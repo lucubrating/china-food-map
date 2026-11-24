@@ -233,6 +233,10 @@ window.FoodMapText.ready.then(function () {
       name: src.name,
       short: src.short,
       en: src.en || '',
+      tag: src.tag || '', // tells apart places that share an English name: Suzhou (Jiangsu)
+      enShort: src.enShort || '', // the English name as the trail shortens it: Ngawa
+      namesake: Boolean(src.namesake), // its short name would be its parent's: 长沙县 under 长沙市
+      likeProvince: Boolean(src.likeProvince), // its short name is a province's: 海南藏族自治州
       kind: src.kind || '',
       parent: parent ? parent.id : null,
       depth: parent ? parent.depth + 1 : 1,
@@ -258,14 +262,39 @@ window.FoodMapText.ready.then(function () {
     return p ? p.name : id;
   }
 
-  /** A place's name as text: 四川省 Sichuan in the English interface, 四川省 in a Chinese one. */
-  function fullName(unit) {
-    return unit.name + (unit.en && !CHINESE ? ' ' + unit.en : '');
+  /**
+   * A place's English name, with the tag that tells it apart from places of the same name:
+   * Suzhou (Jiangsu). `bare` leaves the tag out, where the places around it already say it.
+   */
+  function englishName(en, tag, bare) {
+    return tag && !bare ? t('place.tagged', { name: en, tag: tag }) : en;
   }
 
-  /** The same with the short name: 四川 Sichuan, or 四川. */
+  /**
+   * A place's name as text: 四川省 Sichuan in the English interface, 四川省 in a Chinese one.
+   * `bare` leaves out the tag of a shared English name (see englishName).
+   */
+  function fullName(unit, bare) {
+    return unit.name + (unit.en && !CHINESE ? ' ' + englishName(unit.en, unit.tag, bare) : '');
+  }
+
+  /** The same with the short name: 四川 Sichuan, 阿坝 Ngawa, or 四川 and 阿坝. */
   function briefName(unit) {
-    return unit.short + (unit.en && !CHINESE ? ' ' + unit.en : '');
+    const en = unit.enShort || unit.en;
+    return unit.short + (en && !CHINESE ? ' ' + en : '');
+  }
+
+  /**
+   * A place in the trail just above a place that shares its name, or one whose short name is a
+   * province's: a longer form made from its kind, so the two are told apart: 长沙市 Changsha City
+   * above 长沙县, 阿坝州 Ngawa Prefecture above 阿坝县, 海南州 Hainan Prefecture in Qinghai.
+   * A kind with no such form gives the full name.
+   */
+  function namesakeName(unit) {
+    const key = 'trail.long.' + unit.kind;
+    if (!TEXT.has(key)) return fullName(unit, true);
+    const en = unit.enShort || unit.en;
+    return TEXT.namesText(key, { name: unit.short }) + (en && !CHINESE ? ' ' + t(key, { name: en }) : '');
   }
 
   /** The name of a food in the eating table. */
@@ -1553,7 +1582,7 @@ window.FoodMapText.ready.then(function () {
       const up = units.get(unit.parent);
       title.append(el('button', { type: 'button', class: 'up', text: '‹ ' + fullName(up), onclick: () => selectRegion(up.id, { fly: true }) }));
     }
-    title.append(el('h2', null, el('span', { lang: NAMES_TAG, text: unit.name }), unit.en && !CHINESE ? el('span', { class: 'en', text: unit.en }) : null));
+    title.append(el('h2', null, el('span', { lang: NAMES_TAG, text: unit.name }), unit.en && !CHINESE ? el('span', { class: 'en', text: englishName(unit.en, unit.tag) }) : null));
     if (kindName('unit', unit.kind)) title.append(el('p', { class: 'kind', text: kindName('unit', unit.kind) }));
     panel.append(
       el('div', { class: 'panel-head' }, title, el('button', { type: 'button', class: 'close', 'aria-label': t('place.close'), text: '×', onclick: () => selectRegion(null, { fly: false }) }))
@@ -1704,6 +1733,10 @@ window.FoodMapText.ready.then(function () {
     const r = entry.record;
     if (!entry.layer) return '';
     if (!r.coord) return t('item.dot.none', { place: whereText(r, r.region) || regionName(r.region) });
+    if (r.toward) {
+      const named = place(r.toward);
+      if (named) return t('item.dot.toward', { place: fullName(named, true) });
+    }
     if (r.pulled) return t('item.dot.pulled');
     if (r.unused) return t('item.dot.unused');
     return r.approx ? t('item.dot.centre') : '';
@@ -1934,6 +1967,7 @@ window.FoodMapText.ready.then(function () {
     list.append(el('li', null, el('button', { type: 'button', text: t('trail.root'), onclick: () => selectRegion(null, { fly: true }) })));
     chain.forEach(function (unit, i) {
       // The place being shown has its full name; the places above it have their short ones.
+      // Neither carries the tag of a shared English name: the trail itself shows where it is.
       if (i === chain.length - 1) {
         // A button too: it brings the view back to this place as it was first shown, after
         // the map has been moved or zoomed. The Reset button, by contrast, shows the whole map.
@@ -1943,7 +1977,7 @@ window.FoodMapText.ready.then(function () {
             { 'aria-current': 'location' },
             el('button', {
               type: 'button',
-              text: fullName(unit),
+              text: fullName(unit, true),
               title: t('trail.reframe', { place: unit.name }),
               onclick: function () {
                 if (unit.frame) fitBox(unit.frame, 0.35, true);
@@ -1952,7 +1986,10 @@ window.FoodMapText.ready.then(function () {
           )
         );
       } else {
-        list.append(el('li', null, el('button', { type: 'button', text: briefName(unit), onclick: () => selectRegion(unit.id, { fly: true }) })));
+        // Just above a place of the same name, or named like a province, a longer form tells
+        // them apart (namesakeName). Provinces never have one: 吉林 Jilin above 吉林市.
+        const label = chain[i + 1].namesake || unit.likeProvince ? namesakeName(unit) : briefName(unit);
+        list.append(el('li', null, el('button', { type: 'button', text: label, onclick: () => selectRegion(unit.id, { fly: true }) })));
       }
     });
     trail.append(list);
@@ -2158,7 +2195,7 @@ window.FoodMapText.ready.then(function () {
   // The list of titles and place names is a file of its own, loaded the first time the search
   // box is used.
 
-  let searchIndex = null; // [{ text, label, sub, region, record }], once the file has loaded
+  let searchIndex = null; // [{ names, label, sub, region, record }], once the file has loaded
   let searchLoad = null;
   let searchFailed = false;
   let alike = null; // Map: a character -> the one that stands for its group, from the search file
@@ -2176,6 +2213,15 @@ window.FoodMapText.ready.then(function () {
     return out;
   }
 
+  /**
+   * A name or a search as it is compared: `plain`, and for letters without accents, spaces,
+   * apostrophes or hyphens, with ü and v as u. So "Hua Lian", "zoige" and "lvliang" find 花蓮縣,
+   * Zoigê and Lüliang.
+   */
+  function fold(text) {
+    return plain(text).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/v/g, 'u').replace(/[\s'’.\-]/g, '');
+  }
+
   function loadSearch() {
     if (searchLoad) return;
     searchLoad = loadScript('js/data/search.js?v=' + DATA.searchVersion).then(
@@ -2188,7 +2234,11 @@ window.FoodMapText.ready.then(function () {
         }
         TEXT.localise(file);
         const index = [];
-        for (const p of provinces) index.push({ text: plain(p.name + ' ' + p.short + ' ' + p.en), label: fullName(p), sub: t('search.province'), region: p.id });
+        const names = (list) => list.filter(Boolean).map(fold);
+        for (const p of provinces) {
+          const other = (file.provinces && file.provinces[p.id]) || [];
+          index.push({ names: names([p.name, p.short, p.en].concat(other)), label: fullName(p), sub: t('search.province'), region: p.id });
+        }
         // Places come in the order of the divisions table, so a third-level place belongs to
         // the nearest second-level one above it.
         let above = null;
@@ -2196,13 +2246,15 @@ window.FoodMapText.ready.then(function () {
           if (row[2] === 2) above = row;
           // In the English interface a name from a Traditional source is shown as written there.
           const path = regionName(provinceIdOf(row[0])) + (row[2] === 3 && above ? TEXT.writtenAs(above[0], 'name', above[1]) : '');
-          index.push({ text: plain(row[1] + (row[3] ? ' ' + row[3] : '')), label: TEXT.writtenAs(row[0], 'name', row[1]), sub: t('search.place', { path: path }), region: row[0] });
+          // row: id, name, depth, English name, its tag, other names (matched, never shown).
+          const label = TEXT.writtenAs(row[0], 'name', row[1]) + (row[3] && !CHINESE ? ' ' + englishName(row[3], row[4]) : '');
+          index.push({ names: names([row[1], row[3]].concat(row[5] || [])), label: label, sub: t('search.place', { path: path }), region: row[0] });
         }
         for (const id of Object.keys(file.records)) {
           for (const row of file.records[id]) {
             const key = file.kinds[row[1]];
             const one = LAYER[key] ? LAYER[key].one : DISHES.one;
-            index.push({ text: plain(row[0]), label: TEXT.writtenAs(row[2], 'title', row[0]), sub: one + ' · ' + regionName(id), region: id, record: row[2] || null });
+            index.push({ names: names([row[0]]), label: TEXT.writtenAs(row[2], 'title', row[0]), sub: one + ' · ' + regionName(id), region: id, record: row[2] || null });
           }
         }
         searchIndex = index;
@@ -2217,7 +2269,7 @@ window.FoodMapText.ready.then(function () {
   }
 
   function runSearch() {
-    const q = plain(searchInput.value.trim());
+    const q = fold(searchInput.value.trim());
     searchResults.textContent = '';
     if (!q) {
       searchResults.hidden = true;
@@ -2229,14 +2281,21 @@ window.FoodMapText.ready.then(function () {
       searchResults.append(el('li', { class: 'empty', text: searchFailed ? t('search.failed') : t('common.loading') }));
       return;
     }
-    // Whole-name matches first, then names that start with the words typed, then the rest.
-    // Within each group the order is provinces, places, dishes and the other records.
+    // Whole-name matches first, then names that start with what was typed, then the rest. Each
+    // of a thing's names counts (Chinese, English, pinyin), so "suzhou" puts 苏州市, 宿州市 and
+    // 肃州区 first. Within each group the order is provinces, places, dishes and other records.
     const hits = [];
     for (const item of searchIndex) {
-      const at = item.text.indexOf(q);
-      if (at === -1) continue;
-      const whole = at === 0 && (item.text.length === q.length || item.text.charAt(q.length) === ' ');
-      hits.push({ item: item, rank: whole ? 0 : at === 0 ? 1 : 2 });
+      let rank = 3;
+      for (const name of item.names) {
+        if (name === q) {
+          rank = 0;
+          break;
+        }
+        if (name.startsWith(q)) rank = Math.min(rank, 1);
+        else if (name.includes(q)) rank = Math.min(rank, 2);
+      }
+      if (rank < 3) hits.push({ item: item, rank: rank });
     }
     hits.sort((a, b) => a.rank - b.rank);
     if (!hits.length) {

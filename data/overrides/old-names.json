@@ -1,0 +1,574 @@
+{
+  "note": "Old romanizations of places' names, and a few well-known old names, which search finds but the page never shows. Each is one of the place's English aliases on Wikidata, chosen by hand: postal, Wade-Giles, French and dialect spellings of the present name (Pe-king, Tientsin, Amoy), and under \"why\" the old names that are not spellings of the present name (Canton, Mukden). Read by scripts/place_names.py, which scripts/import_divisions.py calls.",
+  "names": {
+    "cn:110000": [
+      "Pe-king",
+      "Pekin",
+      "Pei-ching",
+      "Peiping",
+      "Pei-p'ing"
+    ],
+    "cn:120000": [
+      "Tientsin",
+      "Tien-tsin"
+    ],
+    "cn:130000": [
+      "Hopeh"
+    ],
+    "cn:140000": [
+      "Shansi",
+      "Shan-si",
+      "Shan-hsi",
+      "Chansi"
+    ],
+    "cn:310000": [
+      "Shanghae"
+    ],
+    "cn:320000": [
+      "Kiangsu",
+      "Chiang-su"
+    ],
+    "cn:330000": [
+      "Chekiang",
+      "Che-kiang",
+      "Tchekiang"
+    ],
+    "cn:340000": [
+      "Anhwei",
+      "Nganhwei",
+      "Ngan-hui"
+    ],
+    "cn:350000": [
+      "Fukien",
+      "Fokien",
+      "Foukien",
+      "Fu-chien"
+    ],
+    "cn:360000": [
+      "Kiangsi",
+      "Kiang-hsi",
+      "Chiang-hsi"
+    ],
+    "cn:370000": [
+      "Shantung",
+      "Shantong",
+      "Chantong",
+      "Chantoung"
+    ],
+    "cn:410000": [
+      "Honan"
+    ],
+    "cn:420000": [
+      "Houpe",
+      "Hu-pei"
+    ],
+    "cn:430000": [
+      "Hounan"
+    ],
+    "cn:440000": [
+      "Kwangtung",
+      "Kuang-tung",
+      "Kwangtoung",
+      "Kwantoung"
+    ],
+    "cn:450000": [
+      "Kwangsi",
+      "Kuang-hsi",
+      "Kwang-hsi",
+      "Quangsi"
+    ],
+    "cn:500000": [
+      "Chunking"
+    ],
+    "cn:510000": [
+      "Szechwan",
+      "Szechuan",
+      "Sze-tschwan",
+      "Ssu-ch'uan",
+      "Setchouan",
+      "Sechuan",
+      "Sechuen",
+      "Setchuen",
+      "Setchouen",
+      "Sutchuen",
+      "Sz-chuan",
+      "Sz-chwan"
+    ],
+    "cn:520000": [
+      "Kweichow",
+      "Kweichou",
+      "Kweichew",
+      "Kuei-chou",
+      "Koei-chou",
+      "Koeitcheou"
+    ],
+    "cn:530000": [
+      "Younnan"
+    ],
+    "cn:540000": [
+      "Thibet",
+      "Hsi-tsang"
+    ],
+    "cn:610000": [
+      "Shensi",
+      "Shan-hsi"
+    ],
+    "cn:620000": [
+      "Kansu",
+      "Kansou",
+      "Kansuh"
+    ],
+    "cn:630000": [
+      "Tsinghai",
+      "Ching-hai"
+    ],
+    "cn:640000": [
+      "Ningsia",
+      "Ning-hsia"
+    ],
+    "cn:650000": [
+      "Sinkiang",
+      "Sinkeang",
+      "Hsin-chiang"
+    ],
+    "cn:130300": [
+      "Chinwangtao"
+    ],
+    "cn:130500": [
+      "Hsingtai"
+    ],
+    "cn:130700": [
+      "Changkiakow",
+      "Changchiakow",
+      "Chang-chia-k'ou",
+      "Kalgan"
+    ],
+    "cn:130800": [
+      "Jehol"
+    ],
+    "cn:150100": [
+      "Kwei-hwa",
+      "Kwei-sui",
+      "Kuku Khoto"
+    ],
+    "cn:150200": [
+      "Pao-tou"
+    ],
+    "cn:210100": [
+      "Mukden"
+    ],
+    "cn:210600": [
+      "Antung"
+    ],
+    "cn:210700": [
+      "Chinchow"
+    ],
+    "cn:210800": [
+      "Newchwang"
+    ],
+    "cn:220100": [
+      "Hsinking"
+    ],
+    "cn:220200": [
+      "Kirin",
+      "Chi-lin"
+    ],
+    "cn:230200": [
+      "Tsitsihar",
+      "Tsitcikar",
+      "Tzitzikar",
+      "Chichihar"
+    ],
+    "cn:230600": [
+      "Taching"
+    ],
+    "cn:230800": [
+      "Kiamusze"
+    ],
+    "cn:231000": [
+      "Mutankiang"
+    ],
+    "cn:310114": [
+      "Kiating"
+    ],
+    "cn:310117": [
+      "Sungkiang"
+    ],
+    "cn:310118": [
+      "Chingpu"
+    ],
+    "cn:320100": [
+      "Nan-king",
+      "Nankin"
+    ],
+    "cn:320300": [
+      "Süchow",
+      "Hsü-chou"
+    ],
+    "cn:320500": [
+      "Soochow",
+      "Soochoo",
+      "Suchow",
+      "Su-chou",
+      "Suchew",
+      "Soutchew"
+    ],
+    "cn:320600": [
+      "Nantung"
+    ],
+    "cn:320800": [
+      "Hwaian"
+    ],
+    "cn:321000": [
+      "Yangchow",
+      "Yang-chou"
+    ],
+    "cn:321100": [
+      "Chinkiang",
+      "Chenkiang",
+      "Chingkiang",
+      "Chen-chiang",
+      "Tchinkiang"
+    ],
+    "cn:321300": [
+      "Sutsien"
+    ],
+    "cn:330100": [
+      "Hangchow",
+      "Hang-chou",
+      "Hangchau",
+      "Hangchew",
+      "Hangtchew"
+    ],
+    "cn:330200": [
+      "Ningpo",
+      "Nimpo"
+    ],
+    "cn:330300": [
+      "Wen-chau",
+      "Wentchew"
+    ],
+    "cn:330400": [
+      "Kashing",
+      "Kiahing",
+      "Kiahsing"
+    ],
+    "cn:330600": [
+      "Shaohing",
+      "Shaohsing",
+      "Shaoshing"
+    ],
+    "cn:330700": [
+      "Kinhoa",
+      "Chinhua"
+    ],
+    "cn:330900": [
+      "Chusan"
+    ],
+    "cn:340100": [
+      "Hofei"
+    ],
+    "cn:340200": [
+      "Wou-hou"
+    ],
+    "cn:340300": [
+      "Pengpu"
+    ],
+    "cn:341200": [
+      "Fou-Yang"
+    ],
+    "cn:341500": [
+      "Liuan"
+    ],
+    "cn:341700": [
+      "Chih-chou",
+      "Che-chow"
+    ],
+    "cn:350100": [
+      "Foochow",
+      "Fu-chou",
+      "Fuchew",
+      "Foutchew",
+      "Hockchew"
+    ],
+    "cn:350200": [
+      "Amoy",
+      "Aimoey",
+      "Hiamen",
+      "Hsiamen",
+      "Siamen"
+    ],
+    "cn:350300": [
+      "Pu-tien"
+    ],
+    "cn:350500": [
+      "Chuanchow",
+      "Ch'üan-chou",
+      "Chinchew",
+      "Choanchiu",
+      "Chuan Chiew",
+      "Tsuantchew",
+      "Tsuan-tsiu",
+      "Cyuanjhou"
+    ],
+    "cn:350600": [
+      "Chiang-chiu",
+      "Chiangchew",
+      "Tsiang-tsiu"
+    ],
+    "cn:360200": [
+      "Kingtechen",
+      "King-teh-chen",
+      "Ching-te-chen",
+      "King-te-tchin"
+    ],
+    "cn:360400": [
+      "Kiukiang",
+      "Kewkiang",
+      "Kew Keang",
+      "Kioukiang",
+      "Chiu-chiang"
+    ],
+    "cn:360700": [
+      "Kanchow",
+      "Kan-chew",
+      "Can-tcheou"
+    ],
+    "cn:370100": [
+      "Tsinan",
+      "Tse-nan",
+      "Chi-nan"
+    ],
+    "cn:370200": [
+      "Tsingtao",
+      "Çingtao"
+    ],
+    "cn:370300": [
+      "Tzu-po"
+    ],
+    "cn:370600": [
+      "Yentai",
+      "Chefoo"
+    ],
+    "cn:371000": [
+      "Weihaiwei"
+    ],
+    "cn:371100": [
+      "Jihchao"
+    ],
+    "cn:371300": [
+      "Lin-i"
+    ],
+    "cn:371400": [
+      "Tehchow"
+    ],
+    "cn:410100": [
+      "Cheng-chow"
+    ],
+    "cn:410200": [
+      "Kai-fong",
+      "Kaifoung"
+    ],
+    "cn:410300": [
+      "Loyang"
+    ],
+    "cn:411100": [
+      "Loho"
+    ],
+    "cn:411200": [
+      "Sanmenhsia"
+    ],
+    "cn:411600": [
+      "Chowkow"
+    ],
+    "cn:411700": [
+      "Chumatien"
+    ],
+    "cn:420500": [
+      "I-chang",
+      "Itchang"
+    ],
+    "cn:420800": [
+      "Kingmen"
+    ],
+    "cn:421000": [
+      "Kingchow"
+    ],
+    "cn:430600": [
+      "Yochow"
+    ],
+    "cn:430700": [
+      "Changteh"
+    ],
+    "cn:440100": [
+      "Kwangchow",
+      "Kwongchow",
+      "Kuang-chou",
+      "Canton"
+    ],
+    "cn:440200": [
+      "Shiukwan",
+      "Shao-kuan",
+      "Shaukuan"
+    ],
+    "cn:440300": [
+      "Sham Chun"
+    ],
+    "cn:440500": [
+      "Swatow",
+      "Souatoou"
+    ],
+    "cn:440800": [
+      "Tsamkong",
+      "Chankiang",
+      "Tsankiang",
+      "Kwangchouwan"
+    ],
+    "cn:441500": [
+      "Swabue"
+    ],
+    "cn:441700": [
+      "Yangkiang",
+      "Yeungkong"
+    ],
+    "cn:445100": [
+      "Chaochow",
+      "Teochew",
+      "Chiuchow",
+      "Tiô-chiu",
+      "Tiô-tsiu",
+      "Diê-ziu"
+    ],
+    "cn:450200": [
+      "Liuchow"
+    ],
+    "cn:450300": [
+      "Kweilin"
+    ],
+    "cn:450400": [
+      "Wuchow",
+      "Ng Chow"
+    ],
+    "cn:450500": [
+      "Pakhoi"
+    ],
+    "cn:451000": [
+      "Bose"
+    ],
+    "cn:460100": [
+      "Hoihow",
+      "Hoihaou",
+      "Hoi Hao"
+    ],
+    "cn:500118": [
+      "Yung-chuan"
+    ],
+    "cn:500236": [
+      "Feng-chieh"
+    ],
+    "cn:510100": [
+      "Chengtu",
+      "Chengdou",
+      "Tchengtou",
+      "Tchingtou"
+    ],
+    "cn:520100": [
+      "Kweiyang"
+    ],
+    "cn:530300": [
+      "Kütsing"
+    ],
+    "cn:530600": [
+      "Chaotung"
+    ],
+    "cn:530700": [
+      "Likiang",
+      "Li-chiang"
+    ],
+    "cn:540100": [
+      "Lassa",
+      "Lhassa"
+    ],
+    "cn:540200": [
+      "Xigazê",
+      "Shigatzé"
+    ],
+    "cn:540300": [
+      "Qamdo",
+      "Tsiamdo"
+    ],
+    "cn:540400": [
+      "Nyangchi",
+      "Nyingtri"
+    ],
+    "cn:540600": [
+      "Nagchu"
+    ],
+    "cn:610100": [
+      "Sian",
+      "Hsi-an",
+      "Singan",
+      "Si-ngan"
+    ],
+    "cn:620100": [
+      "Lanchow",
+      "Lan-chou",
+      "Lantcheou"
+    ],
+    "cn:630100": [
+      "Sining",
+      "Hsi-ning"
+    ],
+    "cn:632600": [
+      "Golok"
+    ],
+    "cn:632700": [
+      "Yulshul",
+      "Yüxü"
+    ],
+    "cn:632800": [
+      "Haihsi"
+    ],
+    "cn:640200": [
+      "Shih-tsui-tzu",
+      "Chetsouidze"
+    ],
+    "cn:650100": [
+      "Urumtsi",
+      "Ouroumtsi",
+      "Wu-lu-mu-ch'i",
+      "Tihwa"
+    ],
+    "cn:650200": [
+      "Karamai"
+    ],
+    "cn:650400": [
+      "Turfan",
+      "Tourfan",
+      "Tourpan"
+    ],
+    "cn:650500": [
+      "Kumul",
+      "Qumul"
+    ],
+    "cn:654000": [
+      "Yili"
+    ]
+  },
+  "why": {
+    "cn:110000": "Peiping, Pei-p'ing: 北平, the city's name 1928–1949.",
+    "cn:130700": "Kalgan: From the Mongolian name.",
+    "cn:130800": "Jehol: 热河, the old province and the city's former name.",
+    "cn:150100": "Kwei-hwa, Kwei-sui, Kuku Khoto: 归化 and 归绥, former names; Kuku Khoto, the Mongolian name.",
+    "cn:210100": "Mukden: The Manchu name.",
+    "cn:210600": "Antung: 安东, the former name.",
+    "cn:210800": "Newchwang: 牛庄, the treaty port's name.",
+    "cn:220100": "Hsinking: 新京, the Manchukuo capital's name.",
+    "cn:370600": "Chefoo: 芝罘, the former name.",
+    "cn:371000": "Weihaiwei: 威海卫, the former name, British-leased 1898–1930.",
+    "cn:440100": "Canton: From Guangdong; the city's usual English name until the 1950s.",
+    "cn:440800": "Kwangchouwan: 广州湾, the French-leased territory.",
+    "cn:650100": "Tihwa: 迪化, the former name.",
+    "cn:650500": "Kumul, Qumul: The Uyghur name."
+  }
+}

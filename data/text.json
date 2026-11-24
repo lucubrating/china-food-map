@@ -478,6 +478,10 @@
       "en": "The coordinates in the notice fall just outside the place, so the dot has been moved inside its border.",
       "zh": "公告所载坐标略出所在地区之外，圆点已移入其边界以内。"
     },
+    "item.dot.toward": {
+      "en": "The dot sits in {place}, which the entry is named after; the entry covers more than that.",
+      "zh": "圆点标在名称所指的{place}，产品范围不止于此。"
+    },
     "item.dot.none": {
       "en": "This entry has no dot of its own: the source places it no more closely than {place}.",
       "zh": "此项在地图上没有单独的圆点：来源只将其列在{place}名下。"
@@ -601,6 +605,22 @@
     "place.empty": {
       "en": "Nothing is listed for {place} yet.",
       "zh": "暂无{place}的条目。"
+    },
+    "trail.long.prefecture-level-city": {
+      "en": "{name} City",
+      "zh": "{name}市"
+    },
+    "trail.long.autonomous-prefecture": {
+      "en": "{name} Prefecture",
+      "zh": "{name}州"
+    },
+    "trail.long.prefecture": {
+      "en": "{name} Prefecture",
+      "zh": "{name}地区"
+    },
+    "place.tagged": {
+      "en": "{name} ({tag})",
+      "zh": "{name}（{tag}）"
     },
     "place.see": {
       "en": "See {place}",
