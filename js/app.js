@@ -527,7 +527,8 @@ window.FoodMapText.ready.then(function () {
   // Places opened on the map without being chosen: one by a soft click (Shift), which a new soft
   // click replaces, and any number by background clicks (Cmd or Ctrl). A hard
   // choice (a click, Esc, the trail, search) clears them all. See "soft, view and background clicks".
-  const peeks = { soft: null, background: new Set(), round: 0 }; // round: moved on by each clearing
+  // round: moved on by each clearing. history: the steps that opened or erased them, for Z.
+  const peeks = { soft: null, background: new Set(), round: 0, history: [], future: [] };
 
   /** The ids of the places open on the map: the chosen one and the ones opened without choosing. */
   function openIds() {
@@ -867,6 +868,7 @@ window.FoodMapText.ready.then(function () {
         points.set(item.record.id, { node: node, x: xy[0], y: xy[1], record: item.record, layer: item.layer });
       });
     }
+    renderLegend(); // its counts of the dots on the map
   }
 
   // ---------- faint dots ----------
@@ -1227,8 +1229,9 @@ window.FoodMapText.ready.then(function () {
   //   Cmd/Ctrl: background        -                yes             -     many, adding up
   // On a dot, the view's move centres it and there is nothing to open: a soft or view click
   // centres it, a background click does nothing, a click opens its entry. A background or soft
-  // click on an open place lands on one of its parts and opens that. Any hard choice clears what
-  // soft and background clicks opened; so does Esc at the whole map. A view click leaves them.
+  // click on an open place lands on one of its parts and opens that. Any change of the choice,
+  // and Esc at the whole map, closes what soft and background clicks opened, as a step that Z
+  // undoes (see "undoing openings"). A view click leaves them.
 
   // Where Ctrl with a click is the right-click (some systems), the browser opens its menu for it
   // instead; such a press is then not a background click (menuOpened, kept from the press on).
@@ -1245,18 +1248,119 @@ window.FoodMapText.ready.then(function () {
     return command ? 'background' : null;
   }
 
+  // ---------- undoing openings ----------
+  //
+  // Each soft click, background click, A, B and Q is a step in peeks.history, with the view from
+  // just before it (hidden keys, like A and B):
+  //   Z        undoes the last step; the view stays
+  //   Shift+Z  undoes it and puts the view back as it was before it
+  //   Q        closes every place opened without choosing, keeping the choice and the view; a
+  //            step itself, so Z brings them back
+  //   Y        redoes the last step undone; Shift+Y also moves the view as the step did (only a
+  //            soft click moved it: its place is framed again). A new step clears what Y could
+  //            redo
+  // Undoing a soft click brings back the soft place it replaced. A and B are one step each, and
+  // only when they open something new. Any change of the choice (a click, the trail, search,
+  // the digit keys, Esc, back and forward, the close button) closes them as a step too, like Q;
+  // Z then brings the places back, not the old choice. Only a fresh load starts a new history.
+
+  function newStep(kind) {
+    return { kind: kind, ids: [], view: { cx: view.cx, cy: view.cy, w: view.w } };
+  }
+
+  function pushStep(step) {
+    peeks.history.push(step);
+    peeks.future = []; // a new step: nothing left to redo
+  }
+
+  function redoStep(withView) {
+    const step = peeks.future.pop();
+    if (!step) return;
+    step.undone = false;
+    if (step.kind === 'soft') peeks.soft = step.after;
+    else if (step.kind === 'add') for (const id of step.ids) peeks.background.add(id);
+    else if (step.kind === 'erase') {
+      peeks.soft = null;
+      for (const id of step.ids) peeks.background.delete(id);
+    }
+    peeks.history.push(step);
+    refreshMap();
+    if (withView && step.kind === 'soft') {
+      const unit = units.get(step.after);
+      if (unit && unit.frame) fitBox(unit.frame, 0.35, true);
+    }
+  }
+
+  function undoStep(withView) {
+    let step = peeks.history.pop();
+    while (step && step.kind === 'add' && !step.ids.length) step = peeks.history.pop(); // opened nothing
+    if (!step) return;
+    step.undone = true; // files still arriving for it (B) add nothing
+    peeks.future.push(step); // for Y
+    if (step.kind === 'soft') peeks.soft = step.before;
+    else if (step.kind === 'add') for (const id of step.ids) peeks.background.delete(id);
+    else if (step.kind === 'erase') {
+      peeks.soft = step.before;
+      for (const id of step.ids) peeks.background.add(id);
+    }
+    refreshMap();
+    if (withView) {
+      // The view exactly as it was, not framed again (framing would make room for the card).
+      stopFlight();
+      setView(step.view.cx, step.view.cy, step.view.w);
+      movedByHand = true;
+    }
+  }
+
+  /** The close button of a place's page (and X there): no place chosen and the view as it is;
+   *  like any change of the choice, it closes the places opened without choosing as a step. */
+  function closePlace() {
+    selectRegion(null, { fly: false });
+  }
+
+  /** Close the places opened without choosing, as one step that Z undoes (Q, and any change of
+   *  the choice). `quiet` leaves the redrawing to the caller. */
+  function erasePeeks(quiet) {
+    if (!peeks.soft && !peeks.background.size) return;
+    const step = newStep('erase');
+    step.before = peeks.soft;
+    step.ids = Array.from(peeks.background);
+    pushStep(step);
+    peeks.soft = null;
+    peeks.background.clear();
+    if (!quiet) refreshMap();
+  }
+
+  /** Add places to the background as part of a step, recording only the ones that are new. */
+  function addToBackground(step, ids) {
+    if (step.undone) return;
+    for (const id of ids) {
+      if (peeks.background.has(id)) continue;
+      peeks.background.add(id);
+      step.ids.push(id);
+    }
+  }
+
   function softOpen(shape) {
     const unit = units.get(shape.getAttribute('data-id'));
     if (!unit) return;
-    peeks.soft = unit.id;
-    refreshMap();
+    if (unit.id !== peeks.soft) {
+      const step = newStep('soft');
+      step.before = peeks.soft;
+      step.after = unit.id;
+      pushStep(step);
+      peeks.soft = unit.id;
+      refreshMap();
+    }
     viewShape(shape);
   }
 
   function backgroundOpen(shape) {
     const unit = units.get(shape.getAttribute('data-id'));
-    if (!unit || !opens(unit)) return;
-    peeks.background.add(unit.id);
+    if (!unit || !opens(unit) || peeks.background.has(unit.id)) return;
+    const step = newStep('add');
+    addToBackground(step, [unit.id]);
+    pushStep(step);
     refreshMap();
   }
 
@@ -1268,32 +1372,31 @@ window.FoodMapText.ready.then(function () {
   //            since A marks the provinces open at once and B waits for the same files.
 
   function openAllProvinces() {
-    for (const p of provinces) if (opens(p)) peeks.background.add(p.id);
+    const step = newStep('add');
+    addToBackground(step, provinces.filter(opens).map((p) => p.id));
+    if (step.ids.length) pushStep(step);
     refreshMap();
   }
 
   function openAllCities() {
     const list = openProvinces();
     const round = peeks.round;
+    // One step, filled in as the provinces' files arrive; Z on it before then undoes what is in.
+    const step = newStep('add');
+    pushStep(step);
     for (const p of list) {
       if (!opens(p)) continue;
-      peeks.background.add(p.id); // the province itself too, where its places open no further
+      addToBackground(step, [p.id]); // the province itself too, where its places open no further
       // A province's places are known once its own file is in; a hard choice meanwhile wins.
       loadKids(p).then(
         function () {
           if (peeks.round !== round) return;
-          for (const kid of p.kids || []) if (opens(kid)) peeks.background.add(kid.id);
+          addToBackground(step, (p.kids || []).filter(opens).map((kid) => kid.id));
           refreshMap();
         },
         (error) => console.warn(error.message)
       );
     }
-  }
-
-  function clearPeeks() {
-    peeks.soft = null;
-    peeks.background.clear();
-    peeks.round += 1;
     refreshMap();
   }
 
@@ -1598,15 +1701,23 @@ window.FoodMapText.ready.then(function () {
         },
       })
     );
+    // With places open, each category's count reads "dots on the map / all": the full dots drawn
+    // in the open provinces, of all its dots (the faint ones of the closed provinces not counted).
     const list = el('ul', { class: 'legend-layers' });
+    const drawnOf = new Map(LAYERS.map((layer) => [layer, 0]));
+    for (const entry of points.values()) if (timeline.accepts(entry.record)) drawnOf.set(entry.layer, drawnOf.get(entry.layer) + 1);
     for (const layer of LAYERS) {
       const placed = placedCount(layer);
+      const shown = drawnOf.get(layer);
+      const open = pointsFor.size > 0;
       const item = el(
         'li',
-        { class: layerVisible(layer) ? '' : 'is-off' },
+        { class: layerVisible(layer) ? '' : 'is-off', title: open ? t('legend.shown', { shown: shown, total: placed }) : null },
         el('span', { class: 'swatch swatch-' + layer.key }),
         el('span', { class: 'legend-name', text: layer.label }),
-        el('span', { class: 'legend-count', text: String(placed) })
+        open
+          ? el('span', { class: 'legend-count' }, String(shown), el('span', { class: 'legend-slash', text: '\u2009/\u2009' }), String(placed))
+          : el('span', { class: 'legend-count', text: String(placed) })
       );
       list.append(item);
     }
@@ -1836,7 +1947,7 @@ window.FoodMapText.ready.then(function () {
     title.append(el('h2', null, el('span', { lang: NAMES_TAG, text: unit.name }), unit.en && !CHINESE ? el('span', { class: 'en', text: englishName(unit.en, unit.tag) }) : null));
     if (kindName('unit', unit.kind)) title.append(el('p', { class: 'kind', text: kindName('unit', unit.kind) }));
     panel.append(
-      el('div', { class: 'panel-head' }, title, el('button', { type: 'button', class: 'close', 'aria-label': t('place.close'), onclick: () => selectRegion(null, { fly: false }) }, crossIcon()))
+      el('div', { class: 'panel-head' }, title, el('button', { type: 'button', class: 'close', 'aria-label': t('place.close'), title: t('tip.key', { label: t('place.close'), key: 'X' }), onclick: closePlace }, crossIcon()))
     );
 
     if (!store.has(province.id)) {
@@ -2016,7 +2127,7 @@ window.FoodMapText.ready.then(function () {
     title.append(el('h2', null, el('span', { lang: NAMES_TAG, text: r.title })));
     title.append(el('p', { class: 'kind', text: kind ? category + ' · ' + kind : category }));
     panel.append(
-      el('div', { class: 'panel-head' }, title, el('button', { type: 'button', class: 'close', 'aria-label': t('back.to', { place: fullName(from) }), onclick: closeItem }, crossIcon()))
+      el('div', { class: 'panel-head' }, title, el('button', { type: 'button', class: 'close', 'aria-label': t('back.to', { place: fullName(from) }), title: t('tip.key', { label: t('back.to', { place: fullName(from) }), key: 'X' }), onclick: closeItem }, crossIcon()))
     );
 
     // An introduction, when one has been written. It arrives with the details below.
@@ -2717,8 +2828,9 @@ window.FoodMapText.ready.then(function () {
    */
   function selectRegion(id, options) {
     const move = options || {};
-    peeks.soft = null; // a hard choice clears the places opened without choosing
-    peeks.background.clear();
+    // Any change of the choice closes the places opened without choosing, as a step Z undoes;
+    // files still arriving for them add no more.
+    erasePeeks(true);
     peeks.round += 1;
     wanted = null;
     wantedFocus = null;
@@ -3210,8 +3322,8 @@ window.FoodMapText.ready.then(function () {
         // Step back out one level: a city to its province, a province to the whole map.
         selectRegion(parentOf(state.region), { fly: true });
       } else if (peeks.soft || peeks.background.size) {
-        // At the whole map, Esc first closes what soft and background clicks opened ...
-        clearPeeks();
+        // At the whole map, Esc first closes what soft and background clicks opened (as Q) ...
+        erasePeeks();
       } else if (fullscreenNow()) {
         // ... then leaves full screen (and the immersive view F brought with it) ...
         exitFullscreen();
@@ -3229,13 +3341,18 @@ window.FoodMapText.ready.then(function () {
   //   + (or =)  zoom in            − (or _)  zoom out            H  the whole map in view (the house)
   //   0  China, nothing chosen      1, 2, 3  the place at that level of the trail, as a click on it
   //   R  the place shown back in view (the trail's last item)
+  //   X  the panel's close button: from a place, no place chosen, the view unchanged (0 also
+  //      frames the whole map) and the places opened without choosing closed as an undoable
+  //      step; from an entry, back to its place
   //   Shift+0 to Shift+3  that level's place in view, without choosing it (Shift+0 is H); read
   //      by the key's position, as Shift turns the digits into other characters
   //   M  map only (immersive view)  F  full screen, with the map only
   //   P  the panel's next height, or hidden   L  the legend   C  the trail, buttons and legend
   //      (no button shows these three; see "views by key alone")
   //   A  every province opened in the background   B  every city of the open provinces
-  //      (also hidden; see "soft, view and background clicks")
+  //   Z  undo the last opening (Shift+Z: and its move of the view)   Q  close all those openings
+  //   Y  redo what Z undid (Shift+Y: and its move of the view)
+  //      (also hidden; see "soft, view and background clicks" and "undoing openings")
   //   arrows  move the map while it has the focus (Tab to a place on it), or after a click on
   //           it while nothing else has the focus (a click that opens a place replaces the
   //           shape clicked, and the focus falls back to the page), so they never take over
@@ -3278,6 +3395,12 @@ window.FoodMapText.ready.then(function () {
     if (key === '+' || key === '=') zoomMiddle(1 / 1.6);
     else if (key === '-' || key === '_' || key === '−') zoomMiddle(1.6);
     else if (key === 'h' || key === 'H') fitBox(home, CONFIG.margin, true);
+    else if (key === 'x' || key === 'X') {
+      // The panel's close button: from a place, no place chosen (the view stays); from an entry,
+      // back to its place.
+      const close = panel.querySelector('.panel-head .close');
+      if (close) close.click();
+    }
     else if (/^[0-3]$/.test(key) || key === 'r' || key === 'R') trailKey(key);
     else if (e.shiftKey && /^Digit[0-3]$/.test(e.code)) viewLevel(Number(e.code.slice(5)));
     else if (key === 'm' || key === 'M') setImmersive(!isImmersive());
@@ -3287,6 +3410,9 @@ window.FoodMapText.ready.then(function () {
     else if (key === 'c' || key === 'C') toggleRootClass('is-bare');
     else if (key === 'a' || key === 'A') openAllProvinces();
     else if (key === 'b' || key === 'B') openAllCities();
+    else if (key === 'z' || key === 'Z') undoStep(e.shiftKey);
+    else if (key === 'y' || key === 'Y') redoStep(e.shiftKey);
+    else if (key === 'q' || key === 'Q') erasePeeks();
     else if (key.slice(0, 5) === 'Arrow' && mapHasKeys(e)) {
       // A tenth of the map in view per press.
       const h = view.w * (size.H / size.W);
@@ -3304,7 +3430,8 @@ window.FoodMapText.ready.then(function () {
   // Both switches load the page again (js/i18n.js says so with the event foodmap:switch just
   // before). The view goes along, in this tab's session storage, for the next load only: a view
   // framed on purpose is framed again for the new layout, one moved by hand keeps its centre and
-  // zoom. Any other load (a reload, back, a link) frames the place afresh.
+  // zoom. So do the places opened without choosing, with their history for Z. Any other load (a
+  // reload, back, a link) starts afresh.
 
   const CARRY_KEY = 'foodmap-view';
 
@@ -3314,6 +3441,8 @@ window.FoodMapText.ready.then(function () {
       item: state.item,
       view: { cx: view.cx, cy: view.cy, w: view.w },
       frame: !movedByHand && lastFrame && lastFrame.region === state.region ? { box: lastFrame.box, pad: lastFrame.pad } : null,
+      // The places opened without choosing go along too, with their history for Z.
+      peeks: { soft: peeks.soft, background: Array.from(peeks.background), history: peeks.history, future: peeks.future },
     };
     try {
       sessionStorage.setItem(CARRY_KEY, JSON.stringify(saved));
@@ -3378,6 +3507,13 @@ window.FoodMapText.ready.then(function () {
   selectRegion(params.get('region'), { jump: !carried, keepItem: true });
   if (state.item) showItem(state.item);
   if (carried) {
+    if (carried.peeks) {
+      peeks.soft = carried.peeks.soft || null;
+      peeks.background = new Set(carried.peeks.background || []);
+      peeks.history = carried.peeks.history || [];
+      peeks.future = carried.peeks.future || [];
+      refreshMap();
+    }
     measure();
     if (carried.frame) fitBox(carried.frame.box, carried.frame.pad, false);
     else {

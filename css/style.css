@@ -885,6 +885,12 @@ button:focus-visible,
   font-variant-numeric: tabular-nums;
 }
 
+/* "dots on the map / all", right-aligned as one piece like a single number, with even, thin
+   spaces around a quieter slash. */
+.legend-slash {
+  color: var(--muted);
+}
+
 .legend-metric {
   margin-top: 8px;
   padding-top: 8px;
@@ -2204,11 +2210,13 @@ th {
   grid-template-columns: minmax(0, 1fr);
 }
 
+/* Hidden but keeping their room (the card's top stop is measured from the map buttons); like
+   anything hidden this way, they take no clicks, so the map beneath them works as elsewhere. */
 :root.is-legend-off .legend,
 :root.is-bare .legend,
 :root.is-bare .trail,
 :root.is-bare .map-tools {
-  display: none;
+  visibility: hidden;
 }
 
 @media (max-width: 743px), (pointer: coarse) and (max-height: 500px) {

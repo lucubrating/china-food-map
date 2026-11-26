@@ -213,6 +213,10 @@
       "en": "Hide",
       "zh": "收起"
     },
+    "legend.shown": {
+      "en": "{shown} of {total} shown as full dots",
+      "zh": "共 {total} 个，其中 {shown} 个以完整圆点显示"
+    },
     "legend.label": {
       "en": "Legend",
       "zh": "图例"
@@ -483,6 +487,10 @@
     "back.to": {
       "en": "Back to {place}",
       "zh": "返回{place}"
+    },
+    "tip.key": {
+      "en": "{label} ({key})",
+      "zh": "{label}（{key}）"
     },
     "item.since.products": {
       "en": "Year of the notice",
