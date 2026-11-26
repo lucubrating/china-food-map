@@ -122,6 +122,22 @@
   for (const name of ['placeholder', 'aria-label', 'title']) {
     for (const node of document.querySelectorAll('[data-t-' + name + ']')) node.setAttribute(name, t(node.getAttribute('data-t-' + name)));
   }
+  // A touch screen has no keyboard shortcuts, and a narrow box no room for them, so a text may
+  // have a short form: data-t-placeholder-touch beside data-t-placeholder. A box narrower than
+  // 300 px takes it, checked again whenever its width changes.
+  const touch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  const shortened = document.querySelectorAll('[data-t-placeholder-touch]');
+  function fitPlaceholders() {
+    for (const node of shortened) {
+      const short = touch || (node.offsetWidth > 0 && node.offsetWidth < 300);
+      node.setAttribute('placeholder', t(node.getAttribute(short ? 'data-t-placeholder-touch' : 'data-t-placeholder')));
+    }
+  }
+  fitPlaceholders();
+  if (window.ResizeObserver) {
+    const watch = new ResizeObserver(fitPlaceholders);
+    for (const node of shortened) watch.observe(node);
+  }
 
   // ---------- the switch ----------
 
@@ -160,7 +176,16 @@
     remember(key);
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
+    document.dispatchEvent(new Event('foodmap:switch')); // the map keeps its view (js/app.js)
     location.replace(e.currentTarget.href);
+  }
+
+  /** An element with a class and a text, either of which may be left out. */
+  function el(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text) node.textContent = text;
+    return node;
   }
 
   const links = [];
@@ -179,6 +204,7 @@
     for (const language of FILE.languages) {
       // Each choice is written in its own language, whatever language the page is in.
       const link = document.createElement('a');
+      // The short form on the switch; the full name is its hover tip and spoken label.
       link.textContent = language.short;
       link.lang = language.tag;
       link.hreflang = language.tag;
@@ -191,12 +217,15 @@
     }
   }
 
-  // ---------- light and dark ----------
+  // ---------- light and dark, and the layout ----------
   //
   // Three icons: the system's setting, light, dark. js/theme.js keeps the choice and applies it;
-  // nothing is loaded again and the address does not change.
+  // nothing is loaded again and the address does not change. Beside them, two icons for the
+  // layouts, simple and modern; choosing the other one loads the page again, as it is built
+  // differently.
 
   const THEME = window.FoodMapTheme;
+  let drawLayoutIcons = null; // set below once the layout switch exists: (onPhone) => void
   const themeHolder = document.getElementById('theme-switch');
   if (THEME && themeHolder) {
     const NS = 'http://www.w3.org/2000/svg';
@@ -212,6 +241,7 @@
     for (const choice of THEME.choices) {
       const button = document.createElement('button');
       button.type = 'button';
+      button.className = 'theme-choice';
       const svg = document.createElementNS(NS, 'svg');
       svg.setAttribute('viewBox', '0 0 16 16');
       svg.setAttribute('aria-hidden', 'true');
@@ -232,6 +262,87 @@
       themeHolder.append(button);
       buttons.push({ choice: choice, node: button });
     }
+
+    // Each layout as it looks on the screen in hand: an outline for the screen, and a filled
+    // shape for the panel. On a phone (upright) the panel slid up over the lower part (modern) or
+    // a bar across the middle (simple); on a wide screen (landscape) a small card floating at the
+    // lower right (modern) or a column beside the map (simple). The icons change with the screen
+    // (drawLayoutIcons, below).
+    const PHONE_OUTLINE = 'M4.5 1.5h7a1.5 1.5 0 0 1 1.5 1.5v10a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 13V3a1.5 1.5 0 0 1 1.5-1.5z';
+    const WIDE_OUTLINE = 'M3 3h10a1.5 1.5 0 0 1 1.5 1.5v7A1.5 1.5 0 0 1 13 13H3a1.5 1.5 0 0 1-1.5-1.5v-7A1.5 1.5 0 0 1 3 3z';
+    const LAYOUT_ICONS = {
+      phone: {
+        sheet: [[PHONE_OUTLINE], ['M3 10a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 13z', 'solid']],
+        bar: [[PHONE_OUTLINE], ['M3 7.2h10v2.6H3z', 'solid']],
+      },
+      wide: {
+        sheet: [[WIDE_OUTLINE], ['M9.3 6.5h3.4a.8.8 0 0 1 .8.8v3.4a.8.8 0 0 1-.8.8H9.3a.8.8 0 0 1-.8-.8V7.3a.8.8 0 0 1 .8-.8z', 'solid']],
+        bar: [[WIDE_OUTLINE], ['M10 3h3a1.5 1.5 0 0 1 1.5 1.5v7A1.5 1.5 0 0 1 13 13h-3z', 'solid']],
+      },
+    };
+    const layoutIcons = [];
+    if (THEME.layouts) {
+      const layoutGroup = el('div', 'lang theme layout-switch');
+      layoutGroup.setAttribute('role', 'group');
+      layoutGroup.setAttribute('aria-label', t('layout.label'));
+      for (const choice of THEME.layouts) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        const svg = document.createElementNS(NS, 'svg');
+        svg.setAttribute('viewBox', '0 0 16 16');
+        svg.setAttribute('aria-hidden', 'true');
+        layoutIcons.push({ choice: choice, svg: svg });
+        button.append(svg);
+        button.title = choice === 'sheet' ? t('layout.sheet') : t('layout.bar');
+        button.setAttribute('aria-label', button.title);
+        button.setAttribute('aria-pressed', String(choice === THEME.layout()));
+        button.addEventListener('click', function () {
+          if (choice === THEME.layout()) return;
+          THEME.setLayout(choice);
+          document.dispatchEvent(new Event('foodmap:switch')); // the map keeps its view (js/app.js)
+          location.reload();
+        });
+        layoutGroup.append(button);
+      }
+      themeHolder.after(layoutGroup);
+      drawLayoutIcons = function (onPhone) {
+        for (const icon of layoutIcons) {
+          icon.svg.textContent = '';
+          for (const part of LAYOUT_ICONS[onPhone ? 'phone' : 'wide'][icon.choice]) {
+            const path = document.createElementNS(NS, 'path');
+            path.setAttribute('d', part[0]);
+            if (part[1]) path.setAttribute('class', part[1]);
+            icon.svg.append(path);
+          }
+        }
+      };
+    }
+  }
+
+  // ---------- the switches on a phone ----------
+  //
+  // On a phone (js/theme.js says what counts as one) the switches (theme, layout, language) move
+  // from the top bar into the map options, as their first row, opened by the button beside the
+  // title; on a wide screen they stand at the end of the top bar.
+
+  const switches = holder ? holder.parentNode : null;
+  const topbar = document.querySelector('.topbar');
+  const options = document.getElementById('filters');
+  const phone = THEME && THEME.phone;
+  // The layout icons are drawn for the screen in hand too, so they change at the same moment.
+  function placeSwitches() {
+    if (drawLayoutIcons) drawLayoutIcons(Boolean(phone && phone.matches));
+    if (!switches || !topbar || !options || !phone) return;
+    if (phone.matches) {
+      if (switches.parentNode !== options) options.prepend(switches);
+    } else if (switches.parentNode !== topbar) {
+      topbar.append(switches);
+    }
+  }
+  placeSwitches();
+  if (phone) {
+    if (phone.addEventListener) phone.addEventListener('change', placeSwitches);
+    else if (phone.addListener) phone.addListener(placeSwitches);
   }
 
   /** Point the switch at the page as it stands now. The page calls this when its address changes. */

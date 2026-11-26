@@ -29,6 +29,10 @@ Then open http://localhost:8765.
 - **Entry pages:** clicking an entry opens its own page in the panel: its facts, a note on how its dot was placed, related entries and its source.
 - **Faint dots:** the provinces that are not open show their entries as small faint dots, so the whole map shows where things lie.
 - **Light and dark:** a switch beside the language switch follows the system's setting or holds light or dark. It is remembered on the device and is not part of the address.
+- **Layouts:** two, chosen with a switch beside the theme switch. Simple puts the panel beside the map on a wide screen, and below it on a phone, with a bar between them that names the place and leads back to the map. Modern lays the panel over the map: on a wide screen as a card of fixed width at the map's right, below the map buttons, and on a phone as a sheet that swiping up scrolls the page while the map stays still. The sheet rests low, half way or high, the card low, a third of the way or high, dragged by the handle or tapped. Modern is the default in browsers that can show it (with `svh`, `overscroll-behavior` and scroll snapping), simple in older ones; a layout chosen on the switch is remembered on the device and is not part of the address.
+- **Map only:** the fourth map button (four corners) shows the map over the whole page, without the top bar, the options or the panel, in either layout; it lasts until the page is left. The same button, or Esc at the whole map, brings the page back; while a place or an entry is chosen, Esc steps back out as usual.
+- **Keys:** `/` search, `+` and `−` zoom, `H` the whole map in view (the house button), `0` back to China with nothing chosen, `1`, `2` and `3` the place at that level of the trail (with Shift, `0` to `3` only move the view there and keep the place chosen, and so do Shift with a click on a place or a dot, or Shift+Enter on a place reached with Tab), `R` the place shown back in view (the trail's last item), `M` map only, `F` full screen with the map only (where the browser allows it, a short Esc still works on the map and holding Esc leaves full screen), and the arrow keys move the map once it has been clicked or tabbed to. Esc steps back out one level. A switch of layout or language keeps the view. The hover tips on the map buttons and the trail name their keys.
+- **Phones:** a phone is a screen narrower than 744 px, or a touch screen no taller than 500 px (a phone on its side); every other screen, upright tablets included, gets the wide page, with a narrower panel up to 1023 px. On a phone the top bar is one row: the title, a search button that opens the search box over the title, and an options button. The options open over the top of the map, with the theme, layout and language switches as their first row.
 - **Shareable address:** the address bar records the selected place at any level, the open entry, the shading and the hidden layers. The language is in the address only when chosen on the switch; otherwise the page follows the browser's language.
 
 ## How it is put together
@@ -40,7 +44,7 @@ index.html            page shell
 css/style.css         all styling
 js/geo.js             boundary decoding and map projection
 js/timeline.js        the time axis (switched off, see below)
-js/theme.js           light or dark, chosen before the page is drawn
+js/theme.js           light or dark, the layout, and what counts as a phone, settled before the page is drawn
 js/i18n.js            picks the language, fills in the page's text, draws the language and theme switches
 js/app.js             everything else: drawing, camera, panel, search
 js/data/              generated files the page loads (do not edit)

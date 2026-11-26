@@ -12,14 +12,14 @@
       "key": "zh-hans",
       "tag": "zh-Hans",
       "name": "简体中文",
-      "short": "简体",
+      "short": "简",
       "from": "zh"
     },
     {
       "key": "zh-hant",
       "tag": "zh-Hant",
       "name": "繁體中文",
-      "short": "繁體",
+      "short": "繁",
       "from": "zh",
       "forms": "tw"
     }
@@ -82,6 +82,21 @@
       "en": "Dark",
       "zh": "深色"
     },
+    "layout.label": {
+      "en": "Layout",
+      "zh": "布局",
+      "zh-hant": "版面"
+    },
+    "layout.sheet": {
+      "en": "Modern layout",
+      "zh": "现代布局",
+      "zh-hant": "現代版面"
+    },
+    "layout.bar": {
+      "en": "Simple layout",
+      "zh": "简洁布局",
+      "zh-hant": "簡潔版面"
+    },
     "search.label": {
       "en": "Search dishes, products and places",
       "zh": "搜索菜肴、产品和地区",
@@ -91,6 +106,21 @@
       "en": "Search a dish, product or place  (press /)",
       "zh": "搜索菜肴、产品或地区（按 / 键）",
       "zh-hant": "搜尋菜餚、產品或地區（按 / 鍵）"
+    },
+    "search.open": {
+      "en": "Search",
+      "zh": "搜索",
+      "zh-hant": "搜尋"
+    },
+    "search.close": {
+      "en": "Close search",
+      "zh": "关闭搜索",
+      "zh-hant": "關閉搜尋"
+    },
+    "search.placeholderTouch": {
+      "en": "Search food and places",
+      "zh": "搜索菜肴、产品或地区",
+      "zh-hant": "搜尋菜餚、產品或地區"
     },
     "search.province": {
       "en": "Province",
@@ -109,6 +139,10 @@
       "en": "Nothing matches.",
       "zh": "没有匹配项。",
       "zh-hant": "沒有相符的項目。"
+    },
+    "options.toggle": {
+      "en": "Options",
+      "zh": "选项"
     },
     "options.label": {
       "en": "Map options",
@@ -146,10 +180,38 @@
       "en": "Show the whole map",
       "zh": "显示全图"
     },
-    "zoom.reset": {
-      "en": "Reset",
-      "zh": "复位",
-      "zh-hant": "重設"
+    "map.immersive": {
+      "en": "Show only the map",
+      "zh": "只显示地图"
+    },
+    "map.immersive.off": {
+      "en": "Show the whole page",
+      "zh": "显示完整页面"
+    },
+    "zoom.in.tip": {
+      "en": "Zoom in (+)",
+      "zh": "放大（+）"
+    },
+    "zoom.out.tip": {
+      "en": "Zoom out (−)",
+      "zh": "缩小（−）"
+    },
+    "zoom.whole.tip": {
+      "en": "Show the whole map (H)",
+      "zh": "显示全图（H）"
+    },
+    "map.immersive.tip": {
+      "en": "Show only the map (M; F for full screen)",
+      "zh": "只显示地图（M；按 F 全屏）",
+      "zh-hant": "只顯示地圖（M；按 F 全螢幕）"
+    },
+    "map.immersive.off.tip": {
+      "en": "Show the whole page (M)",
+      "zh": "显示完整页面（M）"
+    },
+    "legend.fold": {
+      "en": "Hide",
+      "zh": "收起"
     },
     "legend.label": {
       "en": "Legend",
@@ -163,10 +225,15 @@
       "en": "China",
       "zh": "全国"
     },
+    "trail.go": {
+      "en": "Go to {place} ({key}; Shift+{key} only moves the view there)",
+      "zh": "前往{place}（{key}；Shift+{key} 只移动视图）",
+      "zh-hant": "前往{place}（{key}；Shift+{key} 只移動檢視）"
+    },
     "trail.reframe": {
-      "en": "Bring {place} back into view",
-      "zh": "回到{place}的初始视图",
-      "zh-hant": "回到{place}的初始檢視"
+      "en": "Bring {place} back into view (R)",
+      "zh": "回到{place}的初始视图（R）",
+      "zh-hant": "回到{place}的初始檢視（R）"
     },
     "timeline.label": {
       "en": "Show what existed by",
@@ -398,7 +465,22 @@
         "total"
       ]
     },
-    "item.back": {
+    "bar.place": {
+      "en": {
+        "one": "{name} · {n} entry",
+        "other": "{name} · {n} entries"
+      },
+      "zh": "{name} · {n} 个条目"
+    },
+    "sheet.handle": {
+      "en": "Drag or tap to move the panel",
+      "zh": "拖动或点按以移动面板"
+    },
+    "bar.map": {
+      "en": "Back to map",
+      "zh": "回到地图"
+    },
+    "back.to": {
       "en": "Back to {place}",
       "zh": "返回{place}"
     },

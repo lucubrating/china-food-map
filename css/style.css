@@ -42,6 +42,7 @@
   --unit-lit-hover: rgba(255, 255, 255, 0.55);
   --faint: 0.6; /* how strongly the quiet dots of closed provinces show */
   --radius: 8px;
+  --panel-w: 400px; /* the panel beside the map, or the card over it; narrower on a small wide screen */
   --sans: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
@@ -101,9 +102,18 @@ body {
   height: 100%;
 }
 
+/* A mobile browser turned sideways may enlarge the text of long paragraphs on its own, so a note
+   would outgrow the headings above it. Text keeps the sizes set here in every orientation. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   display: grid;
+  /* One column no wider than the screen, whatever its rows would like to be. */
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto auto minmax(0, 1fr);
   background: var(--page);
   color: var(--text);
@@ -141,19 +151,31 @@ a {
   border-bottom: 1px solid var(--hairline);
 }
 
+/* The title stays on one line, its text at 20 px. Where the row is short of room the search box
+   gives a little and the title the rest, but never its first part: the title is at least as
+   wide as that (--title-min, measured by js/app.js), so only the name in the other language
+   gives way. It runs on under the search box and fades out before it (is-cut, set by
+   js/app.js only when it is cut short). */
 .brand {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
-  flex-wrap: wrap;
-  min-width: 0;
+  flex: 0 1 auto;
+  min-width: var(--title-min, 0);
 }
 
 .brand h1 {
+  min-width: 0;
   margin: 0;
+  padding-left: 4px;
+  overflow: hidden;
+  white-space: nowrap;
   font-size: 18px;
   font-weight: 650;
   letter-spacing: -0.01em;
+}
+
+.brand h1.is-cut {
+  -webkit-mask-image: linear-gradient(to right, var(--text) calc(100% - 32px), transparent);
+  mask-image: linear-gradient(to right, var(--text) calc(100% - 32px), transparent);
 }
 
 .brand h1 span {
@@ -162,10 +184,15 @@ a {
   color: var(--text-2);
 }
 
+.brand h1 span:first-child {
+  margin-left: 0;
+}
+
 .search {
   position: relative;
+  flex: 0 1 380px;
+  min-width: 160px;
   margin-left: auto;
-  width: min(380px, 44vw);
 }
 
 .search input {
@@ -174,6 +201,12 @@ a {
   border: 1px solid var(--axis);
   border-radius: var(--radius);
   background: var(--field);
+}
+
+/* The browser's own clear button keeps its room even while the box is empty, cutting the
+   placeholder short in a narrow box; it is left out until there is something to clear. */
+.search input:placeholder-shown::-webkit-search-cancel-button {
+  display: none;
 }
 
 .search input:focus-visible,
@@ -196,14 +229,20 @@ button:focus-visible,
 .lang {
   display: flex;
   flex: none;
+  /* The switches are controls, not text to copy. */
+  -webkit-user-select: none;
+  user-select: none;
   border: 1px solid var(--axis);
   border-radius: var(--radius);
   background: var(--field);
   overflow: hidden;
 }
 
+/* Each as wide as an icon button beside it (9 + 16 + 9 px). */
 .lang a {
-  padding: 7px 11px;
+  min-width: 34px;
+  padding: 7px 0;
+  text-align: center;
   color: var(--text-2);
   font-size: 13px;
   line-height: 1.5;
@@ -232,7 +271,8 @@ button:focus-visible,
   gap: 8px;
 }
 
-/* Light and dark: three icons, for the system's setting, light and dark. */
+/* Light and dark: three icons, for the system's setting, light and dark. Beside them the two
+   layouts, simple and modern, two icons in a switch of their own (.layout-switch). */
 .theme button {
   display: flex;
   align-items: center;
@@ -277,6 +317,7 @@ button:focus-visible,
 }
 
 .lang a + a {
+  min-width: 35px; /* with its left border, like the icon buttons after the first */
   border-left: 1px solid var(--hairline);
 }
 
@@ -365,16 +406,11 @@ button:focus-visible,
 }
 
 .filter > label,
-.filter > legend {
+.filter > .filter-label {
   padding: 0;
   color: var(--text-2);
   font-size: 13px;
   white-space: nowrap;
-}
-
-.filter > legend {
-  float: left;
-  margin-right: 8px;
 }
 
 .filter select {
@@ -457,7 +493,7 @@ button:focus-visible,
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 400px;
+  grid-template-columns: minmax(0, 1fr) var(--panel-w);
   min-height: 0;
 }
 
@@ -787,8 +823,23 @@ button:focus-visible,
   cursor: pointer;
 }
 
-.map-tools #zoom-reset {
-  font-size: 12px;
+/* The two buttons drawn as icons: the house, and the corners of immersive view. */
+.map-tools #zoom-reset,
+.map-tools #immersive {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-tools #zoom-reset svg,
+.map-tools #immersive svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .map-tools button:hover {
@@ -945,8 +996,17 @@ button:focus-visible,
   list-style: none;
 }
 
-.trail li + li::before {
+/* Each place keeps the "›" after it, so a wrapped row ends with one and the next starts with a
+   name; a long name wraps within its own room, from the left. */
+.trail li {
+  display: flex;
+  align-items: baseline;
+  min-width: 0;
+}
+
+.trail li:not(:last-child)::after {
   content: "›";
+  flex: none;
   margin: 0 7px;
   color: var(--muted);
 }
@@ -956,11 +1016,15 @@ button:focus-visible,
   border: 0;
   background: none;
   color: var(--link);
+  text-align: left;
   cursor: pointer;
 }
 
-.trail button:hover {
-  text-decoration: underline;
+/* Only where there is a pointer to hover with: a tap on a phone would leave it underlined. */
+@media (hover: hover) {
+  .trail button:hover {
+    text-decoration: underline;
+  }
 }
 
 .trail [aria-current] {
@@ -1018,9 +1082,50 @@ button:focus-visible,
   min-width: 0;
 }
 
-/* The link back up to the unit a place sits in, above the place's name. */
+/* Where the browser has :has, the head is a grid in which the title's lines take part on their
+   own (display: contents): the back line across the whole width, and the close button in the
+   name's row, so it stays level with the name however many lines the back line takes. Without
+   it, the button stands at the top beside the whole title. */
+@supports selector(:has(a)) {
+  .panel-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0 12px;
+    align-items: start;
+  }
+
+  .panel-title {
+    display: contents;
+  }
+
+  .panel-title > * {
+    grid-column: 1 / -1;
+  }
+
+  .panel-title > h2 {
+    grid-column: 1;
+  }
+
+  .panel-head > .close {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .panel-title:has(> .up) + .close {
+    grid-row: 2;
+  }
+}
+
+/* The link back up to the unit a place sits in, above the place's name: a line of its own, the
+   arrow and the name side by side (js/app.js, backLine), so a long name wraps in line with its
+   first word, the arrow hanging before it. */
 .up {
+  display: flex;
+  gap: 0.3em;
+  width: max-content;
+  max-width: 100%;
   margin-bottom: 2px;
+  text-align: left;
   padding: 0;
   border: 0;
   background: none;
@@ -1029,8 +1134,19 @@ button:focus-visible,
   cursor: pointer;
 }
 
-.up:hover {
+/* Only the name is underlined, not the arrow before it. */
+.up:hover > :last-child {
   text-decoration: underline;
+}
+
+.panel-bar,
+.sheet-handle,
+.sheet-stop,
+.options-toggle,
+.search-toggle,
+.search-close,
+.legend-fold {
+  display: none;
 }
 
 .kind {
@@ -1039,20 +1155,43 @@ button:focus-visible,
   font-size: 13px;
 }
 
+/* A quiet button: a grey cross with no border, its square showing only on hover or press. It is
+   as tall as the heading's line (30 px) and level with the name (the grid above). */
 .close {
+  display: flex;
   flex: none;
+  align-items: center;
+  justify-content: center;
   width: 30px;
   height: 30px;
-  border: 1px solid var(--axis);
-  border-radius: 50%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
   background: none;
-  font-size: 18px;
-  line-height: 1;
+  color: var(--muted);
   cursor: pointer;
 }
 
-.close:hover {
+
+.close svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+}
+
+@media (hover: hover) {
+  .close:hover {
+    background: var(--hover);
+    color: var(--text);
+  }
+}
+
+.close:active {
   background: var(--hover);
+  color: var(--text);
 }
 
 .lede {
@@ -1308,12 +1447,196 @@ th {
   color: var(--muted);
 }
 
-/* ---------- narrow screens ---------- */
+/* ---------- phones ----------
+   A phone is a screen narrower than 744 px, or a touch screen no taller than 500 px (a phone on
+   its side; the smallest tablet on its side is 744 px tall). js/theme.js holds the same rule for
+   the scripts. Every other screen is wide (below). */
 
-@media (max-width: 860px) {
+@media (max-width: 743px), (pointer: coarse) and (max-height: 500px) {
+  /* ========== on a phone ==========
+     A phone puts the panel below the map (the simple layout) or over it as a sliding
+     sheet (the modern layout). Two lines run down the left: the edges of boxes at 16 px, and
+     plain text beside them at 20 px, half the boxes' corner rounding in, as an edge exactly on
+     16 seems to stand out past rounded corners. Text inside a box sits further in (the search
+     box's at 25 px). Comments that begin "a mobile browser may" name behaviour of mobile
+     browsers that the styles work around. */
+
+  /* ---------- phone: the page ---------- */
+
   html,
   body {
     height: auto;
+  }
+
+  body {
+    display: block;
+  }
+
+  .layout {
+    display: block;
+  }
+
+  /* ---------- phone: the top bar ----------
+     One row: the title, then a search button and the options button. The search box is folded
+     behind its button and opens over the title; the switches are the first row of the options. */
+
+  .topbar {
+    position: relative;
+    gap: 8px;
+  }
+
+  /* The title takes what room the buttons leave it; a title too long for it runs on and fades
+     out before them (above). */
+  .brand,
+  .brand h1 {
+    flex: 1 1 auto;
+  }
+
+  .search {
+    display: none;
+  }
+
+  /* Opened (js/app.js), the search box covers the row, title and buttons, with a button to
+     close it at its end. */
+  .topbar.is-searching .search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    right: 16px;
+    z-index: 1;
+    width: auto;
+    margin: 0;
+    background: var(--surface);
+  }
+
+  .topbar.is-searching .brand {
+    visibility: hidden;
+  }
+
+  /* 16 px text, as a mobile browser may zoom the page into a text field set smaller. The box
+     keeps the height of the buttons beside it; its text sits as far from the left edge as a
+     16 px glyph sits from the top and bottom: (34 - 2 - 16) / 2. */
+  .search input {
+    height: 34px;
+    padding: 0 8px;
+    font-size: 16px;
+  }
+
+  .topbar.is-searching .search input {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .options-toggle,
+  .search-toggle,
+  .search-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    position: relative;
+    width: 36px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid var(--axis);
+    border-radius: var(--radius);
+    background: var(--field);
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  .options-toggle[aria-expanded="true"] {
+    background: var(--hover);
+  }
+
+  .options-toggle svg,
+  .search-toggle svg,
+  .search-close svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.3;
+    stroke-linecap: round;
+  }
+
+  /* The shading or a hidden layer is in effect. */
+  .options-toggle.is-set::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--series-1);
+  }
+
+  /* ---------- phone: the options layer ----------
+     Open, the options lie over the top of the map as a layer dropping from the top bar, rather
+     than pushing the map down. --options-top is where the top bar ends, kept by js/app.js. */
+
+  .filters:not(.is-open) {
+    display: none;
+  }
+
+  .filters.is-open {
+    position: absolute;
+    top: var(--options-top, 105px);
+    left: 0;
+    right: 0;
+    z-index: 25;
+    box-shadow: 0 4px 16px var(--shadow);
+  }
+
+  /* The switches as the first row: theme, layout and language, side by side, wrapping on a
+     narrow screen. */
+  .filters > .switches {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+  }
+
+  /* Language keeps to the right edge, under the buttons, on the row or the next one. */
+  .filters > .switches > .lang:last-child {
+    margin-left: auto;
+  }
+
+  .filter {
+    flex: 1 1 100%;
+  }
+
+  /* 16 px text, as a mobile browser may zoom the page into a menu set smaller. */
+  .filter select {
+    flex: 1 1 0;
+    min-width: 0;
+    font-size: 16px;
+  }
+
+  /* The two labels share one width, the wider one's (--options-label, kept by js/app.js), so the
+     shading menu and the checkboxes start on one line. Plain text beside boxes, their text
+     starts at 20 px. */
+  .filter > label,
+  .filter > .filter-label {
+    flex: none;
+    width: var(--options-label, auto);
+    padding-left: 4px;
+  }
+
+  /* "Show on map" stands level with the first row of checkboxes. */
+  .filter.layers {
+    align-items: flex-start;
+  }
+
+  .filter > .filter-label {
+    line-height: 21px;
+  }
+
+  /* The first checkbox's edge on the shading menu's edge, without the browser's own margin. */
+  .layer-toggles input {
+    margin-left: 0;
   }
 
   /* A switch's full name appears below the row of switches, from its left edge, and wraps if
@@ -1331,50 +1654,567 @@ th {
     white-space: normal;
   }
 
-  body {
-    display: block;
-  }
+  /* ---------- phone: the map ---------- */
 
-  .topbar {
-    flex-wrap: wrap;
-  }
-
-  /* The switches stay beside the title, and the search box takes the row below. */
-  .switches {
-    order: 1;
-    margin-left: auto;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
-
-  .search {
-    order: 2;
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .filter {
-    flex: 1 1 100%;
-  }
-
-  .filter select {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-
-  .layout {
-    display: block;
-  }
-
+  /* The map takes 62% of the screen and the row the one-row top bar saves (50 px). */
   .map-wrap {
-    height: 62vh;
+    height: calc(62vh + 50px);
     min-height: 320px;
   }
 
+  /* The trail and the map buttons keep the 16 px edges, the buttons under those of the top bar,
+     and move down below the open options (--options-h, their height, kept by js/app.js), so the
+     layer covers the map but not them. */
+  .trail {
+    top: calc(12px + var(--options-h, 0px));
+    left: 16px;
+    padding-inline: 8px;
+    transition: top 0.2s ease;
+  }
+
+  .map-tools {
+    top: calc(12px + var(--options-h, 0px));
+    right: 16px;
+    transition: top 0.2s ease;
+  }
+
+  .map-tools button {
+    width: 36px;
+  }
+
+  /* The legend shows the shading's scale only, and folds to a small button. */
+  .legend {
+    left: 16px;
+    max-width: min(300px, calc(100% - 32px));
+  }
+
+  .legend:not(.has-metric),
+  .legend .legend-layers {
+    display: none;
+  }
+
+  .legend-fold {
+    display: block;
+    margin: -2px 0 6px auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--link);
+    font: inherit;
+    font-size: 12.5px;
+    cursor: pointer;
+  }
+
+  .legend.is-folded .legend-fold {
+    margin: 0;
+  }
+
+  .legend.is-folded .legend-metric {
+    display: none;
+  }
+
+  /* ---------- phone: the panel ----------
+     Its text is plain text beside boxes, at 20 px; its boxes and rules reach out to the 16 px
+     edge, 4 px past its text. Scrolled to, it starts below the pinned bar (simple layout). */
+
   .panel {
+    padding-inline: 20px;
     border-left: 0;
     border-top: 1px solid var(--hairline);
     overflow: visible;
+    scroll-margin-top: 44px;
+  }
+
+  .panel-section h3,
+  .records li {
+    margin-inline: -4px;
+    padding-inline: 4px;
+  }
+
+  .panel-section > .chips,
+  .panel-section > .places {
+    margin-inline: -4px;
+  }
+
+  .panel table {
+    width: calc(100% + 8px);
+    margin-inline: -4px;
+  }
+
+  .panel th:first-child,
+  .panel td:first-child {
+    padding-left: 4px;
+  }
+
+  .panel th:last-child,
+  .panel td:last-child {
+    padding-right: 4px;
+  }
+
+  .panel .close {
+    margin-right: -4px;
+  }
+
+  /* ---------- phone: the bar between the map and the panel (simple layout) ----------
+     It names the place or entry, in its own place between the two; once the panel is scrolled
+     to, it is pinned to the head of the screen and leads back to the map. */
+
+  .panel-bar:not([hidden]) {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    overflow: hidden;
+    border: 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+
+  /* Pinned only to the head, and only once the panel is scrolled to (js/app.js says why never
+     at the foot). */
+  .panel-bar.is-pinned {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+
+  /* An arrow for what a tap does: down to the panel, or back up to the map. */
+  .panel-bar:not([data-mode="up"])::after {
+    content: " ↓";
+  }
+
+  .panel-bar[data-mode="up"]::before {
+    content: "↑ ";
+  }
+
+  .panel-bar[data-mode="up"] {
+    color: var(--link);
+  }
+
+  /* ---------- phone: the sliding panel (modern layout) ----------
+     The panel slides up over the map as a sheet. It is part of the page, so swiping it up
+     scrolls the page, which lets the browser's own bars shrink and the page pass behind them.
+     The top bar, the open options and the map are pinned. The map has a fixed height and ends a
+     little under the panel's lowest stop, well above the screen's foot: a mobile browser may
+     paint the strip around its address bar in the colour of a pinned element at the screen's
+     foot, hiding the page, and a height that followed the screen would change, and redraw the
+     map, as that bar grows and shrinks. --top-h, the top bar's height, is kept by js/app.js.
+     The panel's handle starts --sheet-low above the foot of the page's screen (the browser's
+     bar lies below that, see-through), so the low stop shows the handle, the back line and the
+     name, whose foot reaches a little into the bar; the page snaps to three stops (.sheet-stop).
+     No bounce past either end of the page: past its end, the map would show below the panel.
+     Heights are in svh, the screen with the browser's bars at their largest; each comes after the
+     same in vh, which a browser without svh uses instead. */
+
+  /* The handle and the panel share an element only for the wide screen's card. */
+  .sheet-card {
+    display: contents;
+  }
+
+  .sheet-layout .topbar.is-searching {
+    z-index: 40;
+  }
+
+  /* The body's colour is the panel's: a mobile browser may tint the strip behind its bar past
+     the page's end from it, so the panel seems to run on to the screen's foot. The body's own
+     colour is not seen here; the map, the top bar and the panel cover it. */
+  .sheet-layout body {
+    background: var(--surface);
+  }
+
+  .sheet-layout {
+    --sheet-low: 72px;
+    scroll-snap-type: y proximity;
+    overscroll-behavior-y: none;
+  }
+
+  /* From the top stop on, the panel is being read, and scrolls freely (js/app.js). */
+  .sheet-layout.is-reading {
+    scroll-snap-type: none;
+  }
+
+  .sheet-layout .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+  }
+
+  .sheet-layout .filters.is-open {
+    position: fixed;
+  }
+
+  /* Its own block context, so the handle's top margin stays inside it rather than moving it. */
+  .sheet-layout .layout {
+    display: flow-root;
+  }
+
+  /* From under the top bar to 14 px under the panel's lowest stop, enough to fill its rounded
+     corners. */
+  .sheet-layout .map-wrap {
+    position: fixed;
+    top: var(--top-h, 55px);
+    left: 0;
+    right: 0;
+    height: calc(100vh - var(--top-h, 55px) - var(--sheet-low) + 14px);
+    height: calc(100svh - var(--top-h, 55px) - var(--sheet-low) + 14px);
+    min-height: 0;
+  }
+
+  /* The legend keeps 16 px above the panel's lowest stop. */
+  .sheet-layout .legend {
+    bottom: 30px;
+  }
+
+  .sheet-handle {
+    display: block;
+    position: relative;
+    z-index: 30;
+    width: 100%;
+    height: 30px;
+    margin-top: calc(100vh - var(--sheet-low));
+    margin-top: calc(100svh - var(--sheet-low));
+    padding: 0;
+    border: 0;
+    border-top: 1px solid var(--hairline);
+    border-radius: 14px 14px 0 0;
+    background: var(--surface);
+    box-shadow: 0 -4px 18px var(--shadow);
+    cursor: pointer;
+  }
+
+  .sheet-handle::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 40px;
+    height: 5px;
+    margin-left: -20px;
+    border-radius: 3px;
+    background: var(--axis);
+  }
+
+  /* The handle's strip takes the place of the panel's own top margin. The panel is at least a
+     screen tall, so the page can always reach the top stop. */
+  .sheet-layout .panel {
+    position: relative;
+    z-index: 30;
+    min-height: calc(100vh - 40px);
+    min-height: calc(100svh - 40px);
+    padding-top: 6px;
+    border-top: 0;
+    /* A copy of the panel drawn a screen below it, which does not lengthen the page: should the
+       browser still bounce past the end, the panel seems to go on rather than show the map. */
+    box-shadow: 0 100vh 0 var(--surface);
+  }
+
+  /* At the low stop the panel shows only its back line and name. What follows (the kind line and
+     the contents) lies behind the browser's bar there and would peek out past its rounded
+     corners, so it is hidden, and fades in over the first 48 px of scrolling. Where scroll-linked
+     animation is missing, it simply shows. */
+  .sheet-layout .panel-head .kind,
+  .sheet-layout .panel > .panel-head ~ *,
+  .sheet-layout .panel > h2:first-child ~ * {
+    animation: sheet-reveal linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 48px;
+  }
+
+  /* A name long enough to wrap shows only its first line there too, and the rest fades in with
+     the kind line: a mask shows the first line in full (one line tall, 1lh) and the rest at
+     --name-reveal, which rises from 0 to 1 over the same 48 px. */
+  .sheet-layout .panel-head h2,
+  .sheet-layout .panel > h2:first-child {
+    -webkit-mask-image: linear-gradient(var(--text), var(--text)),
+      linear-gradient(color-mix(in srgb, var(--text) calc(var(--name-reveal) * 100%), transparent), color-mix(in srgb, var(--text) calc(var(--name-reveal) * 100%), transparent));
+    mask-image: linear-gradient(var(--text), var(--text)),
+      linear-gradient(color-mix(in srgb, var(--text) calc(var(--name-reveal) * 100%), transparent), color-mix(in srgb, var(--text) calc(var(--name-reveal) * 100%), transparent));
+    -webkit-mask-size: 100% 1lh, 100% 100%;
+    mask-size: 100% 1lh, 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    animation: sheet-reveal-name linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 48px;
+  }
+
+  /* Where the page comes to rest: the handle at the low stop, half way up the screen, or 10 px
+     from the top. */
+  .sheet-stop {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+    scroll-snap-align: start;
+  }
+
+  .sheet-stop.low {
+    top: 0;
+  }
+
+  .sheet-stop.half {
+    top: calc(50vh - var(--sheet-low));
+    top: calc(50svh - var(--sheet-low));
+  }
+
+  .sheet-stop.high {
+    top: calc(100vh - var(--sheet-low) - 10px);
+    top: calc(100svh - var(--sheet-low) - 10px);
+  }
+}
+
+/* ---------- wide screens ----------
+   Any screen that is not a phone: the exact opposite of the phone's rule above, so every screen
+   is one or the other, even a zoomed page a fraction of a pixel wide (743.5). The opposite of
+   "narrow, or short and touch" is written as one rule inside another, "not narrow" and within
+   it "not touch, or not short", which every current browser reads; a single rule with "or"
+   inside "not" is newer syntax, which a browser that cannot read it would take as never true,
+   leaving it with neither layout. */
+
+@media not all and (max-width: 743px) {
+  @media not all and (pointer: coarse), not all and (max-height: 500px) {
+    /* ========== on a wide screen: the lines ==========
+       As on a phone: the edges of boxes at 16 px from the screen's and the map's edges, plain text
+       beside them at 20 px, and the text inside them at 25 px. */
+
+    .filters {
+      padding-left: 20px;
+    }
+
+    .trail {
+      top: 16px;
+      left: 16px;
+      padding: 5px 8px;
+    }
+
+    .legend {
+      left: 16px;
+      bottom: 16px;
+      max-width: min(300px, calc(100% - 32px));
+      padding: 10px 8px;
+    }
+
+    .map-tools {
+      top: 16px;
+      right: 16px;
+    }
+
+    /* Nothing on the page scrolls but the panel, so a drag outside the map does not move the
+       page: no bounce, and no handing on from the end of the panel's own scrolling. */
+    html,
+    body {
+      overscroll-behavior: none;
+    }
+
+    /* ========== on a wide screen up to 1023 px: a narrower panel ==========
+       From 744 px, beside the map or over it, the panel leaves the map more room, and the top
+       bar's parts sit closer, so the search box keeps room for its short text. */
+
+    @media (max-width: 1023px) {
+      :root {
+        --panel-w: 360px;
+      }
+
+      .topbar {
+        gap: 12px;
+      }
+    }
+
+    /* ========== on a wide screen: the floating card (modern layout) ==========
+       The map fills the width; the panel is a card of fixed width (--panel-w) floating at its right, with the
+       map buttons in a row above it, at the top right, where the card never reaches. The card
+       rests at three heights (--card-h, kept by js/app.js) and scrolls its own contents; places
+       are framed in the part of the map left of it. */
+
+    .sheet-layout .layout {
+      display: block;
+      position: relative;
+    }
+
+    .sheet-layout .map-wrap {
+      height: 100%;
+    }
+
+    .sheet-layout .map-tools {
+      flex-direction: row;
+    }
+
+    /* The trail keeps clear of the card's column. */
+    .sheet-layout .trail {
+      max-width: calc(100% - var(--panel-w) - 48px);
+    }
+
+    .sheet-card {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      width: var(--panel-w);
+      height: var(--card-h, 50%);
+      overflow: hidden;
+      border: 1px solid var(--hairline);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: 0 4px 18px var(--shadow);
+      transition: height 0.25s ease;
+    }
+
+    .sheet-card.is-moving {
+      transition: none;
+    }
+
+    /* Dragged by a mouse, a trackpad or a finger: the page itself does not move. */
+    .sheet-layout .sheet-handle {
+      display: block;
+      flex: none;
+      position: relative;
+      width: 100%;
+      height: 30px;
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    .sheet-layout .sheet-handle::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      width: 40px;
+      height: 5px;
+      margin-left: -20px;
+      border-radius: 3px;
+      background: var(--axis);
+    }
+
+    /* The handle's strip takes the place of the panel's own top margin. */
+    .sheet-layout .panel {
+      flex: 1 1 auto;
+      min-height: 0;
+      padding-top: 6px;
+      border-left: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    .sheet-card[data-stop="low"] .panel {
+      overflow: hidden;
+    }
+  }
+}
+
+/* Brings in what the panel hides at its low stop (the modern layout on a phone, above). */
+@keyframes sheet-reveal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* How much of a name below its first line shows (the modern layout on a phone, above). It is a
+   registered number so it can be animated; without that, or without scroll-linked animation,
+   it stays at 1 and the whole name shows. */
+@property --name-reveal {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+@keyframes sheet-reveal-name {
+  from {
+    --name-reveal: 0;
+  }
+
+  to {
+    --name-reveal: 1;
+  }
+}
+
+
+/* ---------- immersive view ----------
+   The map over the whole page (js/app.js, setImmersive): the top bar, the options and the panel
+   are hidden in either layout and on any screen, with the bar and the sheet's handle and stops
+   on a phone; the trail, the legend and the map buttons stay. The page then has nothing to
+   scroll. */
+
+:root.is-immersive .topbar,
+:root.is-immersive .filters,
+:root.is-immersive .panel,
+:root.is-immersive .panel-bar,
+:root.is-immersive .sheet-card,
+:root.is-immersive .sheet-stop {
+  display: none;
+}
+
+/* On a wide screen the page is a grid of rows and the map shares its row with the panel: the map
+   now takes the one row and the one column. */
+:root.is-immersive body {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+:root.is-immersive .layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+:root.is-immersive .legend {
+  bottom: 16px;
+}
+
+/* On a phone the map is as tall as the screen, from its top. */
+@media (max-width: 743px), (pointer: coarse) and (max-height: 500px) {
+  :root.is-immersive .map-wrap {
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+  }
+}
+
+/* ---------- views by key alone ----------
+   Classes on the root set by keys (js/app.js): the panel hidden (P, past its highest stop),
+   the legend off (L), and a clean map without the trail, the map buttons and the legend (C).
+   With the panel hidden the map takes its room, below the top bar. */
+
+:root.is-panel-off .panel,
+:root.is-panel-off .panel-bar,
+:root.is-panel-off .sheet-card,
+:root.is-panel-off .sheet-stop {
+  display: none;
+}
+
+:root.is-panel-off .layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+:root.is-legend-off .legend,
+:root.is-bare .legend,
+:root.is-bare .trail,
+:root.is-bare .map-tools {
+  display: none;
+}
+
+@media (max-width: 743px), (pointer: coarse) and (max-height: 500px) {
+  :root.is-panel-off:not(.is-immersive) .map-wrap {
+    height: calc(100vh - var(--top-h, 55px));
+    height: calc(100svh - var(--top-h, 55px));
   }
 }
 

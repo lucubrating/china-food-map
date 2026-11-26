@@ -78,6 +78,19 @@ window.FoodMapText.ready.then(function () {
     light: ['#cde2fb', '#b7d3f6', '#9ec5f4', '#86b6ef', '#6da7ec', '#5598e7', '#3987e5', '#2a78d6', '#256abf', '#1c5cab', '#184f95', '#104281', '#0d366b'],
   };
   let RAMP = RAMPS[THEME.scheme()];
+  // A phone or a wide screen: js/theme.js holds the rule, the same as the styles'.
+  const PHONE = THEME.phone;
+  const wide = () => !(PHONE && PHONE.matches);
+
+  /** Whether the map is shown over the whole page (immersive view, below). */
+  const isImmersive = () => document.documentElement.classList.contains('is-immersive');
+
+  /** Call `listener` whenever the screen turns from a phone's into a wide one, or back. */
+  function onLayoutChange(listener) {
+    if (!PHONE) return;
+    if (PHONE.addEventListener) PHONE.addEventListener('change', listener);
+    else if (PHONE.addListener) PHONE.addListener(listener);
+  }
 
   /**
    * The name of a kind, as the data spells it: what a heritage entry makes ('heritage', 'tea'),
@@ -113,6 +126,27 @@ window.FoodMapText.ready.then(function () {
     const node = document.createElementNS(SVG_NS, tag);
     if (attrs) for (const key of Object.keys(attrs)) node.setAttribute(key, attrs[key]);
     return node;
+  }
+
+  /**
+   * The line back up, above a name: "‹" and the place, side by side, so a long name wraps in its
+   * own column, in line with its first word. The arrow is not read out; the button is named
+   * "Back to …" instead.
+   */
+  function backLine(place, onclick) {
+    return el(
+      'button',
+      { type: 'button', class: 'up', 'aria-label': t('back.to', { place: place }), onclick: onclick },
+      el('span', { class: 'up-arrow', 'aria-hidden': 'true', text: '‹' }),
+      el('span', { text: place })
+    );
+  }
+
+  /** A cross for the panel's close button, drawn like the one that closes the search. */
+  function crossIcon() {
+    const icon = svgEl('svg', { viewBox: '0 0 16 16', 'aria-hidden': 'true' });
+    icon.append(svgEl('path', { d: 'M4 4l8 8M12 4l-8 8' }));
+    return icon;
   }
 
   function clamp(v, lo, hi) {
@@ -810,18 +844,29 @@ window.FoodMapText.ready.then(function () {
   // out, because the file holds no years.
 
   const faintOf = new Map(); // province id -> the paths of its faint dots
+  // Each dot is a line too short to see, drawn with round ends. A mobile browser draws nothing
+  // for a line whose length on screen falls below a tiny limit, so where the whole map is shown
+  // very small (a narrow phone, zoomed out) the lines are ten times as long: still far under a
+  // pixel there. Everywhere else they keep their usual length.
+  const FAINT_SMALL = 0.6; // the scale (screen px per map unit) below which the longer lines are used
+  const faintLines = []; // { path, usual, small }: each path's two forms
+  let faintSmall = false;
 
   function drawFaint(file) {
     for (const layer of LAYERS) {
       for (const province of provinces) {
         const flat = (file[province.id] || {})[layer.key];
         if (!flat) continue;
-        let d = '';
+        let usual = '';
+        let small = '';
         for (let i = 0; i + 1 < flat.length; i += 2) {
           const xy = projector.project(flat[i], flat[i + 1]);
-          d += 'M' + xy[0].toFixed(1) + ' ' + xy[1].toFixed(1) + 'h0.001';
+          const at = 'M' + xy[0].toFixed(1) + ' ' + xy[1].toFixed(1);
+          usual += at + 'h0.001';
+          small += at + 'h0.01';
         }
-        const path = svgEl('path', { d: d });
+        const path = svgEl('path', { d: faintSmall ? small : usual });
+        faintLines.push({ path: path, usual: usual, small: small });
         layer.faint.append(path);
         if (!faintOf.has(province.id)) faintOf.set(province.id, []);
         faintOf.get(province.id).push(path);
@@ -934,6 +979,10 @@ window.FoodMapText.ready.then(function () {
     gLabels.setAttribute('font-size', (12 / scale).toFixed(4));
     svg.style.setProperty('--px', (1 / scale).toFixed(5) + 'px');
     svg.classList.toggle('is-far', scale < 1.6);
+    if (scale < FAINT_SMALL !== faintSmall) {
+      faintSmall = scale < FAINT_SMALL;
+      for (const line of faintLines) line.path.setAttribute('d', faintSmall ? line.small : line.usual);
+    }
     clearTimeout(labelTimer);
     labelTimer = setTimeout(layoutLabels, 90);
   }
@@ -1002,8 +1051,29 @@ window.FoodMapText.ready.then(function () {
     clearTimeout(flightTimer);
   }
 
+  // The last box framed on purpose (by choosing, R, H, Shift and a digit), with the place it was
+  // framed for, so that framing again for a new shape of the map (reframe) keeps it; and whether
+  // the view has been moved by hand since (a drag, a pinch, the wheel, the zoom keys, the arrows).
+  let lastFrame = null;
+  let movedByHand = false;
+
   function fitBox(box, pad, animate) {
+    lastFrame = { box: Object.assign({}, box), pad: pad, region: state.region };
+    movedByHand = false;
     const target = { cx: (box.x0 + box.x1) / 2, cy: (box.y0 + box.y1) / 2, w: widthToFit(box, pad) };
+    // With the phone's sheet raised over the map, fit the box into the part left in view above
+    // it; with the wide screen's card over the map's right, into the part left of it.
+    const cover = SHEET ? sheetCover() : 0;
+    if (cover > 0 && cover < size.H * 0.8) {
+      const seen = (size.H - cover) / size.W;
+      target.w = Math.max((box.x1 - box.x0) * (1 + pad), ((box.y1 - box.y0) * (1 + pad)) / seen);
+      target.cy += (cover / 2) * (target.w / size.W);
+    }
+    const side = SHEET ? cardCover() : 0;
+    if (side > 0 && side < size.W * 0.8) {
+      target.w = Math.max(((box.x1 - box.x0) * (1 + pad) * size.W) / (size.W - side), ((box.y1 - box.y0) * (1 + pad) * size.W) / size.H);
+      target.cx += (side / 2) * (target.w / size.W);
+    }
     stopFlight();
     const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!animate || document.hidden || still) {
@@ -1031,6 +1101,7 @@ window.FoodMapText.ready.then(function () {
 
   function zoomAt(clientX, clientY, factor) {
     stopFlight();
+    movedByHand = true;
     const scale = size.W / view.w;
     const h = view.w * (size.H / size.W);
     const ux = view.cx - view.w / 2 + (clientX - size.left) / scale;
@@ -1082,6 +1153,7 @@ window.FoodMapText.ready.then(function () {
     svg.classList.add('is-dragging');
     hideTooltip();
     const scale = size.W / view.w;
+    movedByHand = true;
     setView(drag.cx - dx / scale, drag.cy - dy / scale, view.w);
   });
 
@@ -1093,7 +1165,7 @@ window.FoodMapText.ready.then(function () {
       drag = null;
       svg.classList.remove('is-dragging');
     }
-    if (finished && !finished.moved && !finished.pinch && e.type === 'pointerup') activate(finished.target);
+    if (finished && !finished.moved && !finished.pinch && e.type === 'pointerup') activate(finished.target, e.shiftKey);
   }
   window.addEventListener('pointerup', endPointer);
   window.addEventListener('pointercancel', endPointer);
@@ -1108,9 +1180,21 @@ window.FoodMapText.ready.then(function () {
     { passive: false }
   );
 
-  /** A press that did not turn into a drag: open whatever was under it. */
-  function activate(target) {
+  /** A press that did not turn into a drag: open whatever was under it. With Shift (`soft`), a
+   *  place or a dot is only brought into view, and what is chosen stays as it is. */
+  function activate(target, soft) {
     if (!target || !target.closest) return;
+    if (soft) {
+      // A dot is centred as when its entry is opened from the panel, a place is framed; neither
+      // is chosen.
+      const dot = target.closest('.pt');
+      const shape = dot ? null : target.closest('.unit, .base, .prov');
+      if (dot) {
+        const box = boxOfDot(dot.getAttribute('data-id'));
+        if (box) fitBox(box, 0, true);
+      } else if (shape) viewShape(shape);
+      if (dot || shape) return;
+    }
     const pt = target.closest('.pt');
     if (pt) {
       const entry = points.get(pt.getAttribute('data-id'));
@@ -1153,12 +1237,29 @@ window.FoodMapText.ready.then(function () {
       const shape = e.target.closest('.unit, .prov');
       if (!shape) return;
       e.preventDefault();
-      selectRegion(shape.getAttribute('data-id'), { fly: true });
+      // Shift+Enter is a soft Enter: the place comes into view, and what is chosen stays.
+      if (e.key === 'Enter' && e.shiftKey) viewShape(shape);
+      else selectRegion(shape.getAttribute('data-id'), { fly: true });
     });
   }
 
-  document.getElementById('zoom-in').addEventListener('click', () => zoomAt(size.left + size.W / 2, size.top + size.H / 2, 1 / 1.6));
-  document.getElementById('zoom-out').addEventListener('click', () => zoomAt(size.left + size.W / 2, size.top + size.H / 2, 1.6));
+  /** Bring a shape's place into view without choosing it (Shift with a click or Enter). */
+  function viewShape(shape) {
+    const unit = units.get(shape.getAttribute('data-id'));
+    if (unit && unit.frame) fitBox(unit.frame, 0.35, true);
+  }
+
+  // The buttons zoom about the middle of the map in view: above the phone's sheet or left of the
+  // wide screen's card, where it covers part of the map, as fitBox frames places.
+  function zoomMiddle(factor) {
+    const cover = SHEET ? sheetCover() : 0;
+    const seen = cover > 0 && cover < size.H * 0.8 ? size.H - cover : size.H;
+    const side = SHEET ? cardCover() : 0;
+    const seenW = side > 0 && side < size.W * 0.8 ? size.W - side : size.W;
+    zoomAt(size.left + seenW / 2, size.top + seen / 2, factor);
+  }
+  document.getElementById('zoom-in').addEventListener('click', () => zoomMiddle(1 / 1.6));
+  document.getElementById('zoom-out').addEventListener('click', () => zoomMiddle(1.6));
   document.getElementById('zoom-reset').addEventListener('click', () => fitBox(home, CONFIG.margin, true));
 
   // ---------- hover ----------
@@ -1356,8 +1457,26 @@ window.FoodMapText.ready.then(function () {
 
   // ---------- legend ----------
 
+  // On a phone the legend shows only the shading's scale, since the switches above the map already
+  // show the colours of the dots, and the reader may fold it away.
+  let legendFolded = false;
+
   function renderLegend() {
     legend.textContent = '';
+    legend.classList.toggle('has-metric', Boolean(currentMetric()));
+    legend.classList.toggle('is-folded', legendFolded);
+    legend.append(
+      el('button', {
+        type: 'button',
+        class: 'legend-fold',
+        text: legendFolded ? t('legend.label') : t('legend.fold'),
+        'aria-expanded': String(!legendFolded),
+        onclick: function () {
+          legendFolded = !legendFolded;
+          renderLegend();
+        },
+      })
+    );
     const list = el('ul', { class: 'legend-layers' });
     for (const layer of LAYERS) {
       const placed = placedCount(layer);
@@ -1585,17 +1704,18 @@ window.FoodMapText.ready.then(function () {
     const found = {};
     for (const layer of LAYERS) found[layer.key] = recordsIn(layer, unit);
     const all = found.products.concat(found.heritage, found.farm);
+    placeCount = all.length;
 
     panel.textContent = '';
     const title = el('div', { class: 'panel-title' });
     if (!top) {
       const up = units.get(unit.parent);
-      title.append(el('button', { type: 'button', class: 'up', text: '‹ ' + fullName(up), onclick: () => selectRegion(up.id, { fly: true }) }));
+      title.append(backLine(fullName(up), () => selectRegion(up.id, { fly: true })));
     }
     title.append(el('h2', null, el('span', { lang: NAMES_TAG, text: unit.name }), unit.en && !CHINESE ? el('span', { class: 'en', text: englishName(unit.en, unit.tag) }) : null));
     if (kindName('unit', unit.kind)) title.append(el('p', { class: 'kind', text: kindName('unit', unit.kind) }));
     panel.append(
-      el('div', { class: 'panel-head' }, title, el('button', { type: 'button', class: 'close', 'aria-label': t('place.close'), text: '×', onclick: () => selectRegion(null, { fly: false }) }))
+      el('div', { class: 'panel-head' }, title, el('button', { type: 'button', class: 'close', 'aria-label': t('place.close'), onclick: () => selectRegion(null, { fly: false }) }, crossIcon()))
     );
 
     if (!store.has(province.id)) {
@@ -1771,11 +1891,11 @@ window.FoodMapText.ready.then(function () {
 
     panel.textContent = '';
     const title = el('div', { class: 'panel-title' });
-    title.append(el('button', { type: 'button', class: 'up', text: '‹ ' + fullName(from), onclick: closeItem }));
+    title.append(backLine(fullName(from), closeItem));
     title.append(el('h2', null, el('span', { lang: NAMES_TAG, text: r.title })));
     title.append(el('p', { class: 'kind', text: kind ? category + ' · ' + kind : category }));
     panel.append(
-      el('div', { class: 'panel-head' }, title, el('button', { type: 'button', class: 'close', 'aria-label': t('item.back', { place: fullName(from) }), text: '×', onclick: closeItem }))
+      el('div', { class: 'panel-head' }, title, el('button', { type: 'button', class: 'close', 'aria-label': t('back.to', { place: fullName(from) }), onclick: closeItem }, crossIcon()))
     );
 
     // An introduction, when one has been written. It arrives with the details below.
@@ -1960,6 +2080,8 @@ window.FoodMapText.ready.then(function () {
     else renderOverview();
     panelShows = key;
     panel.scrollTop = scroll;
+    barText = item ? item.record.title : unit ? t('bar.place', { name: fullName(unit, true), n: placeCount }) : '';
+    syncBar();
   }
 
   /** Bring the focused record's row into view, where the panel scrolls on its own. */
@@ -1974,7 +2096,8 @@ window.FoodMapText.ready.then(function () {
     trail.hidden = !chain.length;
     if (!chain.length) return;
     const list = el('ol');
-    list.append(el('li', null, el('button', { type: 'button', text: t('trail.root'), onclick: () => selectRegion(null, { fly: true }) })));
+    // Each item names its key (0 for China, then 1, 2, 3 down the levels; R for the last).
+    list.append(el('li', null, el('button', { type: 'button', text: t('trail.root'), title: t('trail.go', { place: t('trail.root'), key: '0' }), onclick: () => selectRegion(null, { fly: true }) })));
     chain.forEach(function (unit, i) {
       // The place being shown has its full name; the places above it have their short ones.
       // Neither carries the tag of a shared English name: the trail itself shows where it is.
@@ -1988,7 +2111,7 @@ window.FoodMapText.ready.then(function () {
             el('button', {
               type: 'button',
               text: fullName(unit, true),
-              title: t('trail.reframe', { place: unit.name }),
+              title: t('trail.reframe', { place: fullName(unit, true) }),
               onclick: function () {
                 if (unit.frame) fitBox(unit.frame, 0.35, true);
               },
@@ -1999,11 +2122,363 @@ window.FoodMapText.ready.then(function () {
         // Just above a place of the same name, or named like a province, a longer form tells
         // them apart (namesakeName). Provinces never have one: 吉林 Jilin above 吉林市.
         const label = chain[i + 1].namesake || unit.likeProvince ? namesakeName(unit) : briefName(unit);
-        list.append(el('li', null, el('button', { type: 'button', text: label, onclick: () => selectRegion(unit.id, { fly: true }) })));
+        list.append(el('li', null, el('button', { type: 'button', text: label, title: t('trail.go', { place: label, key: String(i + 1) }), onclick: () => selectRegion(unit.id, { fly: true }) })));
       }
     });
     trail.append(list);
   }
+  // ========== on a phone, and the modern layout ==========
+  //
+  // The sections from here to "actions" serve narrow screens, where the panel lies below or over
+  // the map rather than beside it, and the modern layout on any screen: the bar between the map
+  // and the panel (the simple layout on a phone), the modern layout (a sliding sheet on a phone, a
+  // floating card on a wide screen), the options button and its layer, and the search button.
+  // Elsewhere: fitBox and zoomMiddle (camera) frame and zoom in the part of the map the sheet or
+  // the card leaves in view, and the legend (legend) folds on a phone. Comments that begin "a
+  // mobile browser may" name behaviour of mobile browsers that the code works around.
+
+  // ---------- phone: the bar between the map and the panel (simple layout) ----------
+
+  // The panel lies below the map on a narrow screen. Once a place or an entry is chosen, a bar
+  // between the two names it. Once the panel has been scrolled to, the bar is pinned to the head
+  // of the screen and leads back to the map. On a wide screen it is not shown, as the panel
+  // stands beside the map.
+  //
+  // The bar is pinned (class is-pinned) only while its own place is in the upper half of the
+  // screen, never near the foot: a mobile browser may take the colour of a pinned element at the
+  // foot of the screen, paint the strip around its address bar with it, hiding the page beneath,
+  // and keep doing so until the page is reloaded.
+  const panelBar = document.getElementById('panel-bar');
+  let placeCount = 0;
+  let barText = '';
+  let barFrame = 0;
+
+  /** Where the reader is: 'up' (the map mostly scrolled away) or 'here' (the bar in its own
+   *  place between the map and the panel). */
+  function barMode() {
+    return mapWrap.getBoundingClientRect().bottom < window.innerHeight / 2 ? 'up' : 'here';
+  }
+
+  function syncBar() {
+    cancelAnimationFrame(barFrame);
+    if (SHEET) {
+      panelBar.hidden = true;
+      syncSheet();
+      return;
+    }
+    panelBar.hidden = !barText;
+    if (!barText) return;
+    const mode = barMode();
+    // The bar's own place is just above the panel, wherever the bar is pinned.
+    const own = panel.getBoundingClientRect().top - panelBar.offsetHeight;
+    panelBar.classList.toggle('is-pinned', own < window.innerHeight / 2);
+    panelBar.setAttribute('data-mode', mode);
+    panelBar.textContent = mode === 'up' ? t('bar.map') : barText;
+    if (mode !== 'up') panelBar.lang = state.item ? NAMES_TAG : '';
+    else panelBar.removeAttribute('lang');
+  }
+
+  function scrollToView(node) {
+    const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    node.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  panelBar.addEventListener('click', function () {
+    syncBar(); // where the reader is now, not at the last frame drawn
+    if (panelBar.getAttribute('data-mode') !== 'up') {
+      scrollToView(panel);
+      return;
+    }
+    scrollToView(mapWrap);
+    if (state.item) focusRecord(state.item, { fly: true });
+  });
+  for (const type of ['scroll', 'resize']) {
+    window.addEventListener(type, function () {
+      if (SHEET) return; // no bar in the modern layout
+      cancelAnimationFrame(barFrame);
+      barFrame = requestAnimationFrame(syncBar);
+    }, { passive: true });
+  }
+
+  // ---------- the modern layout: a sliding sheet on a phone, a floating card on a wide screen ----------
+
+  // On a phone the panel lies over the map as a sheet, as in map apps. It is part of the page:
+  // swiping it up scrolls the page, so the browser's own bars shrink and the page passes behind
+  // them, as on any article. The top bar and the map are pinned by the styles (css/style.css says
+  // how, and why the map stops short of the screen's foot). The page comes to rest at three stops,
+  // marked for the browser's snapping: low, with the panel's heading showing; half way; and the
+  // top, where the panel covers the title and search. The handle is dragged like the rest of the
+  // panel, or tapped to move up a stop and back down from the top.
+  //
+  // On a wide screen the map fills the width, and the panel is a card of fixed width floating at
+  // its right, below a row of the map buttons. The card scrolls its own contents and rests at
+  // three heights: low, with its heading showing; a third of its room; and all of it. Places are
+  // framed in the part of the map left of the card only at the top stop; at the lower two the map
+  // above the card is free, so places are framed in the whole map.
+  // Its handle is dragged with a mouse, a trackpad or a finger, or tapped as on a phone.
+  //
+  // Either way the panel stays where it is when an entry is chosen; going back to the whole map
+  // lowers the phone's sheet. The handle and the panel sit in one element (.sheet-card), which on a
+  // phone the styles leave out of the layout.
+  const SHEET = window.FoodMapTheme ? window.FoodMapTheme.layout() === 'sheet' : false;
+  const sheetCard = SHEET ? el('div', { class: 'sheet-card', 'data-stop': 'high' }) : null;
+  const sheetHandle = SHEET ? el('button', { type: 'button', class: 'sheet-handle', 'aria-label': t('sheet.handle') }) : null;
+  const sheetStops = SHEET ? ['low', 'half', 'high'].map((stop) => el('div', { class: 'sheet-stop ' + stop, 'aria-hidden': 'true' })) : [];
+  let sheetShown = ''; // what the panel last showed, so the overview lowers the sheet once
+  let sheetTopH = 0; // the pinned top bar's height, where the map begins
+  let cardStop = 'high'; // where the card rests on a wide screen
+
+  /** How much of the map the phone's sheet covers, in pixels: from the handle to the map's foot. */
+  function sheetCover() {
+    if (wide() || isImmersive()) return 0;
+    return Math.max(0, mapWrap.getBoundingClientRect().bottom - sheetHandle.getBoundingClientRect().top);
+  }
+
+  /** How much of the map the wide screen's card covers from the right, with its gap, in pixels;
+   *  none at its two lower stops, which leave the map above it free. */
+  function cardCover() {
+    if (!wide() || cardStop !== 'high' || isImmersive()) return 0;
+    return Math.max(0, mapWrap.getBoundingClientRect().right - sheetCard.getBoundingClientRect().left + 16);
+  }
+
+  /** The page's scroll position at each stop (on a phone). */
+  function sheetScrolls() {
+    return sheetStops.map((stop) => Math.round(stop.getBoundingClientRect().top + window.scrollY));
+  }
+
+  // A mobile browser may snap a smooth scroll started by the script back to the stop it left, so
+  // snapping is switched off while such a scroll runs, and on again once it has ended, on a stop.
+  let sheetGlide = 0;
+  function scrollSheetTo(index) {
+    const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const root = document.documentElement;
+    const target = sheetScrolls()[index];
+    root.style.scrollSnapType = 'none';
+    const done = function () {
+      clearTimeout(sheetGlide);
+      window.removeEventListener('scroll', arrived);
+      window.removeEventListener('scrollend', done);
+      root.style.scrollSnapType = '';
+    };
+    // On again once the page is at the stop, or has stopped moving; at the latest after 2 s.
+    const arrived = function () {
+      if (Math.abs(window.scrollY - target) < 2) done();
+    };
+    clearTimeout(sheetGlide);
+    window.addEventListener('scroll', arrived, { passive: true });
+    window.addEventListener('scrollend', done);
+    sheetGlide = setTimeout(done, 2000);
+    window.scrollTo({ top: target, behavior: still ? 'auto' : 'smooth' });
+  }
+
+  /** The card's height at each stop (on a wide screen): low shows the handle and the heading,
+   *  high reaches up to just below the row of map buttons, half (the middle stop) is a third of
+   *  that. */
+  function cardHeights() {
+    const room = mapWrap.getBoundingClientRect();
+    const tools = mapWrap.querySelector('.map-tools').getBoundingClientRect();
+    const high = Math.max(0, Math.round(room.bottom - 16 - (tools.bottom + 12)));
+    const head = panel.querySelector('.panel-head') || panel.querySelector('h2');
+    const card = sheetCard.getBoundingClientRect();
+    // 14 px below the heading, or less where the next row starts sooner, so none of it shows.
+    const next = head && head.nextElementSibling;
+    const foot = head ? Math.min(head.getBoundingClientRect().bottom + 14, next ? next.getBoundingClientRect().top : Infinity) : 0;
+    const low = head ? Math.round(foot - card.top + panel.scrollTop) : sheetHandle.offsetHeight;
+    return { low: Math.min(low, high), half: Math.min(Math.max(low, Math.round(high / 3)), high), high: high };
+  }
+
+  function setCard(stop, animate) {
+    cardStop = stop;
+    sheetCard.setAttribute('data-stop', stop);
+    sheetCard.classList.toggle('is-moving', !animate);
+    if (stop === 'low') panel.scrollTop = 0;
+    document.documentElement.style.setProperty('--card-h', cardHeights()[stop] + 'px');
+  }
+
+  /** A measure for the styles: the pinned top bar's height, where the map begins (on a phone). */
+  function syncSheetLayout() {
+    if (!SHEET) return;
+    const topH = document.querySelector('.topbar').offsetHeight;
+    if (topH === sheetTopH) return;
+    sheetTopH = topH;
+    document.documentElement.style.setProperty('--top-h', topH + 'px');
+  }
+
+  function syncSheet() {
+    if (!SHEET) return;
+    const showing = state.item ? 'item ' + state.item : state.region || '';
+    const changed = showing !== sheetShown;
+    sheetShown = showing;
+    if (wide()) {
+      // New contents open from their heading; the low stop follows the heading's height.
+      if (changed) panel.scrollTop = 0;
+      setCard(cardStop, false);
+      return;
+    }
+    syncSheetLayout();
+    if (!changed) return;
+    if (!state.region && !state.item && window.scrollY > 0) {
+      scrollSheetTo(0);
+    } else if (window.scrollY > sheetScrolls()[2]) {
+      // New contents open from their heading, at the top stop, not where the old ones were read.
+      window.scrollTo({ top: sheetScrolls()[2], behavior: 'auto' });
+    }
+  }
+
+  if (SHEET) {
+    document.documentElement.classList.add('sheet-layout');
+    panel.parentNode.insertBefore(sheetCard, panel);
+    sheetCard.append(sheetHandle, panel);
+    document.body.append(...sheetStops);
+    syncSheetLayout();
+    if (wide()) setCard(cardStop, false);
+
+    // On a wide screen the handle is dragged: the card follows, and on release settles at the
+    // nearest stop, leaning the way a quick flick was going. A press that does not move is a tap.
+    let cardDrag = null;
+    let cardDragged = false;
+    sheetHandle.addEventListener('pointerdown', function (e) {
+      if (!wide()) return;
+      cardDrag = { y: e.clientY, h: sheetCard.getBoundingClientRect().height, t: performance.now(), moved: false };
+      sheetHandle.setPointerCapture(e.pointerId);
+    });
+    sheetHandle.addEventListener('pointermove', function (e) {
+      if (!cardDrag) return;
+      const dy = cardDrag.y - e.clientY;
+      if (!cardDrag.moved && Math.abs(dy) <= 4) return;
+      cardDrag.moved = true;
+      sheetCard.classList.add('is-moving');
+      const heights = cardHeights();
+      document.documentElement.style.setProperty('--card-h', clamp(cardDrag.h + dy, heights.low, heights.high) + 'px');
+    });
+    const release = function () {
+      if (!cardDrag) return;
+      const was = cardDrag;
+      cardDrag = null;
+      if (!was.moved) return; // a tap: the click below moves the card
+      cardDragged = true;
+      setTimeout(() => (cardDragged = false), 0);
+      const heights = cardHeights();
+      const now = sheetCard.getBoundingClientRect().height;
+      const aim = now + ((now - was.h) / Math.max(performance.now() - was.t, 1)) * 200;
+      let best = 'low';
+      for (const stop of ['low', 'half', 'high']) if (Math.abs(heights[stop] - aim) < Math.abs(heights[best] - aim)) best = stop;
+      setCard(best, true);
+    };
+    sheetHandle.addEventListener('pointerup', release);
+    sheetHandle.addEventListener('pointercancel', release);
+
+    // A tap on the handle: up a stop, and from the top back down to the lowest.
+    sheetHandle.addEventListener('click', function () {
+      if (wide()) {
+        if (!cardDragged) setCard(cardStop === 'low' ? 'half' : cardStop === 'half' ? 'high' : 'low', true);
+        return;
+      }
+      const scrolls = sheetScrolls();
+      let here = 0;
+      scrolls.forEach((y, i) => {
+        if (Math.abs(y - window.scrollY) < Math.abs(scrolls[here] - window.scrollY)) here = i;
+      });
+      scrollSheetTo(here === scrolls.length - 1 ? 0 : here + 1);
+    });
+
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (wide()) return;
+        // From the top stop on, the reader is reading the panel: no snapping there, or a short
+        // scroll would be pulled back to the stop (the class is-reading in css/style.css).
+        document.documentElement.classList.toggle('is-reading', window.scrollY >= sheetScrolls()[2] - 1);
+        // The map options would be hidden under the sheet at the top: close them.
+        if (sheetHandle.getBoundingClientRect().top < sheetTopH) {
+          openOptions(false);
+        }
+      },
+      { passive: true }
+    );
+    window.addEventListener('resize', function () {
+      if (wide()) setCard(cardStop, false);
+      else syncSheetLayout();
+    });
+    window.addEventListener('load', () => syncSheetLayout());
+    // Across the breakpoint: the wide card starts with the page at its top.
+    onLayoutChange(function () {
+      if (!wide()) return;
+      window.scrollTo(0, 0);
+      setCard(cardStop, false);
+    });
+  }
+
+  // ---------- phone: the options button and its layer ----------
+
+  /** The options button on a phone is marked while the shading or a hidden layer is in effect. */
+  function syncOptionsToggle() {
+    optionsToggle.classList.toggle('is-set', Boolean(state.metric) || state.hidden.size > 0);
+  }
+
+  const optionsToggle = document.getElementById('options-toggle');
+  const filters = document.getElementById('filters');
+  // On a phone the open options are a layer over the map, dropping from the top bar; the styles
+  // place it from --options-top and move the trail and map buttons down by --options-h.
+  function openOptions(open) {
+    filters.classList.toggle('is-open', open);
+    optionsToggle.setAttribute('aria-expanded', String(open));
+    placeOptions();
+  }
+  function placeOptions() {
+    const root = document.documentElement;
+    const open = filters.classList.contains('is-open');
+    const bar = document.querySelector('.topbar');
+    root.style.setProperty('--options-top', Math.round(bar.offsetTop + bar.offsetHeight) + 'px');
+    if (open) {
+      // The labels' shared width: the wider one's own.
+      root.style.removeProperty('--options-label');
+      const labels = filters.querySelectorAll('.filter > label, .filter > .filter-label');
+      const widest = Math.max(0, ...Array.from(labels, (label) => label.getBoundingClientRect().width));
+      root.style.setProperty('--options-label', Math.ceil(widest) + 'px');
+    }
+    root.style.setProperty('--options-h', (open ? filters.offsetHeight : 0) + 'px');
+  }
+  window.addEventListener('resize', placeOptions);
+  optionsToggle.addEventListener('click', function () {
+    openOptions(!filters.classList.contains('is-open'));
+  });
+  // Esc folds the open options away, and nothing else, as it closes the switches' menus.
+  document.addEventListener(
+    'keydown',
+    function (e) {
+      if (e.key !== 'Escape' || !filters.classList.contains('is-open') || !optionsToggle.offsetParent) return;
+      openOptions(false);
+      optionsToggle.focus();
+      e.stopPropagation();
+    },
+    true
+  );
+
+  // ---------- phone: the search button ----------
+
+  // On a phone the search box is folded behind a button beside the title, and opens over the
+  // title (the class is-searching on the top bar). It folds again when closed, when a result is
+  // chosen, on Esc, and on a tap elsewhere while empty.
+  const topbarEl = document.querySelector('.topbar');
+  const searchToggle = document.getElementById('search-toggle');
+  function openSearch(open) {
+    topbarEl.classList.toggle('is-searching', open);
+    searchToggle.setAttribute('aria-expanded', String(open));
+    if (open) {
+      searchInput.focus();
+    } else {
+      searchResults.hidden = true;
+      searchInput.value = '';
+      searchInput.blur();
+    }
+  }
+  const searchFolded = () => getComputedStyle(searchToggle).display !== 'none';
+  searchToggle.addEventListener('click', () => openSearch(true));
+  document.getElementById('search-close').addEventListener('click', function () {
+    openSearch(false);
+    searchToggle.focus();
+  });
 
   // ---------- actions ----------
 
@@ -2152,6 +2627,42 @@ window.FoodMapText.ready.then(function () {
     return box;
   }
 
+  /**
+   * The box that shows an entry's dot, or null if it has none. Its width is the narrowest of
+   * three: the view as it is, a seventh of the whole map, and the units the entry belongs to
+   * with room around them. So an entry in a small unit is shown close up, and one in a wide unit
+   * is not shown from further away than before.
+   */
+  function boxOfDot(id) {
+    const entry = points.get(id);
+    const known = recordById.get(id);
+    if (!entry || !known) return null;
+    let width = Math.min(view.w, (full.x1 - full.x0) / 7);
+    const home = frameOfAreas(known.record);
+    if (home) width = Math.min(width, widthToFit(home, 0.5));
+    const half = width / 2;
+    return { x0: entry.x - half, x1: entry.x + half, y0: entry.y - half * 0.6, y1: entry.y + half * 0.6 };
+  }
+
+  /**
+   * Frame again, at once, what is shown: the box last framed on purpose while the same place is
+   * chosen (a view moved up a level with Shift stays there, with an entry opened or closed in
+   * the meantime), otherwise the entry's dot, the place, or the whole map.
+   */
+  function reframe() {
+    measure();
+    const last = lastFrame;
+    if (last && last.region === state.region) {
+      fitBox(last.box, last.pad, false);
+      return;
+    }
+    const box = state.focus ? boxOfDot(state.focus) : null;
+    const unit = units.get(state.region);
+    if (box) fitBox(box, 0, false);
+    else if (unit && unit.frame) fitBox(unit.frame, 0.35, false);
+    else if (!unit) fitBox(home, CONFIG.margin, false);
+  }
+
   function focusRecord(id, options) {
     const province = chainOf(state.region)[0];
     if (province && !store.has(province.id)) {
@@ -2167,16 +2678,9 @@ window.FoodMapText.ready.then(function () {
     if (!state.focus || !options || !options.fly) return;
     const entry = points.get(id);
     if (entry) {
-      // The view is the narrowest of three: the view as it is, a seventh of the whole map, and
-      // the units the entry belongs to with room around them. So an entry in a small unit is
-      // shown close up, and one in a wide unit is not shown from further away than before.
       const fly = function () {
         if (state.focus !== id || !points.has(id)) return; // something else was picked meanwhile
-        let width = Math.min(view.w, (full.x1 - full.x0) / 7);
-        const home = frameOfAreas(known.record);
-        if (home) width = Math.min(width, widthToFit(home, 0.5));
-        const half = width / 2;
-        fitBox({ x0: entry.x - half, x1: entry.x + half, y0: entry.y - half * 0.6, y1: entry.y + half * 0.6 }, 0, true);
+        fitBox(boxOfDot(id), 0, true);
       };
       // A county's shape comes with its city's file, which is loaded when the city is first
       // opened. Fetch the files that are missing first, so the view fits the county itself.
@@ -2204,6 +2708,7 @@ window.FoodMapText.ready.then(function () {
     applyMetric();
     renderLegend();
     renderPanel();
+    syncOptionsToggle();
     syncUrl();
   }
 
@@ -2215,10 +2720,177 @@ window.FoodMapText.ready.then(function () {
     refreshCounts();
     layoutLabels();
     renderLegend();
+    syncOptionsToggle();
     syncUrl();
   }
 
+  // ---------- immersive view ----------
+  //
+  // The map over the whole page, for looking at it alone: the top bar, the options and the panel
+  // are hidden (class is-immersive on the root; css/style.css), in either layout and on any
+  // screen. It lasts until the page is left, neither remembered nor in the address, so the page
+  // never opens without them. The map works as usual, and the hidden panel keeps up, so leaving
+  // shows it for what is selected. Esc leaves it only from the whole map; while a place or an
+  // entry is chosen, Esc steps back out as always (see search, below).
+
+  const immersiveButton = document.getElementById('immersive');
+  // Four corners, pointing out to enter and in to leave.
+  const CORNERS_OUT = 'M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4';
+  const CORNERS_IN = 'M6 2v4H2M14 6h-4V2M10 14v-4h4M2 10h4v4';
+
+  function setImmersive(on) {
+    if (on) {
+      if (filters.classList.contains('is-open')) openOptions(false);
+      if (topbarEl.classList.contains('is-searching')) openSearch(false);
+      searchResults.hidden = true;
+      if (SHEET && !wide()) window.scrollTo(0, 0); // the phone's sheet back down, out of sight
+    }
+    if (!on) fullscreenMadeImmersive = false; // left by hand: full screen no longer owns it
+    document.documentElement.classList.toggle('is-immersive', on);
+    immersiveButton.setAttribute('aria-label', t(on ? 'map.immersive.off' : 'map.immersive'));
+    immersiveButton.title = t(on ? 'map.immersive.off.tip' : 'map.immersive.tip');
+    immersiveButton.querySelector('path').setAttribute('d', on ? CORNERS_IN : CORNERS_OUT);
+    if (!on && SHEET) {
+      if (wide()) setCard(cardStop, false);
+      else syncSheetLayout();
+    }
+    // The map has changed size: what is shown is framed again for it, once it is laid out.
+    setTimeout(reframe, 0);
+  }
+
+  immersiveButton.addEventListener('click', () => setImmersive(!isImmersive()));
+
+  // ---------- views by key alone ----------
+  //
+  // Three more ways to see more of the map, with keys only (mapKey, below) and no button. Like
+  // immersive view, none is remembered or in the address. Each is a class on the root that
+  // css/style.css reads.
+  //   P  the panel's next height: in the modern layout low, middle, high, then hidden (Shift+P
+  //      the other way); in the simple layout shown or hidden. Hidden, the map takes the panel's room, keeping its
+  //      centre and zoom.
+  //   L  the legend off and on.
+  //   C  a clean map: the trail, the map buttons and the legend off and on.
+
+  function setPanelOff(off) {
+    document.documentElement.classList.toggle('is-panel-off', off);
+    if (!off && SHEET) {
+      if (wide()) setCard(cardStop, false);
+      else syncSheetLayout();
+    }
+    if (off && SHEET && !wide()) window.scrollTo(0, 0);
+    // The map is not framed again: it keeps its centre and zoom and simply gets more room, as
+    // when the panel moves between its stops.
+  }
+
+  /** The panel's next height, or with `back` (Shift+P) the one before: low, middle, high, hidden. */
+  function cyclePanel(back) {
+    if (isImmersive()) return; // the panel is hidden there already
+    const off = document.documentElement.classList.contains('is-panel-off');
+    const order = ['low', 'half', 'high'];
+    if (off) {
+      // Out of hidden: forward to low, back to high.
+      if (SHEET && wide()) setCard(back ? 'high' : 'low', false);
+      setPanelOff(false);
+      if (SHEET && !wide() && back) scrollSheetTo(2);
+      return;
+    }
+    if (!SHEET) {
+      setPanelOff(true);
+      return;
+    }
+    let here = order.indexOf(cardStop);
+    if (!wide()) {
+      const scrolls = sheetScrolls();
+      here = 0;
+      scrolls.forEach((y, i) => {
+        if (Math.abs(y - window.scrollY) < Math.abs(scrolls[here] - window.scrollY)) here = i;
+      });
+    }
+    const next = here + (back ? -1 : 1);
+    if (next < 0 || next > 2) setPanelOff(true);
+    else if (wide()) setCard(order[next], true);
+    else scrollSheetTo(next);
+  }
+
+  const toggleRootClass = (name) => document.documentElement.classList.toggle(name);
+
+  // ---------- full screen ----------
+  //
+  // F asks the browser for full screen, with immersive view if it is not on already, and F again
+  // leaves both, back to how the page was: immersive view stays if it was on before. A browser
+  // usually ends full screen at one press of Esc, before the page sees it. Where it can, the page
+  // keeps Esc for itself (Keyboard Lock, Chromium on a computer): a short press works on the map
+  // as everywhere, holding it leaves full screen, and the browser says so. Esc at the whole map,
+  // in immersive view, leaves full screen too. Where the browser has no full screen for a page
+  // (a phone), F turns immersive view on and off.
+
+  let fullscreenMadeImmersive = false;
+  const fullscreenNow = () => Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+
+  function exitFullscreen() {
+    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+    if (exit) exit.call(document);
+  }
+
+  function toggleFullscreen() {
+    if (fullscreenNow()) {
+      exitFullscreen();
+      return;
+    }
+    const root = document.documentElement;
+    const request = root.requestFullscreen || root.webkitRequestFullscreen;
+    if (!request) {
+      setImmersive(!isImmersive());
+      return;
+    }
+    if (!isImmersive()) {
+      setImmersive(true);
+      fullscreenMadeImmersive = true;
+    }
+    const asked = request.call(root);
+    const lockEsc = function () {
+      if (navigator.keyboard && navigator.keyboard.lock) navigator.keyboard.lock(['Escape']).catch(() => {});
+    };
+    if (asked && asked.then) asked.then(lockEsc, () => {});
+    else lockEsc();
+  }
+
+  for (const type of ['fullscreenchange', 'webkitfullscreenchange']) {
+    document.addEventListener(type, function () {
+      // The screen has a new shape, which a browser may give the page only after saying so:
+      // what is shown is framed again now, and once more at the first resize within a second.
+      const settle = function () {
+        window.removeEventListener('resize', settle);
+        setTimeout(reframe, 0);
+      };
+      window.addEventListener('resize', settle);
+      setTimeout(() => window.removeEventListener('resize', settle), 1000); // or not at all
+      setTimeout(reframe, 0);
+      if (fullscreenNow()) return;
+      if (navigator.keyboard && navigator.keyboard.unlock) navigator.keyboard.unlock();
+      if (fullscreenMadeImmersive) setImmersive(false);
+    });
+  }
+
   // ---------- controls ----------
+
+  // The title fades out at its end only where it is cut short (class is-cut): on a phone beside
+  // its buttons, on a narrow wide screen under the search box. It is never narrower than its
+  // first part, the name in the page's language, with room after it for the fade when a second
+  // part follows (--title-min on its holder; the fade is 32 px, in css/style.css).
+  const titleEl = document.querySelector('.brand h1');
+  if (titleEl && window.ResizeObserver) {
+    const first = titleEl.firstElementChild;
+    const syncTitle = function () {
+      const pad = parseFloat(getComputedStyle(titleEl).paddingLeft) || 0;
+      const second = first.nextElementSibling;
+      const fade = second && !second.hidden ? 32 : 0;
+      titleEl.parentNode.style.setProperty('--title-min', Math.ceil(first.offsetWidth + pad + fade) + 'px');
+      titleEl.classList.toggle('is-cut', titleEl.scrollWidth > titleEl.clientWidth + 1);
+    };
+    new ResizeObserver(syncTitle).observe(titleEl);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncTitle);
+  }
 
   metricSelect.append(el('option', { value: '', text: t('metric.none') }));
   for (const c of DATA.indicators.columns) {
@@ -2354,6 +3026,7 @@ window.FoodMapText.ready.then(function () {
       button.addEventListener('click', function () {
         searchResults.hidden = true;
         searchInput.value = '';
+        if (topbarEl.classList.contains('is-searching')) openSearch(false);
         if (hit.record) {
           // The entry's province is selected at once, then its own place once the files are in.
           selectRegion(hit.region, { fly: false });
@@ -2372,16 +3045,24 @@ window.FoodMapText.ready.then(function () {
     runSearch();
   });
   document.addEventListener('pointerdown', function (e) {
-    if (!e.target.closest || !e.target.closest('.search')) searchResults.hidden = true;
+    if (!e.target.closest || !e.target.closest('.search')) {
+      searchResults.hidden = true;
+      // An empty search opened on a phone folds away again on a tap elsewhere.
+      if (topbarEl.classList.contains('is-searching') && !searchInput.value && !e.target.closest('.topbar')) openSearch(false);
+    }
   });
 
   document.addEventListener('keydown', function (e) {
     const typing = /^(input|select|textarea)$/i.test(e.target.tagName || '');
     if (e.key === '/' && !typing) {
       e.preventDefault();
-      searchInput.focus();
+      if (searchFolded()) openSearch(true);
+      else searchInput.focus();
     } else if (e.key === 'Escape') {
-      if (!searchResults.hidden) {
+      if (topbarEl.classList.contains('is-searching')) {
+        openSearch(false);
+        searchToggle.focus();
+      } else if (!searchResults.hidden) {
         searchResults.hidden = true;
         searchInput.blur();
       } else if (state.item) {
@@ -2389,9 +3070,125 @@ window.FoodMapText.ready.then(function () {
       } else if (state.region) {
         // Step back out one level: a city to its province, a province to the whole map.
         selectRegion(parentOf(state.region), { fly: true });
+      } else if (fullscreenNow()) {
+        // At the whole map, and only there, Esc leaves full screen (and the immersive view F
+        // brought with it) ...
+        exitFullscreen();
+      } else if (isImmersive()) {
+        // ... or immersive view.
+        setImmersive(false);
       }
+    } else if (!typing && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      mapKey(e);
     }
   });
+
+  // Single keys for the map, where no field is being typed in and no modifier is held, so the
+  // browser's own shortcuts (Cmd + for the page's zoom) are left alone. The hover tips name them.
+  //   + (or =)  zoom in            − (or _)  zoom out            H  the whole map in view (the house)
+  //   0  China, nothing chosen      1, 2, 3  the place at that level of the trail, as a click on it
+  //   R  the place shown back in view (the trail's last item)
+  //   Shift+0 to Shift+3  that level's place in view, without choosing it (Shift+0 is H); read
+  //      by the key's position, as Shift turns the digits into other characters
+  //   M  map only (immersive view)  F  full screen, with the map only
+  //   P  the panel's next height, or hidden   L  the legend   C  the trail, buttons and legend
+  //      (no button shows these three; see "views by key alone")
+  //   arrows  move the map while it has the focus (Tab to a place on it), or after a click on
+  //           it while nothing else has the focus (a click that opens a place replaces the
+  //           shape clicked, and the focus falls back to the page), so they never take over
+  //           the scrolling of the panel or the page
+  let mapClickedLast = false;
+  document.addEventListener('pointerdown', (e) => (mapClickedLast = Boolean(e.target.closest && e.target.closest('#map'))), true);
+  document.addEventListener('focusin', (e) => (mapClickedLast = mapClickedLast && Boolean(e.target.closest && e.target.closest('#map'))));
+  const mapHasKeys = (e) => (e.target.closest && e.target.closest('#map')) || (mapClickedLast && e.target === document.body);
+
+  /**
+   * A key for the trail does what a click on its item does: 0 is China, 1 to 3 the levels below
+   * it, R the last item. A level the trail does not reach is ignored. With nothing chosen, there
+   * is no trail, and 0 and R show the whole map.
+   */
+  function trailKey(key) {
+    const items = trail.hidden ? [] : trail.querySelectorAll('li > button');
+    if (!items.length) {
+      if (key === '0' || key === 'r' || key === 'R') fitBox(home, CONFIG.margin, true);
+      return;
+    }
+    const item = key === 'r' || key === 'R' ? items[items.length - 1] : items[Number(key)];
+    if (item) item.click();
+  }
+
+  /** Frame the place at a level of the trail (0 is the whole map) without choosing it. */
+  function viewLevel(level) {
+    if (level === 0) {
+      fitBox(home, CONFIG.margin, true);
+      return;
+    }
+    const unit = chainOf(state.region)[level - 1];
+    if (unit && unit.frame) fitBox(unit.frame, 0.35, true);
+  }
+
+  function mapKey(e) {
+    const key = e.key;
+    let done = true;
+    if (key === '+' || key === '=') zoomMiddle(1 / 1.6);
+    else if (key === '-' || key === '_' || key === '−') zoomMiddle(1.6);
+    else if (key === 'h' || key === 'H') fitBox(home, CONFIG.margin, true);
+    else if (/^[0-3]$/.test(key) || key === 'r' || key === 'R') trailKey(key);
+    else if (e.shiftKey && /^Digit[0-3]$/.test(e.code)) viewLevel(Number(e.code.slice(5)));
+    else if (key === 'm' || key === 'M') setImmersive(!isImmersive());
+    else if (key === 'f' || key === 'F') toggleFullscreen();
+    else if (key === 'p' || key === 'P') cyclePanel(e.shiftKey);
+    else if (key === 'l' || key === 'L') toggleRootClass('is-legend-off');
+    else if (key === 'c' || key === 'C') toggleRootClass('is-bare');
+    else if (key.slice(0, 5) === 'Arrow' && mapHasKeys(e)) {
+      // A tenth of the map in view per press.
+      const h = view.w * (size.H / size.W);
+      const dx = key === 'ArrowLeft' ? -1 : key === 'ArrowRight' ? 1 : 0;
+      const dy = key === 'ArrowUp' ? -1 : key === 'ArrowDown' ? 1 : 0;
+      stopFlight();
+      movedByHand = true;
+      setView(view.cx + (dx * view.w) / 10, view.cy + (dy * h) / 10, view.w);
+    } else done = false;
+    if (done) e.preventDefault();
+  }
+
+  // ---------- the view across a switch of layout or language ----------
+  //
+  // Both switches load the page again (js/i18n.js says so with the event foodmap:switch just
+  // before). The view goes along, in this tab's session storage, for the next load only: a view
+  // framed on purpose is framed again for the new layout, one moved by hand keeps its centre and
+  // zoom. Any other load (a reload, back, a link) frames the place afresh.
+
+  const CARRY_KEY = 'foodmap-view';
+
+  document.addEventListener('foodmap:switch', function () {
+    const saved = {
+      region: state.region,
+      item: state.item,
+      view: { cx: view.cx, cy: view.cy, w: view.w },
+      frame: !movedByHand && lastFrame && lastFrame.region === state.region ? { box: lastFrame.box, pad: lastFrame.pad } : null,
+    };
+    try {
+      sessionStorage.setItem(CARRY_KEY, JSON.stringify(saved));
+    } catch (error) {
+      // Without storage the new page frames the place afresh.
+    }
+  });
+
+  /** The view saved by a switch, if this load opens on the same place and entry; used once. */
+  function takeCarriedView() {
+    let saved = null;
+    try {
+      saved = JSON.parse(sessionStorage.getItem(CARRY_KEY) || 'null');
+      sessionStorage.removeItem(CARRY_KEY);
+    } catch (error) {
+      return null;
+    }
+    if (!saved || !saved.view) return null;
+    const region = params.get('region') || null;
+    const item = params.get('item') || null;
+    return saved.region === region && saved.item === item ? saved : null;
+  }
 
   // ---------- start ----------
 
@@ -2424,11 +3221,23 @@ window.FoodMapText.ready.then(function () {
   fitBox(home, CONFIG.margin, false);
   applyMetric();
   renderLegend();
+  syncOptionsToggle();
   refreshCounts();
   refreshPoints();
   state.item = params.get('item') || null;
-  selectRegion(params.get('region'), { jump: true, keepItem: true });
+  // A switch of layout or language reloads the page; it saves the view first (below), and the
+  // page takes it back, once, if it opens on the same place and entry.
+  const carried = takeCarriedView();
+  selectRegion(params.get('region'), { jump: !carried, keepItem: true });
   if (state.item) showItem(state.item);
+  if (carried) {
+    measure();
+    if (carried.frame) fitBox(carried.frame.box, carried.frame.pad, false);
+    else {
+      setView(carried.view.cx, carried.view.cy, carried.view.w);
+      movedByHand = true;
+    }
+  }
 
   if (!timeline.enabled) {
     loadScript('js/data/dots.js?v=' + DATA.dotsVersion).then(
@@ -2444,6 +3253,9 @@ window.FoodMapText.ready.then(function () {
     }).observe(svg);
   }
   window.addEventListener('scroll', measure, { passive: true });
+  // Across the breakpoint the map changes size and the panel moves, so what was framed is framed
+  // again for the new layout, once it is laid out (after the modern layout's own step, above).
+  onLayoutChange(() => setTimeout(reframe, 0));
 
   // The shading is painted by this script, so it is painted again when the theme changes.
   THEME.onChange(function (scheme) {

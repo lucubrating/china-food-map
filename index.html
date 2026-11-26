@@ -7,8 +7,8 @@
   <meta name="description" content="A map of regional food across Greater China: signature dishes, protected regional products, heritage food traditions, farm heritage systems and what people eat, by province." />
   <meta name="color-scheme" content="light dark" />
   <!-- Before the styles, so the page is first drawn in the right colours. -->
-  <script src="js/theme.js?v=925d8a41"></script>
-  <link rel="stylesheet" href="css/style.css?v=e8729808" />
+  <script src="js/theme.js?v=750e4d0a"></script>
+  <link rel="stylesheet" href="css/style.css?v=3751efce" />
 </head>
 <body>
   <header class="topbar">
@@ -19,29 +19,46 @@
     </div>
     <div class="search">
       <label class="visually-hidden" for="search-input" data-t="search.label">Search dishes, products and places</label>
-      <input id="search-input" type="search" autocomplete="off" placeholder="Search a dish, product or place  (press /)" data-t-placeholder="search.placeholder" />
+      <input id="search-input" type="search" autocomplete="off" placeholder="Search a dish, product or place  (press /)" data-t-placeholder="search.placeholder" data-t-placeholder-touch="search.placeholderTouch" />
+      <!-- On a phone the search box opens over the title, and this closes it again. -->
+      <button type="button" id="search-close" class="search-close" aria-label="Close search" title="Close search" data-t-aria-label="search.close" data-t-title="search.close">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" /></svg>
+      </button>
       <ul id="search-results" class="search-results" hidden></ul>
     </div>
+    <!-- On a phone the search box is folded away behind this button. -->
+    <button type="button" id="search-toggle" class="search-toggle" aria-expanded="false" aria-controls="search-input" aria-label="Search" title="Search" data-t-aria-label="search.open" data-t-title="search.open">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5" /><path d="M10.4 10.4l3.6 3.6" /></svg>
+    </button>
+    <!-- On a phone the map options below, with the switches as their first row, are folded away
+         behind this button. -->
+    <button type="button" id="options-toggle" class="options-toggle" aria-expanded="false" aria-controls="filters" aria-label="Options" title="Options" data-t-aria-label="options.toggle" data-t-title="options.toggle">
+      <!-- Three sliders. -->
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h7M12 4h2M2 8h2M7 8h7M2 12h8M13 12h1" /><circle cx="10.5" cy="4" r="1.5" /><circle cx="5.5" cy="8" r="1.5" /><circle cx="11.5" cy="12" r="1.5" /></svg>
+    </button>
     <div class="switches">
       <div id="theme-switch" class="lang theme" role="group" aria-label="Light or dark" data-t-aria-label="theme.label"></div>
       <nav id="lang-switch" class="lang" aria-label="Language" data-t-aria-label="lang.label"></nav>
     </div>
   </header>
 
-  <div class="filters" role="group" aria-label="Map options" data-t-aria-label="options.label">
+  <div id="filters" class="filters" role="group" aria-label="Map options" data-t-aria-label="options.label">
     <div class="filter">
       <label for="metric-select" data-t="options.shade">Shade provinces by</label>
       <select id="metric-select"></select>
     </div>
-    <fieldset class="filter layers">
-      <legend data-t="options.show">Show on map</legend>
+    <!-- A group named by its label, laid out as a plain row like the one above: browsers lay out a
+         fieldset's legend each in their own way. -->
+    <div class="filter layers" role="group" aria-labelledby="layers-label">
+      <span id="layers-label" class="filter-label" data-t="options.show">Show on map</span>
       <div id="layer-toggles" class="layer-toggles"></div>
-    </fieldset>
+    </div>
   </div>
 
   <main class="layout">
     <section class="map-wrap" aria-label="Map" data-t-aria-label="map.label">
-      <svg id="map" role="group" aria-label="Map of China by province" data-t-aria-label="map.svg">
+      <!-- Focusable by a click (tabindex -1, not in the Tab order), so the arrow keys can move it. -->
+      <svg id="map" role="group" tabindex="-1" aria-label="Map of China by province" data-t-aria-label="map.svg">
         <g id="g-provinces"></g>
         <!-- The open province in more detail: its outline and the units inside it. -->
         <g id="g-units"></g>
@@ -55,9 +72,16 @@
       </svg>
 
       <div class="map-tools" role="group" aria-label="Zoom" data-t-aria-label="zoom.label">
-        <button type="button" id="zoom-in" aria-label="Zoom in" data-t-aria-label="zoom.in">+</button>
-        <button type="button" id="zoom-out" aria-label="Zoom out" data-t-aria-label="zoom.out">−</button>
-        <button type="button" id="zoom-reset" aria-label="Show the whole map" data-t-aria-label="zoom.whole" data-t="zoom.reset">Reset</button>
+        <button type="button" id="zoom-in" aria-label="Zoom in" title="Zoom in (+)" data-t-aria-label="zoom.in" data-t-title="zoom.in.tip">+</button>
+        <button type="button" id="zoom-out" aria-label="Zoom out" title="Zoom out (−)" data-t-aria-label="zoom.out" data-t-title="zoom.out.tip">−</button>
+        <button type="button" id="zoom-reset" aria-label="Show the whole map" title="Show the whole map (H)" data-t-aria-label="zoom.whole" data-t-title="zoom.whole.tip">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 8 8 2l6.5 6M3.5 6.5V14h9V6.5M6.5 14v-4h3v4" /></svg>
+        </button>
+        <!-- Immersive view: the map over the whole page, without the top bar, the options or the
+             panel. Four corners pointing out; js/app.js turns them in while the view is on. -->
+        <button type="button" id="immersive" aria-label="Show only the map" title="Show only the map (M; F for full screen)" data-t-aria-label="map.immersive" data-t-title="map.immersive.tip">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" /></svg>
+        </button>
       </div>
 
       <div id="legend" class="legend" aria-label="Legend" data-t-aria-label="legend.label"></div>
@@ -71,15 +95,20 @@
       <nav id="trail" class="trail" aria-label="Selected place" data-t-aria-label="trail.label" hidden></nav>
     </section>
 
+    <!-- On a phone the panel lies below the map. Once a place is chosen, this bar between the two
+         keeps the way across at hand: it stays at the foot of the screen while the panel is
+         below, and at its head, leading back to the map, once the map is scrolled away. -->
+    <button type="button" id="panel-bar" class="panel-bar" hidden></button>
+
     <aside id="panel" class="panel" aria-live="polite"></aside>
   </main>
 
   <script src="js/data/regions.js?v=627c7e6a"></script>
   <script src="js/data/summary.js?v=3e89de12"></script>
-  <script src="js/data/text.js?v=d1bfd91f"></script>
-  <script src="js/i18n.js?v=0886567d"></script>
+  <script src="js/data/text.js?v=e31f00b0"></script>
+  <script src="js/i18n.js?v=c660d1fd"></script>
   <script src="js/geo.js?v=c382ed9a"></script>
   <script src="js/timeline.js?v=6230b2f5"></script>
-  <script src="js/app.js?v=591ce2a5"></script>
+  <script src="js/app.js?v=d45c2db5"></script>
 </body>
 </html>
