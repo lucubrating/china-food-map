@@ -470,7 +470,10 @@ window.FoodMapText.ready.then(function () {
         province.fetching = false;
         tallies.delete(province.id);
         hovered.id = null;
-        if (chainOf(state.region)[0] !== province) return;
+        if (chainOf(state.region)[0] !== province) {
+          if (openProvinces().indexOf(province) !== -1) refreshMap(); // opened without choosing
+          return;
+        }
         applySelection();
         if (wantedFocus) {
           const waiting = wantedFocus;
@@ -520,6 +523,37 @@ window.FoodMapText.ready.then(function () {
   const drawn = new Map(); // unit id -> { group, base, labels } while its parts are on the map
   const tallies = new Map(); // province id -> Map(place id -> number of records there)
   let wanted = null; // { id, options, on }: a selection waiting for the file of the unit `on`
+
+  // Places opened on the map without being chosen: one by a soft click (Shift), which a new soft
+  // click replaces, and any number by background clicks (Cmd or Ctrl). A hard
+  // choice (a click, Esc, the trail, search) clears them all. See "soft, view and background clicks".
+  const peeks = { soft: null, background: new Set(), round: 0 }; // round: moved on by each clearing
+
+  /** The ids of the places open on the map: the chosen one and the ones opened without choosing. */
+  function openIds() {
+    const ids = [];
+    if (state.region) ids.push(state.region);
+    if (peeks.soft) ids.push(peeks.soft);
+    for (const id of peeks.background) ids.push(id);
+    return ids;
+  }
+
+  /** Every unit open on the map: each open place's chain, the units that open, parents first. */
+  function openBranch() {
+    const branch = [];
+    for (const id of openIds()) for (const unit of chainOf(id)) if (opens(unit) && branch.indexOf(unit) === -1) branch.push(unit);
+    return branch;
+  }
+
+  /** The provinces open on the map, whose dots are drawn. */
+  function openProvinces() {
+    const list = [];
+    for (const id of openIds()) {
+      const province = chainOf(id)[0];
+      if (province && list.indexOf(province) === -1) list.push(province);
+    }
+    return list;
+  }
 
   /** The province an id belongs to, read from the id alone. */
   function provinceIdOf(id) {
@@ -739,9 +773,9 @@ window.FoodMapText.ready.then(function () {
     drawn.delete(id);
   }
 
-  /** Put the open branch on the map: the parts of the selected unit and of each unit above it. */
+  /** Put the open branch on the map: the parts of each open unit (openBranch). */
   function syncOpen() {
-    const branch = chainOf(state.region).filter(opens);
+    const branch = openBranch();
     for (const unit of branch) {
       if (unit.kids || unit.loading) continue;
       unit.loading = true;
@@ -751,6 +785,7 @@ window.FoodMapText.ready.then(function () {
           tallies.delete(provinceIdOf(unit.id));
           if (wanted && wanted.on === unit.id) selectRegion(wanted.id, wanted.options);
           else if (chainOf(state.region).indexOf(unit) !== -1) applySelection();
+          else if (openBranch().indexOf(unit) !== -1) refreshMap();
         },
         function (error) {
           unit.loading = false;
@@ -758,6 +793,7 @@ window.FoodMapText.ready.then(function () {
           console.warn(error.message);
           if (wanted && wanted.on === unit.id) wanted = null;
           if (chainOf(state.region).indexOf(unit) !== -1) applySelection();
+          else if (openBranch().indexOf(unit) !== -1) refreshMap();
         }
       );
     }
@@ -768,11 +804,11 @@ window.FoodMapText.ready.then(function () {
 
   // ---------- points ----------
   //
-  // Dots are drawn for the open province only. A closed province shows a count instead (see
-  // refreshCounts), so the country view is not buried under thousands of dots.
+  // Dots are drawn for the open provinces only (openProvinces). A closed province shows a count
+  // instead (see refreshCounts), so the whole map is not buried under thousands of dots.
 
-  const points = new Map(); // record id -> { node, x, y, record, layer }, for the open province
-  let pointsFor = null; // the id of the province whose dots are on the map
+  const points = new Map(); // record id -> { node, x, y, record, layer }, for the open provinces
+  let pointsFor = new Set(); // the ids of the provinces whose dots are on the map
   for (const layer of LAYERS) {
     layer.group = svgEl('g', { class: 'layer layer-' + layer.key, 'data-layer': layer.key });
     gPoints.append(layer.group);
@@ -797,14 +833,13 @@ window.FoodMapText.ready.then(function () {
     return [Math.round(radius * Math.cos(angle)), Math.round(radius * Math.sin(angle))];
   }
 
-  function drawPoints(province) {
+  function drawPoints(list) {
     for (const entry of points.values()) entry.node.remove();
     points.clear();
-    pointsFor = province ? province.id : null;
+    pointsFor = new Set(list.map((province) => province.id));
     refreshFaint();
-    if (!province) return;
     const stacks = new Map(); // position -> the records there
-    for (const layer of LAYERS) {
+    for (const province of list) for (const layer of LAYERS) {
       for (const record of recordsOf(province.id, layer.key)) {
         if (!record.coord) continue;
         const key = record.coord[0] + ',' + record.coord[1];
@@ -875,10 +910,10 @@ window.FoodMapText.ready.then(function () {
     refreshFaint();
   }
 
-  /** Hide the faint dots of the province whose real dots are on the map. */
+  /** Hide the faint dots of the provinces whose real dots are on the map. */
   function refreshFaint() {
     for (const [id, paths] of faintOf) {
-      for (const path of paths) path.style.display = id === pointsFor ? 'none' : '';
+      for (const path of paths) path.style.display = pointsFor.has(id) ? 'none' : '';
     }
   }
 
@@ -898,12 +933,12 @@ window.FoodMapText.ready.then(function () {
 
   /** Set the number under each closed province: its records in the categories switched on. */
   function refreshCounts() {
-    const open = chainOf(state.region)[0];
+    const open = openProvinces();
     for (const p of provinces) {
       let n = 0;
       for (const layer of LAYERS) if (layerVisible(layer)) n += countOf(p, layer.key);
       const badge = p.badge;
-      badge.shown = n > 0 && p !== open;
+      badge.shown = n > 0 && open.indexOf(p) === -1;
       badge.node.style.display = badge.shown ? '' : 'none';
       if (!badge.shown) continue;
       const text = String(n);
@@ -1165,7 +1200,7 @@ window.FoodMapText.ready.then(function () {
       drag = null;
       svg.classList.remove('is-dragging');
     }
-    if (finished && !finished.moved && !finished.pinch && e.type === 'pointerup') activate(finished.target, e.shiftKey);
+    if (finished && !finished.moved && !finished.pinch && e.type === 'pointerup') activate(finished.target, clickMode(e));
   }
   window.addEventListener('pointerup', endPointer);
   window.addEventListener('pointercancel', endPointer);
@@ -1180,19 +1215,101 @@ window.FoodMapText.ready.then(function () {
     { passive: false }
   );
 
-  /** A press that did not turn into a drag: open whatever was under it. With Shift (`soft`), a
-   *  place or a dot is only brought into view, and what is chosen stays as it is. */
-  function activate(target, soft) {
+  // ---------- soft, view and background clicks ----------
+  //
+  // Four clicks on the map, and the same four presses of Enter on a place reached with Tab. A
+  // click does three things: it moves the view to the place, opens it into its parts, and chooses
+  // it. Each modifier keeps some of them: Shift keeps the view's move, Cmd or Ctrl the opening.
+  //                         moves the view   opens its parts   chooses
+  //   click (hard)                yes              yes             yes
+  //   Shift + Cmd/Ctrl: soft      yes              yes             -     one; the next replaces it
+  //   Shift: view click           yes              -               -
+  //   Cmd/Ctrl: background        -                yes             -     many, adding up
+  // On a dot, the view's move centres it and there is nothing to open: a soft or view click
+  // centres it, a background click does nothing, a click opens its entry. A background or soft
+  // click on an open place lands on one of its parts and opens that. Any hard choice clears what
+  // soft and background clicks opened; so does Esc at the whole map. A view click leaves them.
+
+  // Where Ctrl with a click is the right-click (some systems), the browser opens its menu for it
+  // instead; such a press is then not a background click (menuOpened, kept from the press on).
+  let menuOpened = false;
+  svg.addEventListener('pointerdown', () => (menuOpened = false), true);
+  svg.addEventListener('contextmenu', () => (menuOpened = true));
+
+  /** Which click a press with these keys held is: 'soft', 'view', 'background', 'none' or null
+   *  (hard). */
+  function clickMode(e) {
+    const command = e.metaKey || e.ctrlKey;
+    if (command && e.ctrlKey && menuOpened) return 'none';
+    if (e.shiftKey) return command ? 'soft' : 'view';
+    return command ? 'background' : null;
+  }
+
+  function softOpen(shape) {
+    const unit = units.get(shape.getAttribute('data-id'));
+    if (!unit) return;
+    peeks.soft = unit.id;
+    refreshMap();
+    viewShape(shape);
+  }
+
+  function backgroundOpen(shape) {
+    const unit = units.get(shape.getAttribute('data-id'));
+    if (!unit || !opens(unit)) return;
+    peeks.background.add(unit.id);
+    refreshMap();
+  }
+
+  // Keys that background-click many places at once (hidden: no button or tip names them):
+  //   A        every province
+  //   B        every second-level place of each province open on the map in any way: chosen,
+  //            soft-clicked or background-clicked, itself or a place inside it. A then B opens
+  //            every one on the map (heavy: about 330 files of shapes); B straight after A works,
+  //            since A marks the provinces open at once and B waits for the same files.
+
+  function openAllProvinces() {
+    for (const p of provinces) if (opens(p)) peeks.background.add(p.id);
+    refreshMap();
+  }
+
+  function openAllCities() {
+    const list = openProvinces();
+    const round = peeks.round;
+    for (const p of list) {
+      if (!opens(p)) continue;
+      peeks.background.add(p.id); // the province itself too, where its places open no further
+      // A province's places are known once its own file is in; a hard choice meanwhile wins.
+      loadKids(p).then(
+        function () {
+          if (peeks.round !== round) return;
+          for (const kid of p.kids || []) if (opens(kid)) peeks.background.add(kid.id);
+          refreshMap();
+        },
+        (error) => console.warn(error.message)
+      );
+    }
+  }
+
+  function clearPeeks() {
+    peeks.soft = null;
+    peeks.background.clear();
+    peeks.round += 1;
+    refreshMap();
+  }
+
+  /** A press that did not turn into a drag: open whatever was under it, as `mode` says. */
+  function activate(target, mode) {
     if (!target || !target.closest) return;
-    if (soft) {
-      // A dot is centred as when its entry is opened from the panel, a place is framed; neither
-      // is chosen.
+    if (mode) {
       const dot = target.closest('.pt');
       const shape = dot ? null : target.closest('.unit, .base, .prov');
-      if (dot) {
+      if (mode === 'none') return;
+      if (dot && mode !== 'background') {
         const box = boxOfDot(dot.getAttribute('data-id'));
         if (box) fitBox(box, 0, true);
-      } else if (shape) viewShape(shape);
+      } else if (shape && mode === 'soft') softOpen(shape);
+      else if (shape && mode === 'view') viewShape(shape);
+      else if (shape) backgroundOpen(shape);
       if (dot || shape) return;
     }
     const pt = target.closest('.pt');
@@ -1237,13 +1354,17 @@ window.FoodMapText.ready.then(function () {
       const shape = e.target.closest('.unit, .prov');
       if (!shape) return;
       e.preventDefault();
-      // Shift+Enter is a soft Enter: the place comes into view, and what is chosen stays.
-      if (e.key === 'Enter' && e.shiftKey) viewShape(shape);
+      // Enter with Shift and/or Cmd/Ctrl is a soft, view or background Enter, as those clicks are.
+      menuOpened = false; // a key press opens no menu
+      const mode = e.key === 'Enter' ? clickMode(e) : null;
+      if (mode === 'soft') softOpen(shape);
+      else if (mode === 'view') viewShape(shape);
+      else if (mode === 'background') backgroundOpen(shape);
       else selectRegion(shape.getAttribute('data-id'), { fly: true });
     });
   }
 
-  /** Bring a shape's place into view without choosing it (Shift with a click or Enter). */
+  /** Bring a shape's place into view without choosing or opening it (a view click). */
   function viewShape(shape) {
     const unit = units.get(shape.getAttribute('data-id'));
     if (unit && unit.frame) fitBox(unit.frame, 0.35, true);
@@ -2540,13 +2661,30 @@ window.FoodMapText.ready.then(function () {
 
   /** Bring the map, the trail, the panel and the address in line with `state.region`. */
   function applySelection() {
+    syncMap();
+    renderTrail();
+    renderPanel();
+    refreshPoints();
+    syncUrl();
+    layoutLabels();
+  }
+
+  /** The map's part of a selection, also what places opened without choosing need. */
+  function refreshMap() {
+    syncMap();
+    refreshPoints();
+    layoutLabels();
+  }
+
+  function syncMap() {
     const chain = chainOf(state.region);
     const unit = chain.length ? chain[chain.length - 1] : null;
-    syncEnclaves(chain.length > 0);
+    const branch = openBranch();
+    syncEnclaves(chain.length > 0 || branch.length > 0);
     syncOpen();
     for (const node of svg.querySelectorAll('.is-selected, .is-open')) node.classList.remove('is-selected', 'is-open');
     if (unit && unit.path) unit.path.classList.add('is-selected');
-    for (const above of chain) {
+    for (const above of branch) {
       if (!above.path || !drawn.has(above.id)) continue;
       above.path.classList.add('is-open');
       // Its borders with its neighbours come from the same coarser file as its shape, so they
@@ -2558,21 +2696,19 @@ window.FoodMapText.ready.then(function () {
     }
     if (unit && drawn.has(unit.id)) drawn.get(unit.id).base.classList.add('is-selected');
     shadeOpen();
-    // A heavy line around the selected unit, and a lighter one around each unit it sits in.
+    // A heavy line around the selected unit, and a lighter one around each unit it sits in and
+    // around each place opened without choosing.
     selectionOutline.setAttribute('d', unit ? outlineOf(unit) : '');
-    openOutline.setAttribute('d', chain.slice(0, -1).map(outlineOf).join(''));
-    // Dots are for the open province, once its records are here. Every other province shows a
+    const extra = [peeks.soft].concat(Array.from(peeks.background)).map((id) => units.get(id)).filter(Boolean);
+    openOutline.setAttribute('d', chain.slice(0, -1).concat(extra).map(outlineOf).join(''));
+    // Dots are for the open provinces, once their records are here. Every other province shows a
     // count.
-    const province = chain[0] || null;
-    if (province) requestRecords(province);
-    const dotted = province && store.has(province.id) ? province : null;
-    if ((dotted ? dotted.id : null) !== pointsFor) drawPoints(dotted);
+    const open = openProvinces();
+    for (const province of open) requestRecords(province);
+    const dotted = open.filter((province) => store.has(province.id));
+    const same = dotted.length === pointsFor.size && dotted.every((province) => pointsFor.has(province.id));
+    if (!same) drawPoints(dotted);
     refreshCounts();
-    renderTrail();
-    renderPanel();
-    refreshPoints();
-    syncUrl();
-    layoutLabels();
   }
 
   /**
@@ -2581,6 +2717,9 @@ window.FoodMapText.ready.then(function () {
    */
   function selectRegion(id, options) {
     const move = options || {};
+    peeks.soft = null; // a hard choice clears the places opened without choosing
+    peeks.background.clear();
+    peeks.round += 1;
     wanted = null;
     wantedFocus = null;
     if (!move.keepItem) state.item = null;
@@ -3070,9 +3209,11 @@ window.FoodMapText.ready.then(function () {
       } else if (state.region) {
         // Step back out one level: a city to its province, a province to the whole map.
         selectRegion(parentOf(state.region), { fly: true });
+      } else if (peeks.soft || peeks.background.size) {
+        // At the whole map, Esc first closes what soft and background clicks opened ...
+        clearPeeks();
       } else if (fullscreenNow()) {
-        // At the whole map, and only there, Esc leaves full screen (and the immersive view F
-        // brought with it) ...
+        // ... then leaves full screen (and the immersive view F brought with it) ...
         exitFullscreen();
       } else if (isImmersive()) {
         // ... or immersive view.
@@ -3093,6 +3234,8 @@ window.FoodMapText.ready.then(function () {
   //   M  map only (immersive view)  F  full screen, with the map only
   //   P  the panel's next height, or hidden   L  the legend   C  the trail, buttons and legend
   //      (no button shows these three; see "views by key alone")
+  //   A  every province opened in the background   B  every city of the open provinces
+  //      (also hidden; see "soft, view and background clicks")
   //   arrows  move the map while it has the focus (Tab to a place on it), or after a click on
   //           it while nothing else has the focus (a click that opens a place replaces the
   //           shape clicked, and the focus falls back to the page), so they never take over
@@ -3105,12 +3248,14 @@ window.FoodMapText.ready.then(function () {
   /**
    * A key for the trail does what a click on its item does: 0 is China, 1 to 3 the levels below
    * it, R the last item. A level the trail does not reach is ignored. With nothing chosen, there
-   * is no trail, and 0 and R show the whole map.
+   * is no trail: 0 still chooses the whole map, closing what soft and background clicks opened,
+   * and R shows it.
    */
   function trailKey(key) {
     const items = trail.hidden ? [] : trail.querySelectorAll('li > button');
     if (!items.length) {
-      if (key === '0' || key === 'r' || key === 'R') fitBox(home, CONFIG.margin, true);
+      if (key === '0') selectRegion(null, { fly: true });
+      else if (key === 'r' || key === 'R') fitBox(home, CONFIG.margin, true);
       return;
     }
     const item = key === 'r' || key === 'R' ? items[items.length - 1] : items[Number(key)];
@@ -3140,6 +3285,8 @@ window.FoodMapText.ready.then(function () {
     else if (key === 'p' || key === 'P') cyclePanel(e.shiftKey);
     else if (key === 'l' || key === 'L') toggleRootClass('is-legend-off');
     else if (key === 'c' || key === 'C') toggleRootClass('is-bare');
+    else if (key === 'a' || key === 'A') openAllProvinces();
+    else if (key === 'b' || key === 'B') openAllCities();
     else if (key.slice(0, 5) === 'Arrow' && mapHasKeys(e)) {
       // A tenth of the map in view per press.
       const h = view.w * (size.H / size.W);
